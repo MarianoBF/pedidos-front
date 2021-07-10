@@ -12,7 +12,7 @@ export class ProductsService {
     withCredentials: true,
     headers: new HttpHeaders({
       'x-access-token':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJhZG1pbmlzdHJhZG9yIiwibm9tYnJlX3VzdWFyaW8iOiJqcGVyZXozMyIsImlkX3VzdWFyaW8iOjYsImlhdCI6MTYyNTkzODA0MywiZXhwIjoxNjI2MDI0NDQzfQ.1sO-AE1JIYlVm4FYREyNTX7v4JaBREY3QPTg03ZT2go',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2wiOiJhZG1pbmlzdHJhZG9yIiwibm9tYnJlX3VzdWFyaW8iOiJqcGVyZXozMyIsImlkX3VzdWFyaW8iOjEwNSwiaWF0IjoxNjI1OTU3MzQ1LCJleHAiOjE2MjYwNDM3NDV9.fHcl3VDqYT9K684ZRfzoCX01MS0f3H8xHg6jDPM34Wk',
     }),
   };
 
