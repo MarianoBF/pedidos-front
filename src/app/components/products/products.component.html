@@ -1,5 +1,7 @@
-<p>products works!</p>
+<h1>Productos disponibles</h1>
 
 <div *ngFor="let product of productList">
-<p>Nombre de producto: {{product.nombre}}</p>
+<h2>{{product.nombre}}</h2>
+<p>{{product.descripcion}}</p>
+<p>Precio: {{product.precio | currency}}</p>
 </div>
