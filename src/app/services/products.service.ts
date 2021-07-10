@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ProductsService {
-  apiURL = 'http://localhost:8500/api/v1/';
+  apiURL = 'http://pedidos456.herokuapp.com/api/v1/';
 
   httpOptions = {
     withCredentials: true,
