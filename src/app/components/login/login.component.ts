@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +8,16 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  token$: Observable<any> = new Observable();
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
   handleLogin(values: any) {
-    console.log(values);
-    this.authService.login(values).subscribe();
+    this.authService.login(values).subscribe((token) => {
+      console.log(token);
+      localStorage.setItem('pedidos_jwt_token', token.token)
+    });
   }
 }
