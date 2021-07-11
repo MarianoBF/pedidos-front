@@ -17,7 +17,7 @@ export class UsersService {
   };
   constructor(private http: HttpClient) {}
 
-  getProducts() {
+  getUsers() {
     return this.http
       .get<any[]>(this.apiURL + 'productos', this.httpOptions)
       .pipe(tap((users) => console.log('retrieved users', users)));
