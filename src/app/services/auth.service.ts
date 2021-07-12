@@ -21,7 +21,7 @@ export class AuthService {
       password: values.password,
     }
     return this.http
-      .post<any>(this.apiUrl+"/usuario/login", credentials, this.httpOptions)
+      .post<any>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
       .pipe(tap(_ => console.log('Login attemp for', values.userName)));
   }
 }
