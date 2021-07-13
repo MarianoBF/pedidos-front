@@ -1,7 +1,19 @@
 <h1>Productos disponibles</h1>
 
+<button (click)="addProduct()">
+    Agregar Producto
+</button>
+
+<button (click)="updateProduct()">
+    Actualizar Producto
+</button>
+
+<button (click)="deleteProduct()">
+    Borrar producto
+</button>
+
 <div *ngFor="let product of productList">
 <h2>{{product.nombre}}</h2>
-<p>{{product.descripcion}}</p>
+<p>ID: {{product.id_producto}} - {{product.descripcion}}</p>
 <p>Precio: {{product.precio | currency}}</p>
 </div>
