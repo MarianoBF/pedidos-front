@@ -10,6 +10,8 @@ import { UsersComponent } from './components/users/users.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { ProductsFormComponent } from './components/products-form/products-form.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { LoginComponent } from './components/login/login.component';
     UsersComponent,
     OrdersComponent,
     LoginComponent,
+    ProductsFormComponent,
+    ProductsListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

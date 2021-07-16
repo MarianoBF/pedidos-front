@@ -12,6 +12,9 @@
     Borrar producto
 </button>
 
+<app-products-form></app-products-form>
+<app-products-list></app-products-list>
+
 <div *ngFor="let product of productList">
 <h2>{{product.nombre}}</h2>
 <p>ID: {{product.id_producto}} - {{product.descripcion}}</p>
