@@ -3,5 +3,6 @@
     <p>ID: {{product.id_producto}} - {{product.descripcion}}</p>
     <p>Precio: {{product.precio | currency}}</p>
     <button (click)="deleteProduct(product.id_producto)">Borrar</button>
+    <button (click)="updateProduct(product)">Editar</button>
 </div>
     

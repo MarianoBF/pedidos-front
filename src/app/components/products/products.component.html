@@ -4,9 +4,5 @@
     Agregar Producto
 </button>
 
-<button (click)="updateProduct()">
-    Actualizar Producto
-</button>
-
-<app-products-form *ngIf="add || editing" [editing]="editing"></app-products-form>
-<app-products-list *ngIf="!add && !editing"></app-products-list>
+<app-products-form *ngIf="add || editing" [editing]="editing" [product]="product"></app-products-form>
+<app-products-list *ngIf="!add && !editing" (evtUpdateProduct)="updateProduct($event)"></app-products-list>

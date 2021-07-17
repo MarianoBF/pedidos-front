@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -10,7 +11,11 @@ export class ProductsListComponent implements OnInit {
 
   productList: any[] = [];
 
-  constructor(private productService: ProductsService) { }
+  @Output() evtUpdateProduct: EventEmitter<Product>;
+
+  constructor(private productService: ProductsService) {
+    this.evtUpdateProduct = new EventEmitter();
+   }
 
   ngOnInit(): void {
     this.getProducts()
@@ -24,5 +29,7 @@ export class ProductsListComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(data=>console.log(data))
     this.getProducts();
   }
-
+  updateProduct(product:Product) {
+    this.evtUpdateProduct.emit(product);
+  }
 }

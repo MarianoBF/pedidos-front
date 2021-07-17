@@ -10,6 +10,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsFormComponent implements OnInit {
   @Input() editing = false;
+  @Input() product?: Product;
 
   productForm: FormGroup;
 
@@ -25,7 +26,15 @@ export class ProductsFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.product) {
+      this.productForm.patchValue({
+        name: this.product.nombre,
+        description: this.product.descripcion,
+        price: this.product.precio,
+      });
+    }
+  }
 
   onSubmit(): void {
     console.log(this.productForm.value);
@@ -35,6 +44,10 @@ export class ProductsFormComponent implements OnInit {
       precio: this.productForm.value.price,
     };
     if (this.editing) {
+      const id = this.product?.id_producto || 0; // TODO : Chequear
+      this.productService
+        .updateProduct(id, product)
+        .subscribe((data) => console.log(data));
     } else {
       this.productService
         .addProduct(product)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-products',
@@ -9,6 +10,7 @@ export class ProductsComponent implements OnInit {
 
   editing:boolean = false;
   add: boolean = false;
+  product?: Product;
 
   constructor() { }
 
@@ -16,12 +18,13 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduct() {
-    // this.productService.addProduct(this.productToAdd).subscribe(data=>console.log(data))
     this.add = true;
   }
 
-  updateProduct() {
-    // this.productService.updateProduct(3, this.productToUpdate).subscribe(data=>console.log(data))
+  updateProduct(product: Product) {
+    this.editing = true;
+    console.log("editando", product)
+    this.product = product;
   }
 
 
