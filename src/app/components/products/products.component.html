@@ -8,5 +8,5 @@
     Actualizar Producto
 </button>
 
-<app-products-form *ngIf="editing" [editing]="editing"></app-products-form>
-<app-products-list *ngIf="!editing"></app-products-list>
+<app-products-form *ngIf="add || editing" [editing]="editing"></app-products-form>
+<app-products-list *ngIf="!add && !editing"></app-products-list>

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/common/interfaces';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-products-form',
@@ -11,7 +13,7 @@ export class ProductsFormComponent implements OnInit {
 
   productForm: FormGroup;
 
-  constructor() {
+  constructor(private productService: ProductsService) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       description: new FormControl(),
@@ -27,5 +29,16 @@ export class ProductsFormComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.productForm.value);
+    const product: Product = {
+      nombre: this.productForm.value.name,
+      descripcion: this.productForm.value.description,
+      precio: this.productForm.value.price,
+    };
+    if (this.editing) {
+    } else {
+      this.productService
+        .addProduct(product)
+        .subscribe((data) => console.log(data));
+    }
   }
 }
