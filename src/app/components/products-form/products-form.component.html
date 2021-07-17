@@ -1,1 +1,33 @@
-<p>products-form works!</p>
+<p>Editando? {{editing}}</p>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" class="form-control"  formControlName="name">
+        <div *ngIf="productForm.controls.name.errors?.required" class="error">
+            <p>El nombre del producto es requerido</p>
+        </div>
+        <div *ngIf="productForm.controls.name.errors?.minlength && productForm.controls.name.touched" class="error">
+            <p>El nombre del producto ingresado es demasiado corto</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Descripción</label>
+        <input formControlName="description" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Precio</label>
+        <input formControlName="price" type="number" class="form-control">
+        <div *ngIf="productForm.controls.price.errors?.required" class="error">
+            <p>El precio del producto es requerido</p>
+        </div>
+        <div *ngIf="productForm.controls.name.errors?.min && productForm.controls.name.touched" class="error">
+            <p>El precio mínimo es $0,01</p>
+        </div>
+        <div *ngIf="productForm.controls.name.errors?.max && productForm.controls.name.touched" class="error">
+            <p>El precio máximo es $300.000</p>
+        </div>
+
+    </div>
+    <input type="submit" value="Enviar" class="btn btn-primary btn-success" [disabled]="productForm.invalid">
+</form>
