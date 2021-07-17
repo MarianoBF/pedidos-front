@@ -9,3 +9,11 @@ input.ng-invalid.ng-touched {
 .error {
     color:tomato
 }
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}

@@ -1,6 +1,6 @@
 <h1>Productos disponibles</h1>
 
-<button (click)="addProduct()">
+<button *ngIf="!add && !editing" (click)="addProduct()">
     Agregar Producto
 </button>
 

@@ -13,6 +13,11 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductsFormComponent } from './components/products-form/products-form.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductsFormComponent,
     ProductsListComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, MatCardModule, MatFormFieldModule, MatInputModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
