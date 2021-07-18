@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/common/interfaces';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -7,15 +8,21 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  userList: any[] = [];
+  editing: boolean = false;
+  add: boolean = false;
+  user?: User;
 
   constructor(private usersService: UsersService) {}
 
-  ngOnInit(): void {
-    this.getUsers();
+  ngOnInit(): void {}
+
+  addUser() {
+    this.add = true;
   }
 
-  getUsers() {
-    this.usersService.getUsers().subscribe((users) => (this.userList = users));
+  updateUser(user: User) {
+    this.editing = true;
+    console.log('editando', user);
+    this.user = user;
   }
 }

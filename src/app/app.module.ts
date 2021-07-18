@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { UsersFormComponent } from './components/users-form/users-form.component';
 
 
 
@@ -28,6 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent,
     ProductsFormComponent,
     ProductsListComponent,
+    UsersListComponent,
+    UsersFormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, MatCardModule, MatFormFieldModule, MatInputModule],
   providers: [

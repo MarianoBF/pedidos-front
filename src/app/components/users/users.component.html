@@ -1,7 +1,8 @@
-<h1>Usuarios disponibles</h1>
+<h1>Usuarios registrados</h1>
 
-<div *ngFor="let user of userList">
-<h2>{{user.nombre_usuario}}</h2>
-<p>{{user.email}}</p>
-<p>Rol: {{user.rol}}</p>
-</div>
+<button *ngIf="!add && !editing" (click)="addUser()">
+    Agregar Usuario
+</button>
+
+<app-users-form *ngIf="add || editing" [editing]="editing" [user]="user"></app-users-form>
+<app-users-list *ngIf="!add && !editing" (evtUpdateUser)="updateUser($event)"></app-users-list>

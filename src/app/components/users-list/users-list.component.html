@@ -1,0 +1,14 @@
+<div class="cardContainer">
+    <mat-card *ngFor="let user of userList" class="card">
+      <mat-card-title>{{ user.nombre_usuario }}</mat-card-title>
+      <mat-card-content>
+        <p>Usuario: {{ user.nombre_usuario }} - Rol: {{ user.rol }}</p>
+        <p>Teléfono: {{ user.telefono }}</p>
+        <p>Dirección: {{ user.direccion }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="deleteUser(user.id_usuario)">Borrar</button>
+        <button (click)="updateUser(user)">Editar</button>
+      </mat-card-actions>
+    </mat-card>
+    </div>

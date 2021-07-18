@@ -14,3 +14,15 @@ export interface Order {
     pago_monto: number,
     observaciones?: string,
 }
+
+export interface User {
+    id_usuario?: number,
+    nombre_usuario: string,
+    nombre_completo: string,
+    password: string,
+    email: string,
+    rol: string, // TODO: Acotar roles
+    direccion: string,
+    telefono: string,
+}
+
