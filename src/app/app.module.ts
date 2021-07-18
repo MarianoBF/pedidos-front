@@ -10,16 +10,15 @@ import { UsersComponent } from './components/users/users.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { ProductsFormComponent } from './components/products-form/products-form.component';
-import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductsFormComponent } from './components/products/products-form/products-form.component';
+import { ProductsListComponent } from './components/products/products-list/products-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UsersListComponent } from './components/users-list/users-list.component';
-import { UsersFormComponent } from './components/users-form/users-form.component';
-
-
+import { UsersListComponent } from './components/users/users-list/users-list.component';
+import { UsersFormComponent } from './components/users/users-form/users-form.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,18 @@ import { UsersFormComponent } from './components/users-form/users-form.component
     UsersListComponent,
     UsersFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, MatCardModule, MatFormFieldModule, MatInputModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
