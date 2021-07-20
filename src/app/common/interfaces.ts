@@ -26,3 +26,10 @@ export interface User {
     telefono: string,
 }
 
+export interface decodedToken {
+    rol: string;
+    nombre_usuario: string;
+    id_usuario: number;
+    exp: number;
+    iat: number;
+  }
