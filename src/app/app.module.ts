@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { UsersListComponent } from './components/users/users-list/users-list.component';
 import { UsersFormComponent } from './components/users/users-form/users-form.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { OrdersListComponent } from './components/orders/orders-list/orders-list.component';
 
 @NgModule({
@@ -45,6 +47,8 @@ import { OrdersListComponent } from './components/orders/orders-list/orders-list
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatToolbarModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

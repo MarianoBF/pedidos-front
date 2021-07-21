@@ -1,7 +1,8 @@
-<button routerLink="productos">Listado de productos disponibles</button>
+<mat-toolbar class="navBar">
+    <span>Pedidos</span>
+    <button mat-stroked-button class="navButton" routerLink="productos">Listado de productos disponibles</button>
+    <button mat-stroked-button class="navButton" routerLink="usuarios">Listado de usuarios registrados</button>
+    <button mat-stroked-button class="navButton" routerLink="pedidos">Listado de pedidos actuales</button>
+</mat-toolbar>
 
-<button routerLink="usuarios">Listado de usuarios registrados</button>
-
-<button routerLink="pedidos">Listado de pedidos actuales</button>
-
-<router-outlet>
+<router-outlet></router-outlet>

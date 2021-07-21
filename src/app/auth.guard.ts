@@ -12,9 +12,8 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    //Check if token is current
+    //Check if token is current, 
     const current_token: decodedToken = (jwt_decode(localStorage.getItem('pedidos_jwt_token') || ""));
-    console.log("auth-res",current_token.exp >= Date.now() / 1000, current_token.exp, Date.now());
     if (current_token.exp >= Date.now() / 1000) {
       return true
     }
