@@ -1,3 +1,5 @@
+<div *ngIf="productList.length === 0"> No hay productos para mostrar</div>
+
 <div class="cardContainer">
 <mat-card *ngFor="let product of productList" class="card">
   <mat-card-title>{{ product.nombre }}</mat-card-title>
@@ -6,8 +8,8 @@
     <p>Precio: {{ product.precio | currency }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button (click)="deleteProduct(product.id_producto)">Borrar</button>
-    <button (click)="updateProduct(product)">Editar</button>
+    <button mat-stroked-button color="warn" (click)="deleteProduct(product.id_producto)">Borrar</button>
+    <button mat-stroked-button (click)="updateProduct(product)">Editar</button>
   </mat-card-actions>
 </mat-card>
 </div>

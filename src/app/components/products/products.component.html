@@ -1,8 +1,8 @@
-<h1>Productos disponibles</h1>
-
-<button *ngIf="!add && !editing" (click)="addProduct()">
-    Agregar Producto
-</button>
-
+<div class="sectionHeader">
+    <h1>Productos disponibles</h1>
+    <button mat-raised-button *ngIf="!add && !editing" (click)="addProduct()">
+        Agregar Producto
+    </button>
+</div>
 <app-products-form *ngIf="add || editing" [editing]="editing" [product]="product"></app-products-form>
 <app-products-list *ngIf="!add && !editing" (evtUpdateProduct)="updateProduct($event)"></app-products-list>
