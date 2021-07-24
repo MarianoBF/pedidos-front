@@ -41,6 +41,10 @@ export class ProductsFormComponent implements OnInit {
     }
   }
 
+  onCancel(): void {
+    this.done.emit(false)
+  }
+
   onSubmit(): void {
     console.log(this.productForm.value);
     const product: Product = {
@@ -54,19 +58,25 @@ export class ProductsFormComponent implements OnInit {
         this.productService
           .updateProduct(id, product)
           .subscribe((data) => console.log(data));
-          this._snackBar.open("Producto actualizado con éxito")
+          this._snackBar.open("Producto actualizado con éxito", "Cerrar", {
+            duration: 4000
+          })
       } else {
         this.productService
           .addProduct(product)
           .subscribe((data) => console.log(data));
-          this._snackBar.open("Producto agregado con éxito")
+          this._snackBar.open("Producto agregado con éxito", "Cerrar", {
+            duration: 4000
+          })
       }
     } catch (error) {
       console.log(error);
-      this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos")
+      this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos", "Cerrar", {
+        duration: 4000
+      })
     } finally {
       
-      setTimeout(()=>this.done.emit(true),3000);
+      setTimeout(()=>this.done.emit(true),4000);
     }
   }
 }

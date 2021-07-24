@@ -26,8 +26,9 @@ export class ProductsListComponent implements OnInit {
   }
 
   deleteProduct(id:number) {
-    this.productService.deleteProduct(id).subscribe(data=>console.log(data))
-    this.getProducts();
+    this.productService.deleteProduct(id).subscribe();
+    const toDelete = this.productList.findIndex(item=>item.id_producto === id);
+    this.productList.splice(toDelete, 1);
   }
   updateProduct(product:Product) {
     this.evtUpdateProduct.emit(product);

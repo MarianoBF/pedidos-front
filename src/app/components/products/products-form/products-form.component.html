@@ -66,10 +66,15 @@
       <p>El precio máximo es $300.000</p>
     </div>
   </mat-form-field>
-  <input
+  <button
     type="submit"
-    value="Enviar"
-    class="btn btn-primary btn-success mat-stroked-button"
+    mat-stroked-button
     [disabled]="productForm.invalid"
-  />
+  >Enviar</button>
+  <hr>
+  <button 
+  mat-stroked-button
+  color="warn"
+  (click)="onCancel()"
+  >Cancelar</button>
 </form>
