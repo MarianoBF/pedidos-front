@@ -1,8 +1,9 @@
-<h1>Usuarios registrados</h1>
+<div class="sectionHeader">
+    <h1>Usuarios registrados</h1>
 
-<button *ngIf="!add && !editing" (click)="addUser()">
-    Agregar Usuario
-</button>
-
+    <button mat-raised-button *ngIf="!add && !editing" (click)="addUser()">
+        Agregar Usuario
+    </button>
+</div>
 <app-users-form *ngIf="add || editing" [editing]="editing" [user]="user"></app-users-form>
 <app-users-list *ngIf="!add && !editing" (evtUpdateUser)="updateUser($event)"></app-users-list>

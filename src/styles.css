@@ -14,3 +14,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 300px;
     margin: 10px;
 }
+
+.sectionHeader {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}

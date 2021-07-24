@@ -1,2 +1,8 @@
-<p>orders works!</p>
+<div class="sectionHeader">
+  <h1>Pedidos realizados</h1>
+
+  <button mat-raised-button *ngIf="!add && !editing" (click)="addOrder()">
+    Agregar Pedido
+  </button>
+</div>
 <app-orders-list></app-orders-list>
