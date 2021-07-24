@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
+import { Router }  from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +11,14 @@ import { Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
   token$: Observable<any> = new Observable();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
   handleLogin(values: any) {
     this.authService.login(values).subscribe((token) => {
-      console.log(token);
       localStorage.setItem('pedidos_jwt_token', token.token)
+      this.router.navigate(['/pedidos']);
     });
   }
 }
