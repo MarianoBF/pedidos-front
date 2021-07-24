@@ -1,1 +1,100 @@
-<p>users-form works!</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre de Usuario</mat-label>
+    <input
+      formControlName="userName"
+      type="text"
+      matInput
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        userForm.controls.userName.errors?.required &&
+        userForm.controls.userName.touched
+      "
+      class="error"
+    >
+      <p>El nombre de usuario es requerido</p>
+    </div>
+    <div
+      *ngIf="
+        userForm.controls.userName.errors?.minlength &&
+        userForm.controls.userName.touched
+      "
+      class="error"
+    >
+      <p>El nombre de usuario es demasiado corto</p>
+    </div>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre Completo</mat-label>
+    <input
+      formControlName="fullName"
+      type="text"
+      matInput
+      class="form-control"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input
+      formControlName="email"
+      type="number"
+      matInput
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        userForm.controls.email.errors?.required &&
+        userForm.controls.email.touched
+      "
+      class="error"
+    >
+      <p>El email es requerido</p>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Dirección</mat-label>
+    <input
+      formControlName="address"
+      type="text"
+      matInput
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        userForm.controls.address.errors?.required &&
+        userForm.controls.address.touched
+      "
+      class="error"
+    >
+      <p>La dirección es requerida</p>
+    </div>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Teléfono</mat-label>
+    <input
+      formControlName="phone"
+      type="number"
+      matInput
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        userForm.controls.phone.errors?.required &&
+        userForm.controls.phone.touched
+      "
+      class="error"
+    >
+      <p>El teléfono es requerido</p>
+    </div>
+  </mat-form-field>
+  <input
+    type="submit"
+    value="Enviar"
+    class="btn btn-primary btn-success mat-stroked-button"
+    [disabled]="userForm.invalid"
+  />
+</form>
