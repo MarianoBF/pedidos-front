@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { OrdersListComponent } from './components/orders/orders-list/orders-list.component';
+import { OrderFormComponent } from './components/orders/order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { OrdersListComponent } from './components/orders/orders-list/orders-list
     UsersListComponent,
     UsersFormComponent,
     OrdersListComponent,
+    OrderFormComponent,
   ],
   imports: [
     BrowserModule,
