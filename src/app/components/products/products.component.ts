@@ -27,5 +27,4 @@ export class ProductsComponent implements OnInit {
     this.product = product;
   }
 
-
 }

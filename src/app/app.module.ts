@@ -21,8 +21,8 @@ import { UsersFormComponent } from './components/users/users-form/users-form.com
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { OrdersListComponent } from './components/orders/orders-list/orders-list.component';
-import { OrderFormComponent } from './components/orders/order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { OrderFormComponent } from './components/orders/order-form/order-form.co
     UsersListComponent,
     UsersFormComponent,
     OrdersListComponent,
-    OrderFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +50,7 @@ import { OrderFormComponent } from './components/orders/order-form/order-form.co
     MatTableModule,
     MatToolbarModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

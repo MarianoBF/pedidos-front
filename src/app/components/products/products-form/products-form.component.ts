@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products-form',
@@ -12,9 +14,11 @@ export class ProductsFormComponent implements OnInit {
   @Input() editing = false;
   @Input() product?: Product;
 
+  @Output() done: EventEmitter<boolean>;
+
   productForm: FormGroup;
 
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, private router: Router, private _snackBar: MatSnackBar) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       description: new FormControl(),
@@ -24,6 +28,7 @@ export class ProductsFormComponent implements OnInit {
         Validators.max(300000.0),
       ]),
     });
+    this.done = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -43,15 +48,25 @@ export class ProductsFormComponent implements OnInit {
       descripcion: this.productForm.value.description,
       precio: this.productForm.value.price,
     };
-    if (this.editing) {
-      const id = this.product?.id_producto || 0; // TODO : Chequear
-      this.productService
-        .updateProduct(id, product)
-        .subscribe((data) => console.log(data));
-    } else {
-      this.productService
-        .addProduct(product)
-        .subscribe((data) => console.log(data));
+    try {
+      if (this.editing) {
+        const id = this.product?.id_producto || 0; // TODO : Chequear
+        this.productService
+          .updateProduct(id, product)
+          .subscribe((data) => console.log(data));
+          this._snackBar.open("Producto actualizado con éxito")
+      } else {
+        this.productService
+          .addProduct(product)
+          .subscribe((data) => console.log(data));
+          this._snackBar.open("Producto agregado con éxito")
+      }
+    } catch (error) {
+      console.log(error);
+      this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos")
+    } finally {
+      
+      setTimeout(()=>this.done.emit(true),3000);
     }
   }
 }
