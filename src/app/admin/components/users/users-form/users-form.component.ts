@@ -2,7 +2,7 @@ import { Input } from '@angular/core';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/common/interfaces';
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from '../../../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

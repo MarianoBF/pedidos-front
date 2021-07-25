@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../../common/interfaces';
+import { Order } from '../../../common/interfaces';
 
 @Component({
   selector: 'app-orders',
