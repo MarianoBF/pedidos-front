@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/common/interfaces';
 import { UsersService } from '../../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-form',
@@ -21,7 +20,6 @@ export class UsersFormComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private router: Router,
     private _snackBar: MatSnackBar
   ) {
     this.userForm = new FormGroup({
@@ -32,7 +30,7 @@ export class UsersFormComponent implements OnInit {
       password: new FormControl(''),
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      // role: new FormControl(''), // TODO implement
+      role: new FormControl(''),
       address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
     });
@@ -47,6 +45,7 @@ export class UsersFormComponent implements OnInit {
         email: this.user.email,
         address: this.user.direccion,
         phone: this.user.telefono,
+        role: this.user.rol,
       });
     }
   }

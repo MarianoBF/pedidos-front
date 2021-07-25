@@ -100,6 +100,15 @@
       <p>El teléfono es requerido</p>
     </div>
   </mat-form-field>
+  
+  <mat-form-field *ngIf="editing" appearance="fill">
+    <mat-label>Rol</mat-label>
+    <select matNativeControl required>
+      <option value="administrador">Administrador</option>
+      <option value="usuario">Usuario común</option>
+    </select>
+  </mat-form-field>
+
   <input
     type="submit"
     value="Enviar"
