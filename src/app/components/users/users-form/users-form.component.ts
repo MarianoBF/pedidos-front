@@ -1,8 +1,10 @@
 import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/common/interfaces';
 import { UsersService } from '../../../services/users.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-form',
@@ -13,9 +15,11 @@ export class UsersFormComponent implements OnInit {
   @Input() editing = false;
   @Input() user?: User;
 
+  @Output() done: EventEmitter<boolean>;
+
   userForm: FormGroup;
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService, private router: Router, private _snackBar: MatSnackBar) {
     this.userForm = new FormGroup({
       userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
       password: new FormControl('', [Validators.required]),
@@ -25,6 +29,7 @@ export class UsersFormComponent implements OnInit {
       address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
     });
+    this.done = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -39,6 +44,10 @@ export class UsersFormComponent implements OnInit {
     }
   }
 
+  onCancel(): void {
+    this.done.emit(false)
+  }
+
   onSubmit(): void {
     const user: User = {
       nombre_usuario: this.userForm.value.userName,
@@ -49,6 +58,7 @@ export class UsersFormComponent implements OnInit {
       password: this.userForm.value.password,
       rol: this.userForm.value.role,
     };
+    try {
     if (this.editing) {
       const id = this.user?.id_usuario || 0; // TODO chequear;
       this.usersService
@@ -56,6 +66,14 @@ export class UsersFormComponent implements OnInit {
         .subscribe((data) => console.log(data));
     } else {
       this.usersService.addUser(user).subscribe((data) => console.log(data));
+    } } catch (error) {
+      console.log(error);
+      this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos", "Cerrar", {
+        duration: 4000
+      })
+    } finally {
+      
+      setTimeout(()=>this.done.emit(true),4000);
     }
   }
 }

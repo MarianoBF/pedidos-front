@@ -25,4 +25,9 @@ export class UsersComponent implements OnInit {
     console.log('editando', user);
     this.user = user;
   }
+
+  handleFinish() {
+    this.add = false;
+    this.editing = false;
+  }
 }

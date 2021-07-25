@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class UsersListComponent implements OnInit {
 
-  userList: any[] = [];
+  userList: User[] = [];
 
   @Output() evtUpdateUser: EventEmitter<User>;
 
@@ -27,7 +27,9 @@ export class UsersListComponent implements OnInit {
 
   deleteUser(id:number) {
     this.userService.deleteUser(id).subscribe(data=>console.log(data))
-    this.getUsers();
+    const toDelete = this.userList.findIndex(item=>item.id_usuario === id);
+    this.userList.splice(toDelete, 1);
+
   }
   updateUser(user:User) {
     this.evtUpdateUser.emit(user);

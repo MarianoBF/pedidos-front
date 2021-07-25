@@ -7,7 +7,7 @@
         <p>Dirección: {{ user.direccion }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button (click)="deleteUser(user.id_usuario)">Borrar</button>
+        <button (click)="deleteUser(user.id_usuario||0)">Borrar</button>
         <button (click)="updateUser(user)">Editar</button>
       </mat-card-actions>
     </mat-card>

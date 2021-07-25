@@ -5,5 +5,5 @@
         Agregar Usuario
     </button>
 </div>
-<app-users-form *ngIf="add || editing" [editing]="editing" [user]="user"></app-users-form>
+<app-users-form *ngIf="add || editing" [editing]="editing" [user]="user" (done)="handleFinish()"></app-users-form>
 <app-users-list *ngIf="!add && !editing" (evtUpdateUser)="updateUser($event)"></app-users-list>
