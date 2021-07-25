@@ -19,13 +19,20 @@ export class UsersFormComponent implements OnInit {
 
   userForm: FormGroup;
 
-  constructor(private usersService: UsersService, private router: Router, private _snackBar: MatSnackBar) {
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {
     this.userForm = new FormGroup({
-      userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+      ]),
+      password: new FormControl(''),
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      role: new FormControl(''),
+      // role: new FormControl(''), // TODO implement
       address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
     });
@@ -45,7 +52,7 @@ export class UsersFormComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.done.emit(false)
+    this.done.emit(false);
   }
 
   onSubmit(): void {
@@ -59,21 +66,33 @@ export class UsersFormComponent implements OnInit {
       rol: this.userForm.value.role,
     };
     try {
-    if (this.editing) {
-      const id = this.user?.id_usuario || 0; // TODO chequear;
-      this.usersService
-        .updateUser(id, user)
-        .subscribe((data) => console.log(data));
-    } else {
-      this.usersService.addUser(user).subscribe((data) => console.log(data));
-    } } catch (error) {
+      if (this.editing) {
+        const id = this.user?.id_usuario || 0; // TODO chequear;
+        this.usersService.updateUser(id, user).subscribe((data) => {
+          console.log(data);
+          this._snackBar.open('Usuario actualizado con éxito', 'Cerrar', {
+            duration: 4000,
+          });
+        });
+      } else {
+        this.usersService.addUser(user).subscribe((data) => {
+          console.log(data);
+          this._snackBar.open('Usuario agregado con éxito', 'Cerrar', {
+            duration: 4000,
+          });
+        });
+      }
+    } catch (error) {
       console.log(error);
-      this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos", "Cerrar", {
-        duration: 4000
-      })
+      this._snackBar.open(
+        'Hubo un problema al agregar el usuario, reintente en unos minutos',
+        'Cerrar',
+        {
+          duration: 4000,
+        }
+      );
     } finally {
-      
-      setTimeout(()=>this.done.emit(true),4000);
+      setTimeout(() => this.done.emit(true), 4000);
     }
   }
 }

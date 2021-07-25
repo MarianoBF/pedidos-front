@@ -35,11 +35,20 @@
       class="form-control"
     />
   </mat-form-field>
+  <mat-form-field *ngIf="!editing" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input
+      formControlName="fullName"
+      type="text"
+      matInput
+      class="form-control"
+    />
+  </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>
     <input
       formControlName="email"
-      type="number"
+      type="email"
       matInput
       class="form-control"
     />
@@ -77,7 +86,7 @@
     <mat-label>Teléfono</mat-label>
     <input
       formControlName="phone"
-      type="number"
+      type="text"
       matInput
       class="form-control"
     />
@@ -94,7 +103,7 @@
   <input
     type="submit"
     value="Enviar"
-    class="btn btn-primary btn-success mat-stroked-button"
+    class="mat-stroked-button"
     [disabled]="userForm.invalid"
   />
   <hr>

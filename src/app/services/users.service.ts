@@ -20,7 +20,7 @@ export class UsersService {
 
   addUser(user: User) {
     return this.http
-      .post<User>(this.apiURL + 'usuario', user)
+      .post<User>(this.apiURL + 'usuario/crear', user)
       .pipe(tap((user) => console.log('added user', user)));
   }
 
