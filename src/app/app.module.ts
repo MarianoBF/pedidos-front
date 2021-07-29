@@ -9,9 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { AdminRoutingModule } from './admin/admin-routing.module';
+import { MaterialUIModule } from './material-ui.module';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AdminModule,
-    MatToolbarModule,
-    MatButtonModule,
+    MaterialUIModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
