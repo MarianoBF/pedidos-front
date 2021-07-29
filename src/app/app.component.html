@@ -1,12 +1,12 @@
 <mat-toolbar class="navBar">
     <span>Pedidos</span>
     <div>
-        <button mat-stroked-button class="navButton" routerLink="productos">Listado de productos disponibles</button>
-        <button mat-stroked-button class="navButton" routerLink="usuarios">Listado de usuarios registrados</button>
-        <button mat-stroked-button class="navButton" routerLink="pedidos">Listado de pedidos actuales</button>
+        <button mat-stroked-button class="navButton" routerLink="admin/productos">Listado de productos disponibles</button>
+        <button mat-stroked-button class="navButton" routerLink="admin/usuarios">Listado de usuarios registrados</button>
+        <button mat-stroked-button class="navButton" routerLink="admin/pedidos">Listado de pedidos actuales</button>
         <span class="name">Hola {{user.name}}</span>
                 <!-- TODO implement-->
-        <button mat-stroked-button class="navButton" color="warn" >Logout</button>
+        <button mat-stroked-button class="navButton" color="warn" (click)="logout()">Logout</button>
     </div>
 </mat-toolbar>
 

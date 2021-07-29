@@ -9,13 +9,18 @@ import { Router }  from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  token$: Observable<any> = new Observable();
+  // token$: Observable<any> = new Observable();
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authService.logged) {
+      console.log("logged", this.authService.logged)
+      this.router.navigate(['/admin/pedidos']);
+    }
+  }
 
   handleLogin(values: any) {
-    this.authService.login(values).subscribe(()=>this.router.navigate(['/pedidos']));
+    this.authService.login(values).subscribe(()=>this.router.navigate(['/admin/pedidos']));
   }
 }

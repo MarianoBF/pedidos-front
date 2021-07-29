@@ -10,16 +10,9 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { ProductsFormComponent } from './components/products/products-form/products-form.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
 
-import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
+import { MaterialUIModule } from '../material-ui.module';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 
@@ -36,17 +29,10 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
-    AppRoutingModule,
+    MaterialUIModule,
+    AdminRoutingModule
 
   ],
 })

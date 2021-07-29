@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,12 @@ export class AppComponent {
     return this.authService.userData;
   }
 
-  constructor (private authService: AuthService) {}
+  constructor (private authService: AuthService, private router: Router) {}
+
+  logout() {
+    console.log("logout", "logged", this.authService.logged);
+    this.authService.logout();
+    this.router.navigate(['/login'])
+    
+  }
 }

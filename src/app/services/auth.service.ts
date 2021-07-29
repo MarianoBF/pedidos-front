@@ -21,6 +21,11 @@ export class AuthService {
     return {...this._userData};
   }
 
+    //TODO provisorio ejemplo
+  get logged () {
+    return this.userData.token !== ""
+  }
+
   login(values: any) {
     const credentials = {
       nombre_usuario: values.userName,
@@ -35,5 +40,8 @@ export class AuthService {
       }));
   }
    
-  logout() {}
+  logout() {
+    localStorage.removeItem('pedidos_jwt_token')
+    this._userData = {name: "", token: ""};
+  }
 }
