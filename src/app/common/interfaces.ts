@@ -33,3 +33,8 @@ export interface decodedToken {
     exp: number;
     iat: number;
   }
+
+  export interface loggedInUser {
+      name: string;
+      token: string;
+  }

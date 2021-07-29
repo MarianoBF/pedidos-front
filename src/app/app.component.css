@@ -2,6 +2,12 @@
     margin: 0 20px;
 }
 
+.name {
+    min-width: 300px;
+    text-align: center;
+    display: inline-block;
+  }
+
 @media screen and (max-width: 768px) {
     .navBar {
         display: flex;

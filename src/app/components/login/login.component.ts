@@ -16,9 +16,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   handleLogin(values: any) {
-    this.authService.login(values).subscribe((token) => {
-      localStorage.setItem('pedidos_jwt_token', token.token)
-      this.router.navigate(['/pedidos']);
-    });
+    this.authService.login(values).subscribe(()=>this.router.navigate(['/pedidos']));
   }
 }
