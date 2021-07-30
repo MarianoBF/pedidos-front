@@ -14,8 +14,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //Check if token is current, 
     const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
-    console.log("tkn2", storedToken)
-    if (storedToken.length > 1) {
+    if (storedToken) {
       const decodedStoredToken: decodedToken = jwt_decode(storedToken.token)
       if (decodedStoredToken.exp >= Date.now() / 1000) {
         return true
@@ -33,8 +32,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //Check if token is current, 
     const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
-    if (storedToken.length > 1) {
-      console.log("tkn", storedToken)
+    if (storedToken) {
       const decodedStoredToken: decodedToken = jwt_decode(storedToken.token)
       if (decodedStoredToken.exp >= Date.now() / 1000) {
         return true
