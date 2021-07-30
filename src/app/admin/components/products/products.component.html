@@ -5,4 +5,4 @@
     </button>
 </div>
 <app-products-form *ngIf="add || editing" [editing]="editing" [product]="product" (done)="handleFinish()"></app-products-form>
-<app-products-list *ngIf="!add && !editing" (evtUpdateProduct)="updateProduct($event)"></app-products-list>
+<app-products-list *ngIf="!add && !editing" product="aa" (evtUpdateProduct)="updateProduct($event)"></app-products-list>

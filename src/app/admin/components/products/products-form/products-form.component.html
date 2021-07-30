@@ -2,79 +2,46 @@
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
     <input formControlName="name" type="text" matInput class="form-control" />
-    <div
-      *ngIf="
+    <div *ngIf="
         productForm.controls.name.errors?.required &&
         productForm.controls.name.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El nombre del producto es requerido</p>
     </div>
-    <div
-      *ngIf="
+    <div *ngIf="
         productForm.controls.name.errors?.minlength &&
         productForm.controls.name.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El nombre del producto ingresado es demasiado corto</p>
     </div>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Descripción</mat-label>
-    <input
-      formControlName="description"
-      type="text"
-      matInput
-      class="form-control"
-    />
+    <input formControlName="description" type="text" matInput class="form-control" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Precio</mat-label>
-    <input
-      formControlName="price"
-      type="number"
-      matInput
-      class="form-control"
-    />
-    <div
-      *ngIf="
+    <input formControlName="price" type="number" matInput class="form-control" />
+    <div *ngIf="
         productForm.controls.price.errors?.required &&
         productForm.controls.price.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El precio del producto es requerido</p>
     </div>
-    <div
-      *ngIf="
+    <div *ngIf="
         productForm.controls.price.errors?.min &&
         productForm.controls.price.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El precio mínimo es $0,01</p>
     </div>
-    <div
-      *ngIf="
+    <div *ngIf="
         productForm.controls.price.errors?.max &&
         productForm.controls.price.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El precio máximo es $300.000</p>
     </div>
   </mat-form-field>
-  <button
-    type="submit"
-    mat-stroked-button
-    [disabled]="productForm.invalid"
-  >Enviar</button>
+  <button type="submit" mat-stroked-button [disabled]="productForm.invalid">Enviar</button>
   <hr>
-  <button 
-  mat-stroked-button
-  color="warn"
-  (click)="onCancel()"
-  >Cancelar</button>
+  <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">Cancelar</button>
 </form>

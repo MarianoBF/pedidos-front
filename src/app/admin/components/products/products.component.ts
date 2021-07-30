@@ -28,5 +28,6 @@ export class ProductsComponent implements OnInit {
   handleFinish() {
     this.add = false;
     this.editing = false;
+    this.product = undefined;
   }
 }

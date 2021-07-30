@@ -27,6 +27,7 @@ export class UsersComponent implements OnInit {
   }
 
   handleFinish() {
+    this.user = undefined;
     this.add = false;
     this.editing = false;
   }

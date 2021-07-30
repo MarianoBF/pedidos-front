@@ -51,7 +51,8 @@ export class UsersFormComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.done.emit(false);
+    this.userForm.reset();
+    setTimeout(()=>this.done.emit(false),500);
   }
 
   onSubmit(): void {
@@ -91,6 +92,7 @@ export class UsersFormComponent implements OnInit {
         }
       );
     } finally {
+      this.userForm.reset();
       setTimeout(() => this.done.emit(true), 4000);
     }
   }

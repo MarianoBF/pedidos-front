@@ -21,7 +21,7 @@ export class AuthService {
     return {...this._userData};
   }
 
-    //TODO provisorio ejemplo
+    //TODO provisorio ejemplo -- o con un método checkauth? 
   get logged () {
     return this.userData.token !== ""
   }

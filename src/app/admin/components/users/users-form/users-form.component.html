@@ -1,106 +1,61 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Nombre de Usuario</mat-label>
-    <input
-      formControlName="userName"
-      type="text"
-      matInput
-      class="form-control"
-    />
-    <div
-      *ngIf="
+    <input formControlName="userName" type="text" matInput class="form-control" />
+    <div *ngIf="
         userForm.controls.userName.errors?.required &&
         userForm.controls.userName.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El nombre de usuario es requerido</p>
     </div>
-    <div
-      *ngIf="
+    <div *ngIf="
         userForm.controls.userName.errors?.minlength &&
         userForm.controls.userName.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El nombre de usuario es demasiado corto</p>
     </div>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Nombre Completo</mat-label>
-    <input
-      formControlName="fullName"
-      type="text"
-      matInput
-      class="form-control"
-    />
+    <input formControlName="fullName" type="text" matInput class="form-control" />
   </mat-form-field>
   <mat-form-field *ngIf="!editing" appearance="fill">
     <mat-label>Password</mat-label>
-    <input
-      formControlName="fullName"
-      type="text"
-      matInput
-      class="form-control"
-    />
+    <input formControlName="fullName" type="text" matInput class="form-control" />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>
-    <input
-      formControlName="email"
-      type="email"
-      matInput
-      class="form-control"
-    />
-    <div
-      *ngIf="
+    <input formControlName="email" type="email" matInput class="form-control" />
+    <div *ngIf="
         userForm.controls.email.errors?.required &&
         userForm.controls.email.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El email es requerido</p>
     </div>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Dirección</mat-label>
-    <input
-      formControlName="address"
-      type="text"
-      matInput
-      class="form-control"
-    />
-    <div
-      *ngIf="
+    <input formControlName="address" type="text" matInput class="form-control" />
+    <div *ngIf="
         userForm.controls.address.errors?.required &&
         userForm.controls.address.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>La dirección es requerida</p>
     </div>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Teléfono</mat-label>
-    <input
-      formControlName="phone"
-      type="text"
-      matInput
-      class="form-control"
-    />
-    <div
-      *ngIf="
+    <input formControlName="phone" type="text" matInput class="form-control" />
+    <div *ngIf="
         userForm.controls.phone.errors?.required &&
         userForm.controls.phone.touched
-      "
-      class="error"
-    >
+      " class="error">
       <p>El teléfono es requerido</p>
     </div>
   </mat-form-field>
-  
+
   <mat-form-field *ngIf="editing" appearance="fill">
     <mat-label>Rol</mat-label>
     <select matNativeControl required>
@@ -109,16 +64,7 @@
     </select>
   </mat-form-field>
 
-  <input
-    type="submit"
-    value="Enviar"
-    class="mat-stroked-button"
-    [disabled]="userForm.invalid"
-  />
+  <input type="submit" value="Enviar" class="mat-stroked-button" [disabled]="userForm.invalid" />
   <hr>
-  <button 
-  mat-stroked-button
-  color="warn"
-  (click)="onCancel()"
-  >Cancelar</button>
+  <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">Cancelar</button>
 </form>

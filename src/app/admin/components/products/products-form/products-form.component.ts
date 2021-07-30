@@ -18,6 +18,8 @@ export class ProductsFormComponent implements OnInit {
 
   productForm: FormGroup;
 
+
+
   constructor(private productService: ProductsService, private router: Router, private _snackBar: MatSnackBar) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -32,6 +34,7 @@ export class ProductsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("product", this.product)
     if (this.product) {
       this.productForm.patchValue({
         name: this.product.nombre,
@@ -42,7 +45,8 @@ export class ProductsFormComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.done.emit(false)
+    this.productForm.reset();
+    setTimeout(()=>this.done.emit(false),500);
   }
 
   onSubmit(): void {
@@ -75,7 +79,7 @@ export class ProductsFormComponent implements OnInit {
         duration: 4000
       })
     } finally {
-      
+      this.productForm.reset();
       setTimeout(()=>this.done.emit(true),4000);
     }
   }
