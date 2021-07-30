@@ -1,23 +1,37 @@
 .navButton {
-    margin: 0 20px;
+  margin: 0 20px;
 }
 
 .name {
-    min-width: 300px;
-    text-align: center;
-    display: inline-block;
-  }
-
-@media screen and (max-width: 768px) {
-    .navBar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: fit-content;
-    }    
-    .navButton {
-        margin: 5px 0;
-    }
-    
+  min-width: 300px;
+  text-align: center;
+  display: inline-block;
 }
 
+.floatRight {
+  float: right;
+}
+
+.fullWidth {
+    width: 100%
+}
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+  }
+  .navButton {
+    display: block;
+    margin: 5px auto;
+  }
+  .floatRight {
+    float: unset;
+  }
+
+  .fullWidth {
+    width: unset
+    }
+}

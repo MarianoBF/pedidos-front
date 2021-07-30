@@ -35,13 +35,13 @@ export class AuthService {
       .post<any>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
         console.log('Login attemp for', values.userName)
-        localStorage.setItem('pedidos_jwt_token', res.token)
+        localStorage.setItem('pedidos456', JSON.stringify({token:res.token, userName:values.userName}));
         this._userData = {name: String(values.userName), token: String(res.token)};
       }));
   }
    
   logout() {
-    localStorage.removeItem('pedidos_jwt_token')
+    localStorage.removeItem('pedidos456')
     this._userData = {name: "", token: ""};
   }
 }

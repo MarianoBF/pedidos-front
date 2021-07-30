@@ -13,12 +13,12 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('pedidos_jwt_token');
-    if (!token) {
+    const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
+    if (!storedToken) {
       return next.handle(req);
     }
     const headers = req.clone({
-      headers: req.headers.set('x-access-token', token),
+      headers: req.headers.set('x-access-token', storedToken.token),
     });
     return next.handle(headers);
   }

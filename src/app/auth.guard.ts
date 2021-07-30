@@ -13,26 +13,38 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //Check if token is current, 
-    const current_token: decodedToken = (jwt_decode(localStorage.getItem('pedidos_jwt_token') || ""));
-    if (current_token.exp >= Date.now() / 1000) {
-      return true
-    }
-    else {
+    const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
+    console.log("tkn2", storedToken)
+    if (storedToken.length > 1) {
+      const decodedStoredToken: decodedToken = jwt_decode(storedToken.token)
+      if (decodedStoredToken.exp >= Date.now() / 1000) {
+        return true
+      }
+      else {
+        return false
+      };
+    } else {
       return false
-    };
+    }
   }
 
   canLoad(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //Check if token is current, 
-    const current_token: decodedToken = (jwt_decode(localStorage.getItem('pedidos_jwt_token') || ""));
-    if (current_token.exp >= Date.now() / 1000) {
-      return true
-    }
-    else {
+    const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
+    if (storedToken.length > 1) {
+      console.log("tkn", storedToken)
+      const decodedStoredToken: decodedToken = jwt_decode(storedToken.token)
+      if (decodedStoredToken.exp >= Date.now() / 1000) {
+        return true
+      }
+      else {
+        return false
+      };
+    } else {
       return false
-    };
+    }
   }
 
 }
