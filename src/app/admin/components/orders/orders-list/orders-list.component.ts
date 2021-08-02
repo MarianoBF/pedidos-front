@@ -19,4 +19,8 @@ export class OrdersListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  updatePedido(id: number) {
+    console.log("modificar pedido", id)
+  }
+
 }
