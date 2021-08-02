@@ -13,6 +13,7 @@ import { ProductsListComponent } from './components/products/products-list/produ
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialUIModule } from '../material-ui.module';
 import { AdminRoutingModule } from './admin-routing.module';
+import { OrdersDialogueComponent } from './components/orders/orders-dialogue/orders-dialogue.component';
 
 
 
@@ -26,6 +27,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     ProductsComponent,
     UsersComponent,
     OrdersComponent,
+    OrdersDialogueComponent,
   ],
   imports: [
     CommonModule,
