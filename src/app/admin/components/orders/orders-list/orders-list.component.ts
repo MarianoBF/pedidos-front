@@ -9,7 +9,7 @@ import { OrdersService } from '../../../../services/orders.service';
 })
 export class OrdersListComponent implements OnInit {
 
-  displayedColumns: string[] = ['status', 'time', 'amount', 'type'];
+  displayedColumns: string[] = ['orderNumber', 'status', 'time', 'amount', 'type', 'user'];
   dataSource: Order[] = [];
 
   constructor(private orderService: OrdersService) {
