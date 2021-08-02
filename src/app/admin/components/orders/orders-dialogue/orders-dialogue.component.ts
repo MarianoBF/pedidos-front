@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-orders-dialogue',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders-dialogue.component.css']
 })
 export class OrdersDialogueComponent implements OnInit {
+
+  @Input() id: number = -1;
+  @Input() status: string = "error";
 
   constructor() { }
 

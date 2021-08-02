@@ -1,12 +1,19 @@
 table {
     width: 90%;
     margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+}
+
+table th {
+    font-weight: bolder;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .action {
-    background: blue;    
+    background: lightblue;    
     border: 1px solid black;
     border-radius: 10%;
-    vertical-align: middle;
-    text-align: center;
+
 }

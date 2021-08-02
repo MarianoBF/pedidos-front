@@ -11,6 +11,7 @@ export class OrdersListComponent implements OnInit {
 
   displayedColumns: string[] = ['orderNumber', 'status', 'time', 'amount', 'type', 'user'];
   dataSource: Order[] = [];
+  changeStatus = false;
 
   constructor(private orderService: OrdersService) {
     this.orderService.getOrders().subscribe(data => this.dataSource = data);
@@ -21,6 +22,7 @@ export class OrdersListComponent implements OnInit {
 
   updatePedido(id: number) {
     console.log("modificar pedido", id)
+    this.changeStatus = true;
   }
 
 }
