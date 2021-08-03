@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
-import { Order } from '../common/interfaces';
+import { Order, OrderToUpdate } from '../common/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +24,9 @@ export class OrdersService {
       .pipe(tap((order) => console.log('retrieved products', order)));
   }
 
-  updateOrder(id: number, product: Order) {
+  updateOrder(id: number, product: OrderToUpdate) {
     return this.http
-      .put<any>(this.apiURL + 'pedido/' + id, product)
+      .patch<any>(this.apiURL + 'pedido/' + id, product)
       .pipe(tap((order) => console.log('retrieved products', order)));
   }
 

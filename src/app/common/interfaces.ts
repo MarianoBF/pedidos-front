@@ -15,6 +15,10 @@ export interface Order {
     observaciones?: string,
 }
 
+export interface OrderToUpdate {
+    estado: string;
+}
+
 export interface User {
     id_usuario?: number,
     nombre_usuario: string,

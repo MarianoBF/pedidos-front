@@ -29,6 +29,7 @@ export class OrdersListComponent implements OnInit {
 
   statusUpdate([status, id]:any[]){
     console.log(status, this.modifyID)
+    this.orderService.updateOrder(this.modifyID, {estado: status}).subscribe(data=> console.log(data))
 
   }
 
