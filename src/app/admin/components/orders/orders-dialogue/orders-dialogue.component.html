@@ -1,6 +1,6 @@
 <div>
 <label>Estado actual del pedido {{id}} : {{status}} -- Nuevo estado:</label>
-<select>
+<select (change)="handleSelect($event)">
     <option value="confirmado">Confirmado</option>
     <option value="preparado">Preparado</option>
     <option value="enviando">Enviado</option>
