@@ -35,5 +35,5 @@
   </table>
 
 <!-- TODO: MODAL -->
-  <app-orders-dialogue *ngIf="changeStatus" (statusChange)="statusUpdate($event)">
+  <app-orders-dialogue *ngIf="changeStatus" (statusChange)="statusUpdate($event)" [id]="modifyID">
   </app-orders-dialogue>
