@@ -12,6 +12,7 @@ import { AdminModule } from './admin/admin.module';
 
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { MaterialUIModule } from './material-ui.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MaterialUIModule } from './material-ui.module';
     BrowserAnimationsModule,
     AdminModule,
     MaterialUIModule,
+    FlexLayoutModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
