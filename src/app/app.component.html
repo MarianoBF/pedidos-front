@@ -1,14 +1,27 @@
-<mat-toolbar class="navBar">
-    <span>Pedidos</span>
-    <div class="fullWidth">
-        <button mat-stroked-button class="navButton" routerLink="admin/productos">Listado de productos disponibles</button>
-        <button mat-stroked-button class="navButton" routerLink="admin/usuarios">Listado de usuarios registrados</button>
-        <button mat-stroked-button class="navButton" routerLink="admin/pedidos">Listado de pedidos actuales</button>
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav>
+        <mat-toolbar>
+            <h1>PEDIDOS!</h1>
+        </mat-toolbar>
+        <mat-nav-list>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="admin/productos">Listado de productos disponibles</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="admin/usuarios">Listado de usuarios registrados</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLink="admin/pedidos">Listado de pedidos actuales</a>
+            
+            <span *ngIf="user.name">Hola {{user.name}}</span>
+    
         
-        <span *ngIf="user.name">Hola {{user.name}}</span>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-toolbar>
 
-        <button mat-stroked-button class="navButton floatRight" color="warn" (click)="logout()">Logout</button>
-    </div>
-</mat-toolbar>
+    <span (click)="sidenav.toggle()"><mat-icon>menu</mat-icon>Pedidos</span>
 
-<router-outlet></router-outlet>
+    <button mat-stroked-button color="warn" (click)="logout()">Logout</button>
+
+    </mat-toolbar> 
+
+    <router-outlet></router-outlet>
+
+</mat-sidenav-container>
+
