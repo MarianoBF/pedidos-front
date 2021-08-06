@@ -10,6 +10,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductsListComponent implements OnInit {
 
   productList: any[] = [];
+  loading = true;
 
   @Output() evtUpdateProduct: EventEmitter<Product>;
 
@@ -18,11 +19,14 @@ export class ProductsListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getProducts()
+    //TODO Remove timeout
+    setTimeout(()=>this.getProducts(),2000)
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe(products=>this.productList = products)
+    this.productService.getProducts().subscribe(products=>{
+      this.productList = products;
+      this.loading = false;})
   }
 
   deleteProduct(id:number) {

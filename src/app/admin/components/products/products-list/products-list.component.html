@@ -1,24 +1,30 @@
-<div *ngIf="productList.length === 0">No hay productos para mostrar</div>
+<div *ngIf="productList.length === 0 && !loading">No hay productos para mostrar</div>
+
+<mat-spinner *ngIf="loading; else divResults" class="loader"></mat-spinner>
 
 <!-- <div class="cardContainer"> -->
-<div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="15px">
-  <div fxFlex.lg="25" fxFlex.md="45" fxFlex.sm="100" *ngFor="let product of productList">
-    <mat-card class="flexCard">
-      <mat-card-header>
-        <mat-card-title>{{ product.nombre }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>ID: {{ product.id_producto }} - {{ product.descripcion }}</p>
-        <p>Precio: {{ product.precio | currency }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-stroked-button color="warn" (click)="deleteProduct(product.id_producto)">
-          Borrar
-        </button>
-        <button mat-stroked-button (click)="updateProduct(product)">
-          Editar
-        </button>
-      </mat-card-actions>
-    </mat-card>
+<ng-template #divResults>
+  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="15px">
+    <div fxFlex.lg="25" fxFlex.md="45" fxFlex.sm="100" *ngFor="let product of productList">
+      <mat-card class="flexCard">
+        <mat-card-header>
+          <mat-card-title>{{ product.nombre }}</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>ID: {{ product.id_producto }} - {{ product.descripcion }}</p>
+          <p>Precio: {{ product.precio | currency }}</p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-stroked-button color="warn" (click)="deleteProduct(product.id_producto)">
+            Borrar
+          </button>
+          <button mat-stroked-button (click)="updateProduct(product)">
+            Editar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
-</div>
+</ng-template>
