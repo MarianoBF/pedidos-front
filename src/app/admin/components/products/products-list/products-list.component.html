@@ -1,15 +1,24 @@
-<div *ngIf="productList.length === 0"> No hay productos para mostrar</div>
+<div *ngIf="productList.length === 0">No hay productos para mostrar</div>
 
-<div class="cardContainer">
-<mat-card *ngFor="let product of productList" class="card">
-  <mat-card-title>{{ product.nombre }}</mat-card-title>
-  <mat-card-content>
-    <p>ID: {{ product.id_producto }} - {{ product.descripcion }}</p>
-    <p>Precio: {{ product.precio | currency }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-stroked-button color="warn" (click)="deleteProduct(product.id_producto)">Borrar</button>
-    <button mat-stroked-button (click)="updateProduct(product)">Editar</button>
-  </mat-card-actions>
-</mat-card>
+<!-- <div class="cardContainer"> -->
+<div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="15px">
+  <div fxFlex.lg="25" fxFlex.md="45" fxFlex.sm="100" *ngFor="let product of productList">
+    <mat-card class="flexCard">
+      <mat-card-header>
+        <mat-card-title>{{ product.nombre }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>ID: {{ product.id_producto }} - {{ product.descripcion }}</p>
+        <p>Precio: {{ product.precio | currency }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="warn" (click)="deleteProduct(product.id_producto)">
+          Borrar
+        </button>
+        <button mat-stroked-button (click)="updateProduct(product)">
+          Editar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

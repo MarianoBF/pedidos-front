@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialUIModule } from '../material-ui.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { OrdersDialogueComponent } from './components/orders/orders-dialogue/orders-dialogue.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -34,7 +35,8 @@ import { OrdersDialogueComponent } from './components/orders/orders-dialogue/ord
     FormsModule,
     ReactiveFormsModule,
     MaterialUIModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FlexLayoutModule,
 
   ],
 })

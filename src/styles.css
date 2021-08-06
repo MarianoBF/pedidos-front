@@ -15,6 +15,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: 10px;
 }
 
+.flexCard {
+    margin: 10px;
+}
+
 .sectionHeader {
     margin: 20px;
     display: flex;

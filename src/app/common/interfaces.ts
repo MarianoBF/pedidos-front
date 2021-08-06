@@ -25,7 +25,7 @@ export interface User {
     nombre_completo: string,
     password: string,
     email: string,
-    rol: string, // TODO: Acotar roles
+    rol: "usuario" | "administrador",
     direccion: string,
     telefono: string,
 }
