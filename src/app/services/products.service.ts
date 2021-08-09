@@ -18,6 +18,12 @@ export class ProductsService {
       .pipe(tap((prods) => console.log('retrieved products', prods)));
   }
 
+  getProductById(id: number) {
+    return this.http
+      .get<Product[]>(this.apiURL + 'producto/' + id)
+      .pipe(tap((prod) => console.log('retrieved single product', prod)));
+  }
+
   addProduct(product: Product) {
     return this.http
       .post<Product>(this.apiURL + 'producto/', product)
