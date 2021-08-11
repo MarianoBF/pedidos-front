@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-orders-dialogue',
@@ -7,25 +7,20 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./orders-dialogue.component.css']
 })
 export class OrdersDialogueComponent implements OnInit {
-
-  // @Input() id: number = -1;
-  // @Input() status: string = "error";
-  // @Output() statusChange: EventEmitter<[string, number]> = new EventEmitter();
   status: string = "";
 
-  constructor(private dialogRef: MatDialogRef<OrdersDialogueComponent>) { }
+  constructor(private dialogRef: MatDialogRef<OrdersDialogueComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {id: number, status: string}) { }
 
   ngOnInit(): void {
   }
 
   handleSelect(status: any) {
-    this.dialogRef.close()
-    this.status = status;
-    // this.statusChange.emit([status.target.value, this.id])
+    this.status = status.target.value;
   }
 
   save() {
-    console.log(this.status)
+    this.dialogRef.close(this.status)
   }
 
   close() {
