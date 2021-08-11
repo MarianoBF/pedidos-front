@@ -1,6 +1,8 @@
 <div>
-<label>Estado actual del pedido {{data.id}} : {{data.status}} -- Nuevo estado:</label>
-<select value="" (change)="handleSelect($event)">
+    <p>Estado actual del pedido {{data.id}} : {{data.status}}</p>
+<mat-form-field appearance="fill">
+<mat-label>Nuevo estado:</mat-label>
+<select matNativeControl value="" (change)="handleSelect($event)">
     <option value=""></option>
     <option value="confirmado">Confirmado</option>
     <option value="preparando">Preparado</option>
@@ -8,6 +10,7 @@
     <option value="cancelado">Cancelado</option>
     <option value="entregado">Entregado</option>
 </select>
-<button (click)="save()">Actualizar</button>
-<button (click)="close()">Cerrar</button>
+</mat-form-field>
+<button mat-stroked-button color="primary" (click)="save()">Actualizar</button>
+<button mat-stroked-button (click)="close()">Cerrar</button>
 </div>
