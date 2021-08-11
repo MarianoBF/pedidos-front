@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Order } from 'src/app/common/interfaces';
 import { OrdersService } from '../../../../services/orders.service';
+import { OrdersDialogueComponent } from '../orders-dialogue/orders-dialogue.component';
 
 @Component({
   selector: 'app-orders-list',
@@ -14,7 +16,7 @@ export class OrdersListComponent implements OnInit {
   changeStatus = false;
   modifyID: number = -1;
 
-  constructor(private orderService: OrdersService) {
+  constructor(private orderService: OrdersService, public dialog: MatDialog) {
     this.orderService.getOrders().subscribe(data => this.dataSource = data);
    }
 
@@ -23,6 +25,9 @@ export class OrdersListComponent implements OnInit {
 
   updatePedido(id: number) {
     console.log("modificar pedido", id)
+    this.dialog.open( OrdersDialogueComponent, {
+      width: '300px'
+    } )
     this.modifyID = id;
     this.changeStatus = true;
   }
