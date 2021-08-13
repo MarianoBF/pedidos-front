@@ -10,3 +10,7 @@ table th {
     vertical-align: middle;
     text-align: center;
 }
+
+.statusBtn {
+    width: 10em;
+}

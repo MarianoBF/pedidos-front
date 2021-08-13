@@ -1,5 +1,5 @@
 <div>
-    <p>Estado actual del pedido {{data.id}} : {{data.status}}</p>
+    <p>Estado actual del pedido <strong>{{data.id}}</strong> : {{data.status | titlecase}}</p>
 <mat-form-field appearance="fill">
 <mat-label>Nuevo estado:</mat-label>
 <select matNativeControl value="" (change)="handleSelect($event)">
