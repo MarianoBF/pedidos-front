@@ -1,0 +1,14 @@
+.active {
+    background: red !important;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 20px;
+}
+
+.brand {
+    margin: 0 auto;
+    display: inline-block;
+}

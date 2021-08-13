@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
+import { loggedInUser } from './common/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pedidos';
-
-  get user() {
-    return this.authService.userData;
-  }
+  user?: loggedInUser = this.authService.userData;
 
   constructor (private authService: AuthService, private router: Router) {}
+
 
   logout() {
     console.log("logout", "logged", this.authService.logged);
@@ -22,4 +20,5 @@ export class AppComponent {
     this.router.navigate(['/login'])
     
   }
+
 }

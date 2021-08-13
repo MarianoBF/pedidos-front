@@ -1,23 +1,25 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav>
         <mat-toolbar>
-            <h1>PEDIDOS!</h1>
+            <h1>Menú Admin</h1>
         </mat-toolbar>
         <mat-nav-list>
-            <a (click)="sidenav.toggle()" mat-list-item routerLink="admin/productos">Listado de productos disponibles</a>
-            <a (click)="sidenav.toggle()" mat-list-item routerLink="admin/usuarios">Listado de usuarios registrados</a>
-            <a (click)="sidenav.toggle()" mat-list-item routerLink="admin/pedidos">Listado de pedidos actuales</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/productos">Listado de productos disponibles</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/usuarios">Listado de usuarios registrados</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/pedidos">Listado de pedidos actuales</a>
             
-            <span *ngIf="user.name">Hola {{user.name}}</span>
+            <div class="greeting" *ngIf="user?.name">Hola {{user?.name}}</div>
     
         
         </mat-nav-list>
     </mat-sidenav>
     <mat-toolbar>
 
-    <span (click)="sidenav.toggle()"><mat-icon>menu</mat-icon>Pedidos</span>
+    <span (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></span>
 
-    <button mat-stroked-button color="warn" (click)="logout()">Logout</button>
+    <h1 class="brand">Pedidos</h1>
+
+    <button mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
 
     </mat-toolbar> 
 

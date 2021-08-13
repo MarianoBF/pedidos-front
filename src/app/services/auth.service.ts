@@ -18,12 +18,16 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   get userData() {
-    return {...this._userData};
+    if (this._userData.name) {
+    return this._userData;
+    }
+    this._userData = JSON.parse(localStorage.getItem('pedidos456')||'');
+    return;
   }
 
     //TODO provisorio ejemplo -- o con un método checkauth? 
   get logged () {
-    return this.userData.token !== ""
+    return this.userData?.token !== ""
   }
 
   login(values: any) {
@@ -35,7 +39,7 @@ export class AuthService {
       .post<any>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
         console.log('Login attemp for', values.userName)
-        localStorage.setItem('pedidos456', JSON.stringify({token:res.token, userName:values.userName}));
+        localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:values.userName}));
         this._userData = {name: String(values.userName), token: String(res.token)};
       }));
   }
