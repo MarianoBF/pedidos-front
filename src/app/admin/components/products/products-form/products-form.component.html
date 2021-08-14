@@ -41,6 +41,10 @@
       <p>El precio máximo es $300.000</p>
     </div>
   </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Imagen (url)</mat-label>
+    <input formControlName="image" type="text" matInput class="form-control" />
+  </mat-form-field>
   <button type="submit" mat-stroked-button [disabled]="productForm.invalid">Enviar</button>
   <hr>
   <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">Cancelar</button>

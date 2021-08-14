@@ -26,20 +26,20 @@ export class ProductDetailComponent implements OnInit {
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
+      image: new FormControl(),
     });
   }
 
   ngOnInit(): void {  
     this.activatedRoute.params.
     pipe(switchMap(({id_producto})=>this.productService.getProductById(id_producto))).subscribe((product) => {
-      console.log(product);
       this.product = product[0];
       this.productIDForm.patchValue({
         name: this.product.nombre,
         description: this.product.descripcion,
         price: this.product.precio,
+        image: this.product.imagen,
       })
-      console.log(this.productIDForm.value)
     });
   }
 
@@ -53,6 +53,7 @@ export class ProductDetailComponent implements OnInit {
       nombre: this.productIDForm.value.name,
       descripcion: this.productIDForm.value.description,
       precio: this.productIDForm.value.price,
+      imagen: this.productIDForm.value.image,
     };
     try {
       this.productService

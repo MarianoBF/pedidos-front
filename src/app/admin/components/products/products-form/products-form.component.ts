@@ -29,6 +29,7 @@ export class ProductsFormComponent implements OnInit {
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
+      image: new FormControl(),
     });
     this.done = new EventEmitter();
   }
@@ -40,6 +41,7 @@ export class ProductsFormComponent implements OnInit {
         name: this.product.nombre,
         description: this.product.descripcion,
         price: this.product.precio,
+        image: this.product.imagen,
       });
     }
   }
@@ -55,6 +57,7 @@ export class ProductsFormComponent implements OnInit {
       nombre: this.productForm.value.name,
       descripcion: this.productForm.value.description,
       precio: this.productForm.value.price,
+      imagen: this.productForm.value.image
     };
     try {
       if (this.editing) {
