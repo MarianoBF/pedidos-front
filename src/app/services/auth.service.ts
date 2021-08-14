@@ -21,7 +21,7 @@ export class AuthService {
     if (this._userData.name) {
     return this._userData;
     }
-    this._userData = JSON.parse(localStorage.getItem('pedidos456')||'');
+    this._userData = JSON.parse(localStorage.getItem('pedidos456')||'[]');
     return;
   }
 
