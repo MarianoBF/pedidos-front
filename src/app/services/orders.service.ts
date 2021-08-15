@@ -15,24 +15,31 @@ export class OrdersService {
   getOrders() {
     return this.http
       .get<Order[]>(this.apiURL + 'pedidos')
-      .pipe(tap((prods) => console.log('retrieved products', prods)));
+      .pipe(tap((orders) => console.log('retrieved order', orders)));
   }
 
   addOrder(product: Order) {
     return this.http
       .post<any>(this.apiURL + 'pedido/', product)
-      .pipe(tap((order) => console.log('retrieved products', order)));
+      .pipe(tap((order) => console.log('added order', order)));
   }
 
   updateOrder(id: number, product: OrderToUpdate) {
     return this.http
       .patch<any>(this.apiURL + 'pedido/' + id, product)
-      .pipe(tap((order) => console.log('retrieved products', order)));
+      .pipe(tap((order) => console.log('updated order', order)));
   }
 
   deleteOrder(id: number) {
     return this.http
       .delete<any>(this.apiURL + 'pedido/' + id)
-      .pipe(tap((order) => console.log('retrieved products', order)));
+      .pipe(tap((data) => console.log('deleted order', data)));
+  }
+
+  //return orders of the user with the current token
+  getOrdersForUser() {
+    return this.http
+      .get<Order[]>(this.apiURL + 'pedidos')
+      .pipe(tap((orders) => console.log('retrieved orders', orders)));
   }
 }
