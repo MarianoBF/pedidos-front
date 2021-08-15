@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Order } from 'src/app/common/interfaces';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-view-orders',
   templateUrl: './view-orders.component.html',
   styleUrls: ['./view-orders.component.css']
 })
-export class ViewOrdersComponent implements OnInit {
+export class ViewOrdersComponent {
 
-  constructor() { }
+  displayedColumns: string[] = ['orderNumber', 'status', 'time', 'amount', 'type', 'user'];
+  dataSource: Order[] = [];
+  currentStatus: string = "";
+  modifyID: number = -1;
 
-  ngOnInit(): void {
+  constructor(private orderService: OrdersService) {
+    this.orderService.getOrdersForUser().subscribe(data => this.dataSource = data);
   }
-
 }
