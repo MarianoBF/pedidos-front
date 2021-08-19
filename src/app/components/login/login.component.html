@@ -1,21 +1,25 @@
 <!--Template-->
 
 <mat-grid-list cols="1">
-    <form
-      #loginForm="ngForm"
-      (ngSubmit)="handleLogin(loginForm.value)"
-      class="form"
-    >
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Usuario</mat-label>
+  <form #loginForm="ngForm" (ngSubmit)="handleLogin()" class="form">
+    <span class="warning" *ngIf="loginForm.controls.userName?.invalid && loginForm.controls.userName?.touched">
+      Usuario requerido, debe tener al menos 3 caracteres</span>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Usuario</mat-label>
 
-        <input matInput type="text" name="userName" ngModel />
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Password</mat-label>
+      <input matInput type="text" name="userName" ngModel required minlength="3" />
+    </mat-form-field>
 
-        <input matInput type="text" name="password" ngModel />
-      </mat-form-field>
-      <button mat-flat-button type="submit" color="primary">Enviar</button>
-    </form>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <span class="warning" *ngIf="loginForm.controls.password?.invalid && loginForm.controls.password?.touched">
+        Password requerido, debe tener al menos 6 caracteres</span>
+      <mat-label>Password</mat-label>
+
+      <input matInput type="text" name="password" ngModel required minlength="6" />
+    </mat-form-field>
+
+
+    <button mat-flat-button type="submit" color="primary">Enviar</button>
+  </form>
 </mat-grid-list>

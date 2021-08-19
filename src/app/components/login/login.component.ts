@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { Router }  from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,8 @@ import { Router }  from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   // token$: Observable<any> = new Observable();
+
+  @ViewChild('loginForm') loginForm!: NgForm
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -20,7 +23,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  handleLogin(values: any) {
-    this.authService.login(values).subscribe(()=>this.router.navigate(['/admin/pedidos']));
+  handleLogin() {
+    this.authService.login(this.loginForm.value).subscribe(()=>this.router.navigate(['/admin/pedidos']));
   }
 }
