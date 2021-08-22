@@ -6,14 +6,19 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
+  constructor(private authService:AuthService) {}
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
+    const storedToken = this.authService.userData;
+    // const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
     if (!storedToken) {
       return next.handle(req);
     }
