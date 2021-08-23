@@ -30,7 +30,7 @@ export class UsersFormComponent implements OnInit {
       password: new FormControl(''),
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      role: new FormControl(''),
+      role: new FormControl('', [Validators.required, this.checkRole]),
       address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
     });
@@ -53,6 +53,11 @@ export class UsersFormComponent implements OnInit {
   onCancel(): void {
     this.userForm.reset();
     setTimeout(()=>this.done.emit(false),500);
+  }
+
+  checkRole(formControl: any): any {
+    if (formControl.value === 'administrador' || formControl.value === 'usuario') {return null;}
+    return {checkRole: "inválido"}
   }
 
   onSubmit(): void {

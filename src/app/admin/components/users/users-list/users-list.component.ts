@@ -22,7 +22,7 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(users=>this.userList = users)
+    this.userService.getUsers().subscribe(users=>{this.userList = users.datos})
   }
 
   deleteUser(id:number) {

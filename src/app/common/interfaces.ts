@@ -31,6 +31,10 @@ export interface User {
     telefono: string,
 }
 
+export interface UserResponse {
+    datos: User[];
+}
+
 export interface decodedToken {
     rol: string;
     nombre_usuario: string;

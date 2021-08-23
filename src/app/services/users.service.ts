@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from '../common/interfaces';
+import { User, UserResponse } from '../common/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class UsersService {
 
   getUsers() {
     return this.http
-      .get<User[]>(this.apiURL + 'usuarios')
+      .get<UserResponse>(this.apiURL + 'usuarios')
       .pipe(tap((users) => console.log('retrieved users', users)));
   }
 

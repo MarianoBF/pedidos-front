@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   add: boolean = false;
   user?: User;
 
-  constructor(private usersService: UsersService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

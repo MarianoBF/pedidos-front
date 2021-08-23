@@ -1,51 +1,51 @@
 <form [formGroup]="productIDForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Nombre</mat-label>
-      <input formControlName="name" type="text" matInput class="form-control" />
-      <div *ngIf="
-          productIDForm.controls.name.errors?.required &&
-          productIDForm.controls.name.touched
-        " class="error">
-        <p>El nombre del producto es requerido</p>
-      </div>
-      <div *ngIf="
-          productIDForm.controls.name.errors?.minlength &&
-          productIDForm.controls.name.touched
-        " class="error">
-        <p>El nombre del producto ingresado es demasiado corto</p>
-      </div>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Descripción</mat-label>
-      <input formControlName="description" type="text" matInput class="form-control" />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Precio</mat-label>
-      <input formControlName="price" type="number" matInput class="form-control" />
-      <div *ngIf="
-          productIDForm.controls.price.errors?.required &&
-          productIDForm.controls.price.touched
-        " class="error">
-        <p>El precio del producto es requerido</p>
-      </div>
-      <div *ngIf="
-          productIDForm.controls.price.errors?.min &&
-          productIDForm.controls.price.touched
-        " class="error">
-        <p>El precio mínimo es $0,01</p>
-      </div>
-      <div *ngIf="
-          productIDForm.controls.price.errors?.max &&
-          productIDForm.controls.price.touched
-        " class="error">
-        <p>El precio máximo es $300.000</p>
-      </div>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Imagen (url)</mat-label>
-      <input formControlName="image" type="text" matInput class="form-control" />
-    </mat-form-field>
-    <button type="submit" mat-stroked-button [disabled]="productIDForm.invalid">Enviar</button>
-    <hr>
-    <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">Cancelar</button>
-  </form>
+  <div *ngIf="
+  productIDForm.controls.name.errors?.required &&
+  productIDForm.controls.name.touched
+" class="error">
+    <p>El nombre del producto es requerido</p>
+  </div>
+  <div *ngIf="
+  productIDForm.controls.name.errors?.minlength &&
+  productIDForm.controls.name.touched
+" class="error">
+    <p>El nombre del producto ingresado es demasiado corto</p>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input formControlName="name" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <input formControlName="description" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <div *ngIf="
+    productIDForm.controls.price.errors?.required &&
+    productIDForm.controls.price.touched
+  " class="error">
+    <p>El precio del producto es requerido</p>
+  </div>
+  <div *ngIf="
+    productIDForm.controls.price.errors?.min &&
+    productIDForm.controls.price.touched
+  " class="error">
+    <p>El precio mínimo es $0,01</p>
+  </div>
+  <div *ngIf="
+    productIDForm.controls.price.errors?.max &&
+    productIDForm.controls.price.touched
+  " class="error">
+    <p>El precio máximo es $300.000</p>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Precio</mat-label>
+    <input formControlName="price" type="number" matInput class="form-control" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Imagen (url)</mat-label>
+    <input formControlName="image" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <button type="submit" mat-stroked-button [disabled]="productIDForm.invalid">Enviar</button>
+  <hr>
+  <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">Cancelar</button>
+</form>
