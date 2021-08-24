@@ -26,15 +26,26 @@ export class UsersFormComponent implements OnInit {
       userName: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
+        this.userNameValidator
       ]),
       password: new FormControl(''),
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       role: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
     });
     this.done = new EventEmitter();
+  }
+
+  userNameValidator(control: FormControl) { 
+    const name: string = control.value?.toLowerCase()
+    if (name.includes('admin')) {
+      return {
+        nameNotValid: true,
+      }
+    }
+    return null
   }
 
   ngOnInit(): void {
