@@ -1,5 +1,5 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { loggedInUser } from '../common/interfaces';
@@ -7,7 +7,7 @@ import { loggedInUser } from '../common/interfaces';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnInit {
   private apiUrl = environment.apiURL;
   private _userData: loggedInUser = {name: "", token: ""};
   
@@ -17,12 +17,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  ngOnInit() {
+    const storedUser = localStorage.getItem('pedidos456');
+    if (storedUser) {this._userData = JSON.parse(storedUser||'[]')};
+  }
+
   get userData() {
     if (this._userData.name) {
     return this._userData;
     }
-    this._userData = JSON.parse(localStorage.getItem('pedidos456')||'[]');
-    return;
+    return {name: "", token: ""};
   }
 
     //TODO provisorio ejemplo -- o con un método checkauth? 
