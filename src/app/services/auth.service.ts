@@ -7,7 +7,7 @@ import { loggedInUser } from '../common/interfaces';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements OnInit {
+export class AuthService {
   private apiUrl = environment.apiURL;
   private _userData: loggedInUser = {name: "", token: ""};
   
@@ -15,9 +15,7 @@ export class AuthService implements OnInit {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
+  constructor(private http: HttpClient) {
     const storedUser = localStorage.getItem('pedidos456');
     if (storedUser) {this._userData = JSON.parse(storedUser||'[]')};
   }
