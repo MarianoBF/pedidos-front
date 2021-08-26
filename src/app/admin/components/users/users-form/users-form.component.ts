@@ -1,9 +1,10 @@
 import { Input } from '@angular/core';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { User } from 'src/app/common/interfaces';
 import { UsersService } from '../../../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmailValidatorService } from '../../../../services/email-validator.service';
 
 @Component({
   selector: 'app-users-form',
@@ -20,7 +21,8 @@ export class UsersFormComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private emailValidSvc: EmailValidatorService,
   ) {
     this.userForm = new FormGroup({
       userName: new FormControl('', [
@@ -29,23 +31,35 @@ export class UsersFormComponent implements OnInit {
         this.userNameValidator
       ]),
       password: new FormControl(''),
+      confirmPassword: new FormControl(''),
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       role: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
-    });
+      // phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
+      phone: new FormControl('', [Validators.required]),
+    }, { validators: this.checkEqualValidator('password', 'confirmPassword')});
     this.done = new EventEmitter();
   }
 
   userNameValidator(control: FormControl) { 
     const name: string = control.value?.toLowerCase()
-    if (name.includes('admin')) {
+    if (name?.includes('admin')) {
       return {
         nameNotValid: true,
       }
     }
     return null
+  }
+
+  checkEqualValidator(field1:string, field2:string) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (this.userForm?.get(field1)?.value === this.userForm?.get(field2)?.value) {
+      this.userForm?.get(field2)?.setErrors(null)
+      return null}
+      this.userForm?.get(field2)?.setErrors({notEqual: true})
+      return { notEqual: true };
+    }
   }
 
   ngOnInit(): void {

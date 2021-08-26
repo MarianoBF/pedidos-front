@@ -47,12 +47,30 @@
   <mat-form-field *ngIf="!editing" appearance="fill">
     <mat-label>Password</mat-label>
     <input
-      formControlName="fullName"
-      type="text"
+      formControlName="password"
+      type="password"
       matInput
       class="form-control"
     />
   </mat-form-field>
+  <mat-form-field *ngIf="!editing" appearance="fill">
+    <mat-label>Confirmar Password</mat-label>
+    <input
+      formControlName="confirmPassword"
+      type="pasword"
+      matInput
+      class="form-control"
+    />
+  </mat-form-field>
+  <div
+  *ngIf="
+    userForm.controls.confirmPassword.errors?.notEqual &&
+    userForm.controls.confirmPassword.touched
+  "
+  class="error"
+>
+<p>las contraseñas no coinciden!</p>
+</div>
   <div
     *ngIf="
       userForm.controls.email.errors?.required &&
@@ -124,4 +142,7 @@
   <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">
     Cancelar
   </button>
+
+  INVALIDO: {{userForm.invalid}}
+  PENDING: {{userForm.pending}}
 </form>
