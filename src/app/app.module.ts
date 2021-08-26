@@ -14,12 +14,14 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { MaterialUIModule } from './material-ui.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorInterceptor } from './common/error-interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     LoginComponent,
+     RegisterComponent,
 
   ],
   imports: [
