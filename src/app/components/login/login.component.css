@@ -13,3 +13,9 @@
     color: tomato;
     font-size: smaller;
   }
+
+  .register button {
+    margin: 0 auto;
+    display: block;
+
+  }

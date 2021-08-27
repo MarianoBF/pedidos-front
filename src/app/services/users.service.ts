@@ -24,6 +24,12 @@ export class UsersService {
       .pipe(tap((user) => console.log('added user', user)));
   }
 
+  registerUser(user: User) {
+    return this.http
+      .post<User>(this.apiURL + 'usuario/registro', user)
+      .pipe(tap((user) => console.log('added user', user)));
+  }
+
   updateUser(id: number, user: User) {
     return this.http
       .put<User>(this.apiURL + 'usuario/' + id, user)
