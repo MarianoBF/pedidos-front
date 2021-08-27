@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   checkToken() {
-    return this.http.post<any>(this.apiUrl+"usuario/checkToken", {token: this.userData.token}, this.httpOptions)
+    return this.http.get<any>(this.apiUrl+"usuarios/checkToken")
     .pipe(tap(res => {
       console.log('Check token attemp for', this.userData.token)
       localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));

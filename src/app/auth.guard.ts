@@ -33,6 +33,23 @@ export class AuthGuard implements CanActivate {
   }
 
   canLoad(): any {
+
+
+    const userData = this.authService.userData
+    if (userData.token) {
+      const decodedStoredToken: decodedToken = jwt_decode(userData.token)
+      if (decodedStoredToken.exp >= Date.now() / 1000) {
+        return true
+      }
+      else {
+        return false
+      };
+    } else {
+      return false
+    }
+  }
+
+bla():any{
     // route: ActivatedRouteSnapshot,
     // state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //Check if token is current, 
@@ -47,9 +64,19 @@ export class AuthGuard implements CanActivate {
     //     return false
     //   };
     // } else {
-      return this.authService.checkToken().subscribe()
+      const result = this.authService.checkToken().subscribe(
+        res => {
+          console.log("cloadRes", res)
+          return true
+        }, err => {
+          console.log("cloadErr", err)
+          return false}
+
+      )
+      console.log("canLoad")
+    } else if(!userData.token) {
+      return false
     }
-    return false
   }
 
 }
