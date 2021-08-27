@@ -9,25 +9,25 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class EmailValidatorService implements AsyncValidator {
-  private apiUrl = environment.apiURL;
-
+  
   constructor(private http: HttpClient) { }
 
-  validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+  validate(control: AbstractControl): Observable<ValidationErrors | null> {
 
     const email = control.value;
 
-    console.log("email valid", email,this.apiUrl)
-
+    console.log("email valid", email, environment.apiURL);
+    if (email === '' || !email || email.length < 5) {
     return of(null)
+    }
 
-    // return this.http.get<any>(this.apiUrl + 'usuarios/checkMail?email=' + email).pipe(map(res => {
-    //   console.log(res)
-    //   if (res.available === "no") {
-    //     return { emailTaken: res.message };
-    //   } else {
-    //     return null
-    //   }
-    // }))
+    return this.http.get<any>(environment.apiURL + 'usuarios/checkMail/' + email).pipe(map(res => {
+      console.log(res)
+      if (res.available === "no") {
+        return of({ emailTaken: res.message });
+      } else {
+        return of(null)
+      }
+    }))
   }
 }
