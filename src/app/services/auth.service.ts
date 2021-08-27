@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { tap } from 'rxjs/operators'
+import { of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { loggedInUser } from '../common/interfaces';
 
@@ -43,11 +44,21 @@ export class AuthService {
         console.log('Login attemp for', values.userName)
         localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:values.userName}));
         this._userData = {name: String(values.userName), token: String(res.token)};
-      }));
+      }),map(_=>true),catchError(err=>of(false)));
   }
    
   logout() {
     localStorage.removeItem('pedidos456')
     this._userData = {name: "", token: ""};
+  }
+
+  checkToken() {
+    return this.http.post<any>(this.apiUrl+"usuario/checkToken", {token: this.userData.token}, this.httpOptions)
+    .pipe(tap(res => {
+      console.log('Check token attemp for', this.userData.token)
+      localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));
+      this._userData = {name: String(this.userData.name), token: String(res.token)};
+    }),map(_=>true),catchError(err=>of(false)));
+
   }
 }

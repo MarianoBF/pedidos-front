@@ -32,23 +32,24 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  canLoad(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canLoad(): any {
+    // route: ActivatedRouteSnapshot,
+    // state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //Check if token is current, 
     // const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
-    const userData = this.authService.userData
+    const userData = this.authService.userData || ""
     if (userData.token) {
-      const decodedStoredToken: decodedToken = jwt_decode(userData.token)
-      if (decodedStoredToken.exp >= Date.now() / 1000) {
-        return true
-      }
-      else {
-        return false
-      };
-    } else {
-      return false
+    //   const decodedStoredToken: decodedToken = jwt_decode(userData.token)
+    //   if (decodedStoredToken.exp >= Date.now() / 1000) {
+    //     return true
+    //   }
+    //   else {
+    //     return false
+    //   };
+    // } else {
+      return this.authService.checkToken().subscribe()
     }
+    return false
   }
 
 }

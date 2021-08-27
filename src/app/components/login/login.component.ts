@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { Router }  from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm') loginForm!: NgForm
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     if (this.authService.logged) {
@@ -24,6 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    this.authService.login(this.loginForm.value).subscribe(()=>this.router.navigate(['/admin/pedidos']));
+    this.authService.login(this.loginForm.value).subscribe((res)=>
+    { console.log(res)
+      if(res) {
+      this.router.navigate(['/admin/pedidos'])
+      } else {
+        this._snackBar.open('No se pudo loguear, revise los datos ingresados', 'Cerrar', {
+          duration: 4000,
+        });
+      }
+
+    })
+  ;
   }
 }
