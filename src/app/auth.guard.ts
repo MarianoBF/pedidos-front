@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -34,49 +34,21 @@ export class AuthGuard implements CanActivate {
 
   canLoad(): any {
 
-
-    const userData = this.authService.userData
-    if (userData.token) {
-      const decodedStoredToken: decodedToken = jwt_decode(userData.token)
-      if (decodedStoredToken.exp >= Date.now() / 1000) {
-        return true
-      }
-      else {
-        return false
-      };
-    } else {
-      return false
-    }
-  }
-
-bla():any{
-    // route: ActivatedRouteSnapshot,
-    // state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    //Check if token is current, 
-    // const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
     const userData = this.authService.userData || ""
     if (userData.token) {
-    //   const decodedStoredToken: decodedToken = jwt_decode(userData.token)
-    //   if (decodedStoredToken.exp >= Date.now() / 1000) {
-    //     return true
-    //   }
-    //   else {
-    //     return false
-    //   };
-    // } else {
-      const result = this.authService.checkToken().subscribe(
+      const result = this.authService.refreshToken().toPromise().then(
         res => {
           console.log("cloadRes", res)
           return true
         }, err => {
           console.log("cloadErr", err)
-          return false}
+          return false
+        }
 
       )
-      console.log("canLoad")
-    } else if(!userData.token) {
+      return result
+    } else if (!userData.token) {
       return false
     }
   }
-
 }

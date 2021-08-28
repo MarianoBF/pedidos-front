@@ -52,8 +52,8 @@ export class AuthService {
     this._userData = {name: "", token: ""};
   }
 
-  checkToken() {
-    return this.http.get<any>(this.apiUrl+"usuarios/checkToken")
+  refreshToken() {
+    return this.http.get<any>(this.apiUrl+"usuarios/refreshToken")
     .pipe(tap(res => {
       console.log('Check token attemp for', this.userData.token)
       localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));
