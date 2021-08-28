@@ -132,17 +132,13 @@
     </select>
   </mat-form-field>
 
-  <input
+  <button
     type="submit"
-    value="Enviar"
-    class="mat-stroked-button"
+    mat-stroked-button
     [disabled]="userForm.invalid"
-  />
+  >Crear Usuario</button>
   <hr />
   <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">
     Cancelar
   </button>
-
-  INVALIDO: {{userForm.invalid}}
-  PENDING: {{userForm.pending}}
 </form>

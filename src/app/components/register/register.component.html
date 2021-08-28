@@ -1,154 +1,92 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div
-      *ngIf="
+  <div *ngIf="
         userForm.controls.userName.errors?.required &&
         userForm.controls.userName.touched
-      "
-      class="error"
-    >
-      <p>El nombre de usuario es requerido</p>
-    </div>
-    <div
-      *ngIf="
+      " class="error">
+    <p>El nombre de usuario es requerido</p>
+  </div>
+  <div *ngIf="
         userForm.controls.userName.errors?.minlength &&
         userForm.controls.userName.touched
-      "
-      class="error"
-    >
-      <p>El nombre de usuario es demasiado corto</p>
-    </div>
-    <div
-    *ngIf="
+      " class="error">
+    <p>El nombre de usuario es demasiado corto</p>
+  </div>
+  <div *ngIf="
       userForm.controls.userName.errors?.nameNotValid &&
       userForm.controls.userName.touched
-    "
-    class="error"
-  >
+    " class="error">
     <p>El nombre de usuario no puede incluir la palabra admin</p>
   </div>
-    <mat-form-field appearance="fill">
-      <mat-label>Nombre de Usuario</mat-label>
-      <input
-        formControlName="userName"
-        type="text"
-        matInput
-        class="form-control"
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Nombre Completo</mat-label>
-      <input
-        formControlName="fullName"
-        type="text"
-        matInput
-        class="form-control"
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input
-        formControlName="password"
-        type="password"
-        matInput
-        class="form-control"
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Confirmar Password</mat-label>
-      <input
-        formControlName="confirmPassword"
-        type="password"
-        matInput
-        class="form-control"
-      />
-    </mat-form-field>
-    <div
-    *ngIf="
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre de Usuario</mat-label>
+    <input formControlName="userName" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre Completo</mat-label>
+    <input formControlName="fullName" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input formControlName="password" type="password" matInput class="form-control" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Confirmar Password</mat-label>
+    <input formControlName="confirmPassword" type="password" matInput class="form-control" />
+  </mat-form-field>
+  <div *ngIf="
       userForm.controls.confirmPassword.errors?.notEqual &&
       userForm.controls.confirmPassword.touched
-    "
-    class="error"
-  >
-  <p>las contraseñas no coinciden!</p>
+    " class="error">
+    <p>las contraseñas no coinciden!</p>
   </div>
-    <div
-      *ngIf="
+  <div *ngIf="
         userForm.controls.email.errors?.required &&
         userForm.controls.email.touched
-      "
-      class="error"
-    >
-      <p>El email es requerido</p>
-    </div>
-    <div
-    *ngIf="
+      " class="error">
+    <p>El email es requerido</p>
+  </div>
+  <div *ngIf="
       userForm.controls.email.errors?.emailTaken &&
       userForm.controls.email.touched
-    "
-    class="error"
-  >
-  <p>El email no está disponible, use otro para registrarse</p>
+    " class="error">
+    <p>El email no está disponible, use otro para registrarse</p>
   </div>
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input formControlName="email" type="email" matInput class="form-control" />
-    </mat-form-field>
-    <div
-      *ngIf="
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" type="email" matInput class="form-control" />
+  </mat-form-field>
+  <div *ngIf="
         userForm.controls.address.errors?.required &&
         userForm.controls.address.touched
-      "
-      class="error"
-    >
-      <p>La dirección es requerida</p>
-    </div>
-    <mat-form-field appearance="fill">
-      <mat-label>Dirección</mat-label>
-      <input
-        formControlName="address"
-        type="text"
-        matInput
-        class="form-control"
-      />
-    </mat-form-field>
-    <div
-      *ngIf="
+      " class="error">
+    <p>La dirección es requerida</p>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Dirección</mat-label>
+    <input formControlName="address" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <div *ngIf="
         userForm.controls.phone.errors?.required &&
         userForm.controls.phone.touched
-      "
-      class="error"
-    >
-      <p>El teléfono es requerido</p>
-    </div>
-    <mat-form-field appearance="fill">
-      <mat-label>Teléfono</mat-label>
-      <input formControlName="phone" type="text" matInput class="form-control" />
-    </mat-form-field>
-    <div
-      *ngIf="
+      " class="error">
+    <p>El teléfono es requerido</p>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Teléfono</mat-label>
+    <input formControlName="phone" type="text" matInput class="form-control" />
+  </mat-form-field>
+  <div *ngIf="
         userForm.controls.role.errors?.checkRole &&
         userForm.controls.role.touched
-      "
-      class="error"
-    >
-      <p>El rol no es válido</p>
-    </div>
-  
-    <input
-      type="submit"
-      value="Enviar"
-      class="mat-stroked-button"
-      [disabled]="userForm.invalid"
-    />
-    <hr />
-    <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">
-      Cancelar
-    </button>
-  
-    INVALIDO: {{userForm.invalid}}
-    PENDING: {{userForm.pending}}
-    ERRORS: {{userForm.asyncValidator}}
-    ERROR MAIL: {{userForm.controls.email.errors?.emailTaken}}
-    Email Error: {{userForm.controls.email.errors |json}}
-  </form>
-  
+      " class="error">
+    <p>El rol no es válido</p>
+  </div>
+
+  <button mat-stroked-button type="submit" [disabled]="userForm.invalid">Registrar</button>
+
+  <hr>
+
+  <button mat-stroked-button type="reset" color="warn" disabled="false" (click)="onCancel()">
+    Cancelar
+  </button>
+</form>
