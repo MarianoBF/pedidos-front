@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private emailValidSvc: EmailValidatorService
   ) {
     console.log('registrando usuario!');
     this.userForm = new FormGroup(
@@ -43,7 +42,7 @@ export class RegisterComponent implements OnInit {
         email: new FormControl(
           '',
           [Validators.required],
-          [()=>this.emailValidSvc.validate(this.userForm?.get('email')!)]
+          [EmailValidatorService.validate(this.usersService)]
         ),
         role: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
@@ -56,6 +55,7 @@ export class RegisterComponent implements OnInit {
 
   userNameValidator(control: FormControl) {
     const name: string = control.value?.toLowerCase();
+    
     if (name?.includes('admin')) {
       return {
         nameNotValid: true,
@@ -77,7 +77,9 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.userForm.asyncValidator)
+  }
 
   onCancel(): void {
     this.router.navigate(['/login']);
@@ -104,13 +106,13 @@ export class RegisterComponent implements OnInit {
           password: this.userForm.value.password,
         };
         this.authService.login(login).subscribe((res) => {
-          console.log(res);
           if (res) {
             this.router.navigate(['/admin/pedidos']);
           }
         });
       });
     } catch (error) {
+    
       console.log(error);
       this._snackBar.open(
         'Hubo un problema al agregar el usuario, reintente en unos minutos',

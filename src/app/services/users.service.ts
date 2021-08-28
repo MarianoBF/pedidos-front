@@ -41,4 +41,11 @@ export class UsersService {
       .delete<any>(this.apiURL + 'usuario/' + id)
       .pipe(tap((user) => console.log('deleted user', user, 'with id', id)));
   }
+
+  checkMail(email:string) {
+    console.log("checkmail", email)
+    return this.http
+      .get<any>(this.apiURL + 'usuarios/checkMail/'+email)
+      // .pipe(tap((users) => console.log('retrieved users', users)));
+  }
 }

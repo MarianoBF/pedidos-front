@@ -80,6 +80,15 @@
     >
       <p>El email es requerido</p>
     </div>
+    <div
+    *ngIf="
+      userForm.controls.email.errors?.emailTaken &&
+      userForm.controls.email.touched
+    "
+    class="error"
+  >
+  <p>El email no está disponible, use otro para registrarse</p>
+  </div>
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input formControlName="email" type="email" matInput class="form-control" />
@@ -138,5 +147,8 @@
   
     INVALIDO: {{userForm.invalid}}
     PENDING: {{userForm.pending}}
+    ERRORS: {{userForm.asyncValidator}}
+    ERROR MAIL: {{userForm.controls.email.errors?.emailTaken}}
+    Email Error: {{userForm.controls.email.errors |json}}
   </form>
   

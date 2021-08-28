@@ -4,9 +4,9 @@
             <h1>Menú Admin</h1>
         </mat-toolbar>
         <mat-nav-list>
-            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/productos">Listado de productos disponibles</a>
-            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/usuarios">Listado de usuarios registrados</a>
-            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/pedidos">Listado de pedidos actuales</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/productos">Productos</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/usuarios">Usuarios</a>
+            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/pedidos">Pedidos</a>
             
             <div class="greeting" *ngIf="user?.name">Hola {{user?.name}}</div>
     
@@ -19,7 +19,7 @@
 
     <h1 class="brand">Pedidos</h1>
 
-    <button mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
+    <button *ngIf="logged" mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
 
     </mat-toolbar> 
 

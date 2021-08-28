@@ -10,15 +10,18 @@ import { loggedInUser } from './common/interfaces';
 })
 export class AppComponent implements OnInit {
   user?: loggedInUser = this.authService.userData;
+  logged = false;
 
   constructor (private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.user = this.authService.userData;
+    this.logged = this.authService.logged;
   }
 
   logout() {
     console.log("logout", "logged", this.authService.logged);
+    this.logged = false;
     this.authService.logout();
     this.router.navigate(['/login'])
     
