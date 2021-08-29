@@ -102,7 +102,7 @@ export class RegisterComponent implements OnInit {
           duration: 4000,
         });
         const login = {
-          username: this.userForm.value.userName,
+          userName: this.userForm.value.userName,
           password: this.userForm.value.password,
         };
         this.authService.login(login).subscribe((res) => {

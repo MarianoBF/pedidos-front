@@ -47,3 +47,17 @@ export interface decodedToken {
       name: string;
       token: string;
   }
+
+  export interface loginCredentialsForm {
+    userName: string;
+    password: string;
+}
+
+  export interface loginCredentialsRequest {
+      nombre_usuario: string;
+      password: string;
+  }
+
+  export interface tokenResponse {
+      token: string;
+  }

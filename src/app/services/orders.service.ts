@@ -20,13 +20,13 @@ export class OrdersService {
 
   addOrder(product: Order) {
     return this.http
-      .post<any>(this.apiURL + 'pedido/', product)
+      .post<Order>(this.apiURL + 'pedido/', product)
       .pipe(tap((order) => console.log('added order', order)));
   }
 
   updateOrder(id: number, product: OrderToUpdate) {
     return this.http
-      .patch<any>(this.apiURL + 'pedido/' + id, product)
+      .patch<Order>(this.apiURL + 'pedido/' + id, product)
       .pipe(tap((order) => console.log('updated order', order)));
   }
 

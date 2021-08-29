@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
-import { loggedInUser } from '../common/interfaces';
+import { loggedInUser, loginCredentialsForm, tokenResponse } from '../common/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -33,13 +33,13 @@ export class AuthService {
     return this.userData?.token !== ""
   }
 
-  login(values: any) {
+  login(values: loginCredentialsForm) {
     const credentials = {
       nombre_usuario: values.userName,
       password: values.password,
     }
     return this.http
-      .post<any>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
+      .post<tokenResponse>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
         console.log('Login attemp for', values.userName)
         localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:values.userName}));
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.get<any>(this.apiUrl+"usuarios/refreshToken")
+    return this.http.get<tokenResponse>(this.apiUrl+"usuarios/refreshToken")
     .pipe(tap(res => {
       console.log('Check token attemp for', this.userData.token)
       localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));
