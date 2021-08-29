@@ -30,19 +30,45 @@ export class UsersFormComponent implements OnInit {
         Validators.minLength(5),
         this.userNameValidator
       ]),
-      password: new FormControl(''),
-      confirmPassword: new FormControl(''),
+      password: new FormControl('', this.requiredForCreating.bind(this)),
+      confirmPassword: new FormControl('', this.requiredForCreating.bind(this)),
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      role: new FormControl('', [Validators.required]),
+      role: new FormControl('', [this.requiredForEditing.bind(this)]),
       address: new FormControl('', [Validators.required]),
       // phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
       phone: new FormControl('', [Validators.required]),
-    }, { validators: this.checkEqualValidator('password', 'confirmPassword')});
+    }, { validators: this.checkEqualValidator('password', 'confirmPassword') });
     this.done = new EventEmitter();
   }
 
-  userNameValidator(control: FormControl) { 
+  requiredForEditing(control: AbstractControl): ValidationErrors | null {
+    if (this.editing && (control.value === 'administrador' || control.value === 'usuario')) {
+      return null
+    } else if (this.editing && control.value?.length > 1) {
+      return {'invalidRole': true}
+    }
+    else if (!this.editing) {
+      return null;
+    }
+    else {
+      return { 'required': true }
+    }
+  }
+
+  requiredForCreating(control: AbstractControl): ValidationErrors | null {
+    if (!this.editing && control.value?.length > 3) {
+      return null
+    } else if (this.editing) {
+      return null;
+    }
+    else {
+      return { 'required': true }
+    }
+  }
+
+
+  userNameValidator(control: FormControl) {
     const name: string = control.value?.toLowerCase()
     if (name?.includes('admin')) {
       return {
@@ -52,12 +78,13 @@ export class UsersFormComponent implements OnInit {
     return null
   }
 
-  checkEqualValidator(field1:string, field2:string) {
+  checkEqualValidator(field1: string, field2: string) {
     return (control: AbstractControl): ValidationErrors | null => {
       if (this.userForm?.get(field1)?.value === this.userForm?.get(field2)?.value) {
-      this.userForm?.get(field2)?.setErrors(null)
-      return null}
-      this.userForm?.get(field2)?.setErrors({notEqual: true})
+        this.userForm?.get(field2)?.setErrors(null)
+        return null
+      }
+      this.userForm?.get(field2)?.setErrors({ notEqual: true })
       return { notEqual: true };
     }
   }
@@ -76,8 +103,10 @@ export class UsersFormComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.userForm.reset();
-    setTimeout(()=>this.done.emit(false),500);
+    setTimeout(() => {
+      this.done.emit(false);
+      this.userForm.reset();
+    }, 500);
   }
 
   onSubmit(): void {
@@ -117,8 +146,10 @@ export class UsersFormComponent implements OnInit {
         }
       );
     } finally {
-      this.userForm.reset();
-      setTimeout(() => this.done.emit(true), 4000);
+      setTimeout(() => {
+        this.done.emit(true);
+        this.userForm.reset();
+      }, 4000);
     }
   }
 }
