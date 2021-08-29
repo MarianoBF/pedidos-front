@@ -33,10 +33,9 @@ export class UsersFormComponent implements OnInit {
       password: new FormControl('', this.requiredForCreating.bind(this)),
       confirmPassword: new FormControl('', this.requiredForCreating.bind(this)),
       fullName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required], [EmailValidatorService.validate(this.usersService)]),
       role: new FormControl('', [this.requiredForEditing.bind(this)]),
       address: new FormControl('', [Validators.required]),
-      // phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
       phone: new FormControl('', [Validators.required]),
     }, { validators: this.checkEqualValidator('password', 'confirmPassword') });
     this.done = new EventEmitter();
@@ -130,7 +129,6 @@ export class UsersFormComponent implements OnInit {
         });
       } else {
         this.usersService.addUser(user).subscribe((data) => {
-          console.log(data);
           this._snackBar.open('Usuario agregado con éxito', 'Cerrar', {
             duration: 4000,
           });

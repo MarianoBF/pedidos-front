@@ -25,20 +25,33 @@
     <mat-label>Nombre Completo</mat-label>
     <input formControlName="fullName" type="text" matInput class="form-control" />
   </mat-form-field>
+  <div *ngIf="
+  userForm.controls.password.errors?.required &&
+  userForm.controls.password.touched
+" class="error">
+    <p>Password es requerido</p>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Password</mat-label>
     <input formControlName="password" type="password" matInput class="form-control" />
   </mat-form-field>
+  <div *ngIf="
+  userForm.controls.confirmPassword.errors?.notEqual &&
+  userForm.controls.confirmPassword.touched
+" class="error">
+    <p>las contraseñas no coinciden!</p>
+  </div>
+  <div *ngIf="
+userForm.controls.password.errors?.required &&
+userForm.controls.password.touched
+" class="error">
+    <p>Confirmar password es requerido</p>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Confirmar Password</mat-label>
     <input formControlName="confirmPassword" type="password" matInput class="form-control" />
   </mat-form-field>
-  <div *ngIf="
-      userForm.controls.confirmPassword.errors?.notEqual &&
-      userForm.controls.confirmPassword.touched
-    " class="error">
-    <p>las contraseñas no coinciden!</p>
-  </div>
+
   <div *ngIf="
         userForm.controls.email.errors?.required &&
         userForm.controls.email.touched
@@ -49,7 +62,7 @@
       userForm.controls.email.errors?.emailTaken &&
       userForm.controls.email.touched
     " class="error">
-    <p>El email no está disponible, use otro para registrarse</p>
+    <p>Este email no está disponible, use otro para registrarse</p>
   </div>
   <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>

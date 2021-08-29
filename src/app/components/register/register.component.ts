@@ -36,8 +36,8 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(5),
           this.userNameValidator,
         ]),
-        password: new FormControl(''),
-        confirmPassword: new FormControl(''),
+        password: new FormControl('', [Validators.required]),
+        confirmPassword: new FormControl('', [Validators.required]),
         fullName: new FormControl('', [Validators.required]),
         email: new FormControl(
           '',
@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
         ),
         role: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
-        // phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
         phone: new FormControl('', [Validators.required]),
       },
       { validators: this.checkEqualValidator('password', 'confirmPassword') }
@@ -78,7 +77,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.userForm.asyncValidator)
   }
 
   onCancel(): void {
@@ -97,7 +95,6 @@ export class RegisterComponent implements OnInit {
     };
     try {
       this.usersService.registerUser(user).subscribe((data) => {
-        console.log(data);
         this._snackBar.open('Registro exitoso!', 'Cerrar', {
           duration: 4000,
         });
