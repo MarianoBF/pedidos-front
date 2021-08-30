@@ -95,7 +95,7 @@ userForm.controls.password.touched
     <p>El rol no es válido</p>
   </div>
 
-  <button mat-stroked-button type="submit" [disabled]="userForm.invalid">Registrar</button>
+  <button mat-stroked-button type="submit" [disabled]="userForm.invalid||userForm.pending">Registrar</button>
 
   <hr>
 

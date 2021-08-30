@@ -56,7 +56,7 @@ export class UsersFormComponent implements OnInit {
   }
 
   requiredForCreating(control: AbstractControl): ValidationErrors | null {
-    if (!this.editing && control.value?.length > 3) {
+    if (!this.editing && control.value?.length > 1) {
       return null
     } else if (this.editing) {
       return null;

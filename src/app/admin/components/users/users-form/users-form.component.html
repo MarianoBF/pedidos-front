@@ -101,7 +101,7 @@ userForm.controls.password.touched
     </select>
   </mat-form-field>
 
-  <button type="submit" mat-stroked-button [disabled]="userForm.invalid">Crear Usuario</button>
+  <button type="submit" mat-stroked-button [disabled]="userForm.invalid||userForm.pending">Crear Usuario</button>
   <hr />
   <button mat-stroked-button type="reset" color="warn" (click)="onCancel()">
     Cancelar
