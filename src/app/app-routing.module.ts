@@ -10,12 +10,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
     canLoad: [AuthGuard],
+    data: {
+      role: 'administrador'
+    }
   },
   {
     path: 'cliente',
     loadChildren: () =>
       import('./customer/customer.module').then((m) => m.CustomerModule),
     canLoad: [AuthGuard],
+    data: {
+      role: ['usuario', 'administrador']
+    }
   },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent},

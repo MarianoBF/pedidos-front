@@ -13,7 +13,9 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService) { }
 
-  canActivate(): any {
+  canActivate(route:any): any {
+    console.log("role", this.authService.role, route.data.role)
+    const role = this.authService.role
     const userData = this.authService.userData
     if (userData.token) {
       const result = this.authService.refreshToken().toPromise().then(
@@ -23,7 +25,11 @@ export class AuthGuard implements CanActivate {
           return false
         }
       )
+      if (route.data.role.includes(role)) {
       return result
+    } else {
+      return false
+    }
     } else if (!userData.token) {
       return false
     }  }

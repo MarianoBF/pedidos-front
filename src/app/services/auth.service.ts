@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { loggedInUser, loginCredentialsForm, tokenResponse } from '../common/interfaces';
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,14 @@ export class AuthService {
     return this.userData?.token !== ""
   }
 
+  get role() {
+    if (this.userData.token) {
+      let role: any = jwt_decode(this.userData.token)
+      role = role.rol
+      return role}
+    return null
+  }
+
   login(values: loginCredentialsForm) {
     const credentials = {
       nombre_usuario: values.userName,
@@ -55,7 +64,6 @@ export class AuthService {
   refreshToken() {
     return this.http.get<tokenResponse>(this.apiUrl+"usuarios/refreshToken")
     .pipe(tap(res => {
-      console.log('Check token attemp for', this.userData.token)
       localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));
       this._userData = {name: String(this.userData.name), token: String(res.token)};
     }),map(_=>true),catchError(err=>of(false)));
