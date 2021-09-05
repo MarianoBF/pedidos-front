@@ -5,13 +5,15 @@ import { ViewOrdersComponent } from './components/view-orders/view-orders.compon
 import { MaterialUIModule } from '../material-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerRoutingModule } from './customer-routing.module';
+import { ProductsListComponent } from './components/add-order/products-list/products-list.component';
 
 
 
 @NgModule({
   declarations: [
     AddOrderComponent,
-    ViewOrdersComponent
+    ViewOrdersComponent,
+    ProductsListComponent,
   ],
   imports: [
     CommonModule,

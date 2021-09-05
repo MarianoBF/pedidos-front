@@ -1,0 +1,29 @@
+<div *ngIf="productList.length === 0 && !loading">No hay productos para mostrar</div>
+
+<mat-spinner *ngIf="loading; else divResults" class="loader"></mat-spinner>
+
+<!-- <div class="cardContainer"> -->
+<ng-template #divResults>
+  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="15px">
+    <div fxFlex.lg="25" fxFlex.md="45" fxFlex.sm="100" *ngFor="let product of productList">
+      <mat-card class="flexCard">
+        <mat-card-header>
+          <mat-card-title>{{ product.nombre }}</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <p *ngIf="!product.imagen">Imagen no disponible para este producto</p>
+        <img mat-card-image *ngIf="product.imagen" [src]="product.imagen" alt="producto" class="product-image">
+        <mat-card-content>
+          <p>Descripción: {{ product.descripcion }}</p>
+          <p>Precio: {{ product.precio | currency }}</p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-stroked-button (click)="addProduct(product)">
+            Pedir!
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</ng-template>
