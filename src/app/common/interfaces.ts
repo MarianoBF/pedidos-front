@@ -31,6 +31,16 @@ export interface User {
     telefono: string,
 }
 
+export interface NewUser {
+    id_usuario?: number,
+    nombre_usuario: string,
+    nombre_completo: string,
+    password: string,
+    email: string,
+    direccion: string,
+    telefono: string,
+}
+
 export interface UserResponse {
     datos: User[];
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User, UserResponse } from '../common/interfaces';
+import { NewUser, User, UserResponse } from '../common/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class UsersService {
       .pipe(tap((user) => console.log('added user', user)));
   }
 
-  registerUser(user: User) {
+  registerUser(user: NewUser) {
     return this.http
       .post<User>(this.apiURL + 'usuario/registro', user)
       .pipe(tap((user) => console.log('added user', user)));

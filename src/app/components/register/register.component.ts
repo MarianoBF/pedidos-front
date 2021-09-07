@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   AbstractControl,
 } from '@angular/forms';
-import { User } from 'src/app/common/interfaces';
+import { NewUser } from 'src/app/common/interfaces';
 import { UsersService } from '../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidatorService } from '../../services/email-validator.service';
@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
           [Validators.required],
           [EmailValidatorService.validate(this.usersService)]
         ),
-        role: new FormControl('', [Validators.required]),
         address: new FormControl('', [Validators.required]),
         phone: new FormControl('', [Validators.required]),
       },
@@ -84,14 +83,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const user: User = {
+    const user: NewUser = {
       nombre_usuario: this.userForm.value.userName,
       nombre_completo: this.userForm.value.fullName,
       email: this.userForm.value.email,
       direccion: this.userForm.value.address,
       telefono: this.userForm.value.phone,
       password: this.userForm.value.password,
-      rol: this.userForm.value.role,
     };
     try {
       this.usersService.registerUser(user).subscribe((data) => {

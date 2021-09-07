@@ -88,12 +88,7 @@ userForm.controls.password.touched
     <mat-label>Teléfono</mat-label>
     <input formControlName="phone" type="text" matInput class="form-control" />
   </mat-form-field>
-  <div *ngIf="
-        userForm.controls.role.errors?.checkRole &&
-        userForm.controls.role.touched
-      " class="error">
-    <p>El rol no es válido</p>
-  </div>
+
 
   <button mat-stroked-button type="submit" [disabled]="userForm.invalid||userForm.pending">Registrar</button>
 
@@ -102,4 +97,7 @@ userForm.controls.password.touched
   <button mat-stroked-button type="reset" color="warn" disabled="false" (click)="onCancel()">
     Cancelar
   </button>
+
+  {{userForm.invalid}}
+  {{userForm.pending}}
 </form>
