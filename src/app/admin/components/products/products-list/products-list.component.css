@@ -12,3 +12,7 @@
     width: fit-content;
     text-align: center;
 }
+
+.mat-card-header {
+    justify-content: center;
+}
