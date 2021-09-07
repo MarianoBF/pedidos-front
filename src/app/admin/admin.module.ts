@@ -16,7 +16,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { OrdersDialogueComponent } from './components/orders/orders-dialogue/orders-dialogue.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
-import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
 
 
 
@@ -32,7 +31,6 @@ import { AdminMenuComponent } from './components/admin-menu/admin-menu.component
     OrdersComponent,
     OrdersDialogueComponent,
     ProductDetailComponent,
-    AdminMenuComponent,
   ],
   imports: [
     CommonModule,

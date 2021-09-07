@@ -6,7 +6,6 @@ import { MaterialUIModule } from '../material-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { ProductsListComponent } from './components/add-order/products-list/products-list.component';
-import { CustomerMenuComponent } from './components/customer-menu/customer-menu.component';
 
 
 
@@ -15,7 +14,6 @@ import { CustomerMenuComponent } from './components/customer-menu/customer-menu.
     AddOrderComponent,
     ViewOrdersComponent,
     ProductsListComponent,
-    CustomerMenuComponent,
   ],
   imports: [
     CommonModule,

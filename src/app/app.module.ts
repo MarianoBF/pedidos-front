@@ -15,14 +15,16 @@ import { MaterialUIModule } from './material-ui.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ErrorInterceptor } from './common/error-interceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminMenuComponent } from './admin/components/admin-menu/admin-menu.component';
+import { CustomerMenuComponent } from './customer/components/customer-menu/customer-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     LoginComponent,
     RegisterComponent,
-
+    AdminMenuComponent,
+    CustomerMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     AdminModule,
     MaterialUIModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

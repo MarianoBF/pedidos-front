@@ -11,12 +11,15 @@ import { loggedInUser } from './common/interfaces';
 export class AppComponent implements OnInit {
   user?: loggedInUser = this.authService.userData;
   logged = false;
+  role = "";
+  openMenu = false;
 
   constructor (private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.user = this.authService.userData;
     this.logged = this.authService.logged;
+    this.role = this.authService.role
   }
 
   logout() {

@@ -1,27 +1,16 @@
 <mat-sidenav-container fullscreen>
-    <mat-sidenav #sidenav>
-        <mat-toolbar>
-            <h1>Menú Admin</h1>
-        </mat-toolbar>
-        <mat-nav-list>
-            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active"
-                routerLink="admin/productos">Productos</a>
-            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active"
-                routerLink="admin/usuarios">Usuarios</a>
-            <a (click)="sidenav.toggle()" mat-list-item routerLinkActive="active" routerLink="admin/pedidos">Pedidos</a>
 
-            <div class="greeting" *ngIf="user?.name">Hola {{user?.name}}</div>
-
-
-        </mat-nav-list>
-    </mat-sidenav>
+    <div>
+    <app-admin-menu [openMenu]="openMenu" *ngIf="role==='administrador'"></app-admin-menu>
+</div>
     <mat-toolbar>
-
-        <span (click)="sidenav.toggle()">
+        <!-- (click)="adm.toggle()" -->
+        <span (click)="openMenu=true">
             <mat-icon>menu</mat-icon>
         </span>
 
-        <h1 class="brand">Pedidos</h1>
+        <h1 class="brand">Pedidos {{role}} -- <span class="greeting" *ngIf="user?.name">Hola {{user?.name}}</span>
+        </h1>
 
         <button *ngIf="logged" mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
 
