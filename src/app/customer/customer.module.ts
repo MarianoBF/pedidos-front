@@ -6,6 +6,7 @@ import { MaterialUIModule } from '../material-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { ProductsListComponent } from './components/add-order/products-list/products-list.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -21,6 +22,7 @@ import { ProductsListComponent } from './components/add-order/products-list/prod
     FormsModule,
     ReactiveFormsModule,
     CustomerRoutingModule,
+    FlexLayoutModule,
   ]
 })
 export class CustomerModule { }

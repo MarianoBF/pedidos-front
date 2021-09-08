@@ -25,6 +25,9 @@ export class ProductsListComponent implements OnInit {
   getProducts() {
     this.productService.getProducts().subscribe(products=>{
       this.productList = products;
+      for (let product of this.productList) {
+        product.quantity = 1;
+      }
       this.loading = false;})
   }
 
@@ -33,10 +36,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   decrease(product:Product) {
+    const pos = this.productList.findIndex(item=> item.id_producto === product.id_producto)
+    if (this.productList[pos].quantity > 1) {this.productList[pos].quantity--}
     this.evtUpdateProduct.emit([product, "decrease"])
   }
 
   increase(product: Product) {
+    const pos = this.productList.findIndex(item=> item.id_producto === product.id_producto)
+    this.productList[pos].quantity++
     this.evtUpdateProduct.emit([product, "increase"])
   }
 }
