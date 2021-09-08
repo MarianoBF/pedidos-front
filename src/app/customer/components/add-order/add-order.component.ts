@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-add-order',
@@ -7,13 +8,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AddOrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
   handleProductUpdate($event:any){
     console.log($event)
+    if ($event[1]==="add") {
+      this.cartService.addToCart($event[0])
+    }
   }
 
 }
