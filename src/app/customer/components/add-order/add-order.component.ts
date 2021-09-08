@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-order',
@@ -10,6 +10,10 @@ export class AddOrderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handleProductUpdate($event:any){
+    console.log($event)
   }
 
 }

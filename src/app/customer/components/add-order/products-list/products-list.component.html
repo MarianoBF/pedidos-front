@@ -19,8 +19,14 @@
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions>
+          <button mat-stroked-button (click)="decrease(product)">
+            -
+          </button>
           <button mat-stroked-button (click)="addProduct(product)">
             Pedir!
+          </button>
+          <button mat-stroked-button (click)="increase(product)">
+            +
           </button>
         </mat-card-actions>
       </mat-card>

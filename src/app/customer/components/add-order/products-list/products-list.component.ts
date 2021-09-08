@@ -12,13 +12,14 @@ export class ProductsListComponent implements OnInit {
   productList: any[] = [];
   loading = true;
 
-  // @Output() evtUpdateProduct: EventEmitter<Product>;
+  @Output() evtUpdateProduct: EventEmitter<[Product, string]>;
 
   constructor(private productService: ProductsService) {
-    // this.evtUpdateProduct = new EventEmitter();
+    this.evtUpdateProduct = new EventEmitter();
    }
 
   ngOnInit(): void {
+    this.getProducts();
   }
 
   getProducts() {
@@ -28,6 +29,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   addProduct(product:Product) {
-    console.log("Add this to the cart");
+    this.evtUpdateProduct.emit([product, "add"])
+  }
+
+  decrease(product:Product) {
+    this.evtUpdateProduct.emit([product, "decrease"])
+  }
+
+  increase(product: Product) {
+    this.evtUpdateProduct.emit([product, "increase"])
   }
 }
