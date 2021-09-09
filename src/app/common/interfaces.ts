@@ -6,6 +6,15 @@ export interface Product {
     imagen: string,
 }
 
+export interface ProductInCart {
+    id_producto?: number,
+    nombre: string,
+    descripcion: string,
+    precio: number,
+    imagen: string,
+    quantity: number,
+}
+
 export interface Order {
     id_orden?: number,
     hora: Date,
