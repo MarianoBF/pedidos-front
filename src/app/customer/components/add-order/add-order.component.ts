@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../../cart.service';
+import { ProductInCart } from '../../../common/interfaces';
 
 @Component({
   selector: 'app-add-order',
@@ -8,9 +9,12 @@ import { CartService } from '../../cart.service';
 })
 export class AddOrderComponent implements OnInit {
 
+  cart: ProductInCart[] = [];
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cart = this.cartService.getCart();
   }
 
   handleProductUpdate($event:any){

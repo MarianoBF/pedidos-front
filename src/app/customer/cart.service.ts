@@ -10,18 +10,22 @@ export class CartService {
   constructor() {
   }
 
-  addToCart(product: Product, quantity: number = 1) {
+  getCart(): ProductInCart[] {
+    return this.cart
+  }
+
+  addToCart(product: Product, quantity: number = 1): void {
     const ProdToAdd = {...product, quantity}
     this.cart.push(ProdToAdd)
     console.log("cart", this.cart)
   }
   
-  updateCart(product: Product, quantity: number){
+  updateCart(product: Product, quantity: number): void{
     this.cart[(this.cart.findIndex(item=>item.id_producto = product.id_producto))].quantity = quantity;
     console.log("cart", this.cart)
   }
 
-  removeFromCart(product: Product) {
+  removeFromCart(product: Product): void{
     this.cart.splice(this.cart.findIndex(item=>item.id_producto = product.id_producto), 1);
     console.log("cart", this.cart)
   }

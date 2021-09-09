@@ -1,2 +1,8 @@
 <h2 class="title">Seleccioná los productos que querés agregar</h2>
+<div>
+<h2>Carrito</h2>
+<ul>
+    <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}}</li>
+</ul>
+</div>
 <app-products-list (evtUpdateProduct)="handleProductUpdate($event)"></app-products-list>
