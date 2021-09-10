@@ -1,3 +1,17 @@
 .title {
     text-align: center;
 }
+
+.mainContainer {
+    display: flex;
+}
+
+.cart {
+    flex-basis: 15%;
+
+}
+
+.products {
+    flex-basis: 85%;
+
+}
