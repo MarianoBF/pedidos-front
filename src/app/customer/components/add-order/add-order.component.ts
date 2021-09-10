@@ -22,6 +22,12 @@ export class AddOrderComponent implements OnInit {
     if ($event[1]==="add") {
       this.cartService.addToCart($event[0])
     }
+    if ($event[1]==="increase") {
+      this.cartService.updateCart($event[0], "add")
+    }
+    if ($event[1]==="decrease") {
+      this.cartService.updateCart($event[0], "dec")
+    }
   }
 
   delete(item: Product) {
