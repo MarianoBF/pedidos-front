@@ -5,6 +5,7 @@
         <ul>
             <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} <button mat-button-stroked (click)="delete(item)">Borrar</button></li> 
         </ul>
+        <p>Tenes {{quantity()}} productos en el carrito</p>
     </div>
     <div class="products">
 

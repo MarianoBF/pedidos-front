@@ -34,4 +34,8 @@ export class AddOrderComponent implements OnInit {
     this.cartService.removeFromCart(item)
   }
 
+  quantity(): number {
+    return this.cartService.getCartItems()
+  }
+
 }

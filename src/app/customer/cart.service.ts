@@ -32,4 +32,12 @@ export class CartService {
     console.log("cart", this.cart)
   }
 
+  getCartItems() {
+    return this.cart.reduce((a, b)=> a + b.quantity, 0)
+  }
+
+  getCartAmount() {
+
+  }
+
 }
