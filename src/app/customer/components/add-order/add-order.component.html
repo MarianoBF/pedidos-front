@@ -9,7 +9,13 @@
             </li>
         </ul>
         <div class="total" *ngIf="cart.length > 0">
-            <p>Tenes {{quantity()}} unidaes de {{distinctQuantity()}} productos en el carrito</p>
+            <p>Tenés {{quantity()}} <span [ngPlural]="quantity()">
+                    <ng-template ngPluralCase="=1">unidad</ng-template>
+                    <ng-template ngPluralCase="other">unidades</ng-template>
+                </span> de {{distinctQuantity()}} <span [ngPlural]="distinctQuantity()">
+                    <ng-template ngPluralCase="=1">producto</ng-template>
+                    <ng-template ngPluralCase="other">productos</ng-template>
+                </span> en el carrito</p>
 
             <p>El monto total es de {{total() | currency}}</p>
         </div>
