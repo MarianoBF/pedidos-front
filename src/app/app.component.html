@@ -2,6 +2,7 @@
 
     <div>
     <app-admin-menu [openMenu]="openMenu" *ngIf="role==='administrador'"></app-admin-menu>
+    <app-customer-menu [openMenu]="openMenu" *ngIf="role==='usuario'"></app-customer-menu>
 </div>
     <mat-toolbar>
         <!-- (click)="adm.toggle()" -->
