@@ -15,7 +15,7 @@ export class CartService {
   }
 
   addToCart(product: Product, quantity: number = 1): void {
-    if (this.cart.findIndex(item => item.id_producto = product.id_producto) === -1) {
+    if (this.cart.findIndex(item => item.id_producto === product.id_producto) === -1) {
       const ProdToAdd = { ...product, quantity }
       this.cart.push(ProdToAdd)
       console.log("cart", this.cart)
@@ -23,12 +23,12 @@ export class CartService {
   }
 
   updateCart(product: Product, action: string): void {
-    action === "add" ? this.cart[(this.cart.findIndex(item => item.id_producto = product.id_producto))].quantity++ : this.cart[(this.cart.findIndex(item => item.id_producto = product.id_producto))].quantity--;
+    action === "add" ? this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity++ : this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity--;
     console.log("cart", this.cart)
   }
 
   removeFromCart(product: Product): void {
-    this.cart.splice(this.cart.findIndex(item => item.id_producto = product.id_producto), 1);
+    this.cart.splice(this.cart.findIndex(item => item.id_producto === product.id_producto), 1);
     console.log("cart", this.cart)
   }
 
@@ -36,8 +36,12 @@ export class CartService {
     return this.cart.reduce((a, b)=> a + b.quantity, 0)
   }
 
-  getCartAmount() {
+  getCartDistinctItems() {
+    return this.cart.length
+  }
 
+  getCartTotal() {
+    return this.cart.reduce((a, b)=> a + (b.quantity * b.precio), 0)
   }
 
 }

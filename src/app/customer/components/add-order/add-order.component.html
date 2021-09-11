@@ -1,11 +1,17 @@
 <h2 class="title">Seleccioná los productos que querés agregar</h2>
 <div class="mainContainer">
     <div class="cart">
-        <h2 >Carrito</h2>
+        <h2>Carrito</h2>
         <ul>
-            <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} <button mat-button-stroked (click)="delete(item)">Borrar</button></li> 
+            <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} <button mat-button-stroked
+                    (click)="delete(item)">Borrar</button></li>
         </ul>
-        <p>Tenes {{quantity()}} productos en el carrito</p>
+        <div class="total" *ngIf="cart.length > 0">
+            <p>Tenes {{quantity()}} unidaes de {{distinctQuantity()}} productos en el carrito</p>
+
+            <p>El monto total es de $ {{total()}}</p>
+        </div>
+
     </div>
     <div class="products">
 

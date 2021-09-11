@@ -38,4 +38,12 @@ export class AddOrderComponent implements OnInit {
     return this.cartService.getCartItems()
   }
 
+  distinctQuantity(): number {
+    return this.cartService.getCartDistinctItems()
+  }
+
+  total(): number {
+    return this.cartService.getCartTotal()
+  }
+
 }
