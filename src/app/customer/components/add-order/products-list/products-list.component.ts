@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
+import { CartService } from '../../../cart.service';
 
 @Component({
   selector: 'app-products-list',
@@ -14,7 +15,7 @@ export class ProductsListComponent implements OnInit {
 
   @Output() evtUpdateProduct: EventEmitter<[Product, string]>;
 
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, private cartService: CartService) {
     this.evtUpdateProduct = new EventEmitter();
    }
 
@@ -33,6 +34,10 @@ export class ProductsListComponent implements OnInit {
 
   addProduct(product:Product) {
     this.evtUpdateProduct.emit([product, "add"])
+  }
+
+  inCart(product: Product) {
+    return this.cartService.inCart(product)
   }
 
   decrease(product:Product) {

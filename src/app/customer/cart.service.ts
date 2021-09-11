@@ -23,7 +23,7 @@ export class CartService {
   }
 
   updateCart(product: Product, action: string): void {
-    action === "add" ? this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity++ : this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity--;
+    action === "add" ? this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity++ : this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity > 1 ? this.cart[(this.cart.findIndex(item => item.id_producto === product.id_producto))].quantity-- : null;
     console.log("cart", this.cart)
   }
 
@@ -33,7 +33,7 @@ export class CartService {
   }
 
   getCartItems() {
-    return this.cart.reduce((a, b)=> a + b.quantity, 0)
+    return this.cart.reduce((a, b) => a + b.quantity, 0)
   }
 
   getCartDistinctItems() {
@@ -41,7 +41,11 @@ export class CartService {
   }
 
   getCartTotal() {
-    return this.cart.reduce((a, b)=> a + (b.quantity * b.precio), 0)
+    return this.cart.reduce((a, b) => a + (b.quantity * b.precio), 0)
+  }
+
+  inCart(product: Product): boolean {
+    return this.cart.some(item => item.id_producto === product.id_producto)
   }
 
 }
