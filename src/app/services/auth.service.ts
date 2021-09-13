@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
-import { loggedInUser, loginCredentialsForm, tokenResponse } from '../common/interfaces';
+import { loggedInUser, loginCredentialsForm, tokenResponse, decodedToken } from '../common/interfaces';
 import jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 })
 export class AuthService {
   private apiUrl = environment.apiURL;
-  private _userData: loggedInUser = {name: "", token: ""};
+  private _userData: loggedInUser = {name: "", token: "", role: "", id: 0};
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -26,7 +26,7 @@ export class AuthService {
     if (this._userData.name) {
     return this._userData;
     }
-    return {name: "", token: ""};
+    return {name: "", token: "", role: "", id: 0};
   }
 
     //TODO provisorio ejemplo -- o con un método checkauth? 
@@ -35,10 +35,8 @@ export class AuthService {
   }
 
   get role() {
-    if (this.userData.token) {
-      let role: any = jwt_decode(this.userData.token)
-      role = role.rol
-      return role}
+    if (this.userData) {
+      return this._userData.role}
     return null
   }
 
@@ -52,20 +50,22 @@ export class AuthService {
       .pipe(tap(res => {
         console.log('Login attemp for', values.userName)
         localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:values.userName}));
-        this._userData = {name: String(values.userName), token: String(res.token)};
+        let decoded: decodedToken = jwt_decode(this.userData.token)
+        this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.nombre_usuario), role: decoded.rol};
       }),map(_=>true),catchError(err=>of(false)));
   }
    
   logout() {
     localStorage.removeItem('pedidos456')
-    this._userData = {name: "", token: ""};
+    this._userData = {name: "", token: "", role: "", id: 0};
   }
 
   refreshToken() {
     return this.http.get<tokenResponse>(this.apiUrl+"usuarios/refreshToken")
     .pipe(tap(res => {
       localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));
-      this._userData = {name: String(this.userData.name), token: String(res.token)};
+      let decoded: decodedToken = jwt_decode(this.userData.token)
+      this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.nombre_usuario), role: decoded.rol};
     }),map(_=>true),catchError(err=>of(false)));
 
   }

@@ -70,6 +70,8 @@ export interface decodedToken {
   export interface loggedInUser {
       name: string;
       token: string;
+      role: string;
+      id: number;
   }
 
   export interface loginCredentialsForm {
