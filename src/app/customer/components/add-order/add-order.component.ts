@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../../cart.service';
 import { ProductInCart, Product } from '../../../common/interfaces';
+import { OrdersService } from '../../../services/orders.service';
 
 @Component({
   selector: 'app-add-order',
@@ -10,11 +11,13 @@ import { ProductInCart, Product } from '../../../common/interfaces';
 export class AddOrderComponent implements OnInit {
 
   cart: ProductInCart[] = [];
+  paymentMethod: "efectivo" | "tarjeta" = "efectivo";
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private ordersService: OrdersService) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
+    this.ordersService.addOrder(this.paymentMethod, 3)
   }
 
   handleProductUpdate($event:any){

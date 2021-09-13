@@ -8,6 +8,14 @@
 
 .cart {
     flex-basis: 15%;
+    padding: 15px;
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.total {
+    text-align: center;
+    font-size: larger;
 }
 
 .products {

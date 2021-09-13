@@ -20,9 +20,14 @@ export interface Order {
     hora: Date,
     id_usuario: number,
     estado: string,
-    pago_via: string,
+    pago_via: "efectivo"|"tarjeta",
     pago_monto: number,
     observaciones?: string,
+}
+
+export interface NewOrder {
+    id_usuario: number,
+    pago_via: "efectivo"|"tarjeta"
 }
 
 export interface OrderToUpdate {

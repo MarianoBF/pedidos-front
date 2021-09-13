@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
-import { Order, OrderToUpdate } from '../common/interfaces';
+import { NewOrder, Order, OrderToUpdate } from '../common/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ import { Order, OrderToUpdate } from '../common/interfaces';
 export class OrdersService {
   apiURL = environment.apiURL;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getOrders() {
     return this.http
@@ -18,9 +18,13 @@ export class OrdersService {
       .pipe(tap((orders) => console.log('retrieved order', orders)));
   }
 
-  addOrder(product: Order) {
+  addOrder(method: string, user: number) {
+    const data = {
+      pago_via: method,
+      id_usuario: user
+    }
     return this.http
-      .post<Order>(this.apiURL + 'pedido/', product)
+      .post<NewOrder>(this.apiURL + 'pedido/', data)
       .pipe(tap((order) => console.log('added order', order)));
   }
 

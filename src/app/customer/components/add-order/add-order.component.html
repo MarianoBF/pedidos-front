@@ -2,7 +2,10 @@
 <div class="mainContainer">
     <div class="cart">
         <h2>Carrito</h2>
-        <ul>
+        <div *ngIf="cart.length === 0">
+            <p>Tu carrito está vacío, agregá productos y los vas a ver en este espacio.</p>
+        </div>
+        <ul *ngIf="cart.length > 0">
             <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} -- {{item.quantity * item.precio |
                 currency}}
                 <button mat-button-stroked (click)="delete(item)">Borrar</button>
