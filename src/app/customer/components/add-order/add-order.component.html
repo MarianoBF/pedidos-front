@@ -8,7 +8,7 @@
         <ul *ngIf="cart.length > 0">
             <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} -- {{item.quantity * item.precio |
                 currency}}
-                <button mat-button-stroked (click)="delete(item)">Borrar</button>
+                <button mat-button-stroked (click)="delete(item)" [disabled]="ordering">Borrar</button>
             </li>
         </ul>
         <div class="total" *ngIf="cart.length > 0">
@@ -36,6 +36,6 @@
     </div>
     <div class="products">
 
-        <app-products-list (evtUpdateProduct)="handleProductUpdate($event)"></app-products-list>
+        <app-products-list (evtUpdateProduct)="handleProductUpdate($event)" [ordering]="ordering"></app-products-list>
     </div>
 </div>

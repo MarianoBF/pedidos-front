@@ -12,6 +12,8 @@ export class AddOrderComponent implements OnInit {
 
   cart: ProductInCart[] = [];
   paymentMethod: "efectivo" | "tarjeta" = "efectivo";
+  ordering = false;
+  orderNumber: Number = 0;
 
   constructor(private cartService: CartService, private ordersService: OrdersService) { }
 
@@ -49,7 +51,12 @@ export class AddOrderComponent implements OnInit {
 
   confirm(): void {
     console.log("adding order")
-    this.ordersService.addOrder(this.paymentMethod, 3).subscribe(res=>console.log(res))
+    this.ordering = true;
+    this.ordersService.addOrder(this.paymentMethod, 3).subscribe(res=>{
+      this.orderNumber = res.id_orden || 0;
+      console.log(res)
+      //TODO agregar productos
+    })
   }
 
 }

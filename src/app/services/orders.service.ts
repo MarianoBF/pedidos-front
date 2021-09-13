@@ -24,7 +24,7 @@ export class OrdersService {
       id_usuario: user
     }
     return this.http
-      .post<NewOrder>(this.apiURL + 'pedido/', data)
+      .post<Order>(this.apiURL + 'pedido/', data)
       .pipe(tap((order) => console.log('added order', order)));
   }
 

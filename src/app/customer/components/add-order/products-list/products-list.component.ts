@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartService } from '../../../cart.service';
@@ -12,6 +12,8 @@ export class ProductsListComponent implements OnInit {
 
   productList: any[] = [];
   loading = true;
+
+  @Input() ordering: boolean = false;
 
   @Output() evtUpdateProduct: EventEmitter<[Product, string]>;
 
