@@ -20,7 +20,6 @@ export class AddOrderComponent implements OnInit {
   }
 
   handleProductUpdate($event:any){
-    console.log($event)
     if ($event[1]==="add") {
       this.cartService.addToCart($event[0])
     }
@@ -49,7 +48,8 @@ export class AddOrderComponent implements OnInit {
   }
 
   confirm(): void {
-    this.ordersService.addOrder(this.paymentMethod, 3)
+    console.log("adding order")
+    this.ordersService.addOrder(this.paymentMethod, 3).subscribe(res=>console.log(res))
   }
 
 }
