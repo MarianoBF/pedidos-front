@@ -21,6 +21,14 @@
                 </span> en el carrito</p>
 
             <p>El monto total es de {{total() | currency}}</p>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Medio de Pago:</mat-label>
+                <select matNativeControl [(ngModel)]="paymentMethod">
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta">Tarjeta</option>
+                </select>
+            </mat-form-field>
         </div>
 
     </div>

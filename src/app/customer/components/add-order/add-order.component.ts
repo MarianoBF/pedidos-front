@@ -17,7 +17,6 @@ export class AddOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
-    this.ordersService.addOrder(this.paymentMethod, 3)
   }
 
   handleProductUpdate($event:any){
@@ -47,6 +46,10 @@ export class AddOrderComponent implements OnInit {
 
   total(): number {
     return this.cartService.getCartTotal()
+  }
+
+  confirm(): void {
+    this.ordersService.addOrder(this.paymentMethod, 3)
   }
 
 }
