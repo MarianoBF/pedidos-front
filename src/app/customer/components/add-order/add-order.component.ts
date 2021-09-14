@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../../cart.service';
 import { ProductInCart, Product } from '../../../common/interfaces';
 import { OrdersService } from '../../../services/orders.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-add-order',
@@ -13,12 +14,15 @@ export class AddOrderComponent implements OnInit {
   cart: ProductInCart[] = [];
   paymentMethod: "efectivo" | "tarjeta" = "efectivo";
   ordering = false;
-  orderNumber: Number = 0;
+  orderNumber: number = 0;
+  ordered = false;
+  userID: number = 0;
 
-  constructor(private cartService: CartService, private ordersService: OrdersService) { }
+  constructor(private cartService: CartService, private ordersService: OrdersService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
+    this.userID = this.authService.userData.id;
   }
 
   handleProductUpdate($event:any){
@@ -53,9 +57,13 @@ export class AddOrderComponent implements OnInit {
     console.log("adding order")
     this.ordering = true;
     this.ordersService.addOrder(this.paymentMethod, 3).subscribe(res=>{
-      this.orderNumber = res.id_orden || 0;
-      console.log(res)
-      //TODO agregar productos
+      this.orderNumber = res.id_pedido || 0;
+      console.log(res.id_pedido, this.userID,)
+      this.cart.forEach(prod=>this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe(res=>{
+        console.log("added", prod.id_producto, prod.quantity, res)
+      }))
+      this.ordered = true;
+      ;
     })
   }
 

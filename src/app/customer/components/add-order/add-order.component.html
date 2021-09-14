@@ -24,13 +24,15 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Medio de Pago:</mat-label>
-                <select matNativeControl [(ngModel)]="paymentMethod">
+                <select matNativeControl [(ngModel)]="paymentMethod" [disabled]="ordering">
                     <option value="efectivo">Efectivo</option>
                     <option value="tarjeta">Tarjeta</option>
                 </select>
             </mat-form-field>
 
-            <button mat-stroked-button (click)="confirm()">Hacer el pedido</button>
+            <button mat-stroked-button (click)="confirm()" [disabled]="ordering">Hacer el pedido</button>
+            <p *ngIf="ordered">Tu pedido fue realizado con éxito, el número del pedido es: {{orderNumber}} </p>
+        
         </div>
 
     </div>

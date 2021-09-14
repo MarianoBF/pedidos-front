@@ -16,7 +16,7 @@ export interface ProductInCart {
 }
 
 export interface Order {
-    id_orden?: number,
+    id_pedido?: number,
     hora: Date,
     id_usuario: number,
     estado: string,

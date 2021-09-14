@@ -28,6 +28,18 @@ export class OrdersService {
       .pipe(tap((order) => console.log('added order', order)));
   }
 
+  addProductToOrder(orderID:number, userID: number, productID:number, Quantity:number) {
+    const data = {
+      id_usuario: userID,
+      id_producto: productID,
+      cantidad_producto: Quantity
+    }
+    console.log("ID", orderID)
+    return this.http
+      .post<any>(this.apiURL + 'detallePedido/' + orderID, data)
+      .pipe(tap((prod) => console.log('added product', prod)));
+  }
+
   updateOrder(id: number, product: OrderToUpdate) {
     return this.http
       .patch<Order>(this.apiURL + 'pedido/' + id, product)
