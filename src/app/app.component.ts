@@ -19,7 +19,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService.userData;
     this.logged = this.authService.logged;
-    this.role = this.authService.role || "";
+    this.role = this.user.role
+    console.log(this.role, this.user)
   }
 
   logout() {

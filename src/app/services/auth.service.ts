@@ -34,12 +34,6 @@ export class AuthService {
     return this.userData?.token !== ""
   }
 
-  get role() {
-    if (this.userData) {
-      return this._userData.role}
-    return null
-  }
-
   login(values: loginCredentialsForm) {
     const credentials = {
       nombre_usuario: values.userName,
@@ -51,7 +45,7 @@ export class AuthService {
         console.log('Login attemp for', values.userName)
         localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:values.userName}));
         let decoded: decodedToken = jwt_decode(this.userData.token)
-        this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.nombre_usuario), role: decoded.rol};
+        this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol};
       }),map(_=>true),catchError(err=>of(false)));
   }
    
@@ -63,9 +57,9 @@ export class AuthService {
   refreshToken() {
     return this.http.get<tokenResponse>(this.apiUrl+"usuarios/refreshToken")
     .pipe(tap(res => {
-      localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:this.userData.name}));
+      localStorage.setItem('pedidos456', JSON.stringify(this.userData));
       let decoded: decodedToken = jwt_decode(this.userData.token)
-      this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.nombre_usuario), role: decoded.rol};
+      this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol};
     }),map(_=>true),catchError(err=>of(false)));
 
   }

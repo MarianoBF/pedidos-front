@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((res)=>
     { console.log(res)
       if(res) {
-        this.authService.role === 'administrador' ? this.router.navigate(['/admin/pedidos']) : this.router.navigate(['/cliente/pedir'])
+        this.authService.userData.role === 'administrador' ? this.router.navigate(['/admin/pedidos']) : this.router.navigate(['/cliente/pedir'])
       } else {
         this._snackBar.open('No se pudo loguear, revise los datos ingresados', 'Cerrar', {
           duration: 4000,
