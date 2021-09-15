@@ -6,3 +6,9 @@
     margin: 0 auto;
     display: inline-block;
 }
+
+.menu {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}

@@ -31,4 +31,8 @@ export class AppComponent implements OnInit {
     
   }
 
+  close() {
+    this.openMenu = false;
+  }
+
 }
