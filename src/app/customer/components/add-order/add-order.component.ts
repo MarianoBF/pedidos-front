@@ -53,6 +53,13 @@ export class AddOrderComponent implements OnInit {
     return this.cartService.getCartTotal()
   }
 
+  clear(): void {
+    this.ordered = false;
+    this.ordering = false;
+    this.cartService.clear();
+    this.cart = this.cartService.getCart();
+  }
+
   confirm(): void {
     console.log("adding order")
     this.ordering = true;

@@ -32,6 +32,7 @@
 
             <button mat-stroked-button (click)="confirm()" [disabled]="ordering">Hacer el pedido</button>
             <p *ngIf="ordered">Tu pedido fue realizado con éxito, el número del pedido es: {{orderNumber}} </p>
+            <button *ngIf="ordered" mat-stroked-button (click)="clear()">OK, cerrar pedido y volver al menú</button>
         
         </div>
 

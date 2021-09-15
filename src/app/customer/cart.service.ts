@@ -45,4 +45,8 @@ export class CartService {
     return this.cart.some(item => item.id_producto === product.id_producto)
   }
 
+  clear():void {
+    this.cart = [];
+  }
+
 }
