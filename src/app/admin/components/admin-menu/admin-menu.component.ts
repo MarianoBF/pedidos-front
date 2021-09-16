@@ -15,7 +15,9 @@ export class AdminMenuComponent implements OnInit, OnChanges {
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
-    this.sidenav.toggle();
+    if (this.sidenav) {
+      this.sidenav.toggle();
+    }
   }
 
   ngOnInit(): void {

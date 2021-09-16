@@ -9,6 +9,13 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsListComponent implements OnInit {
 
+
+  displayedColumns: string[] = ['id', 'name', 'description', 'price'];
+  dataSource: Product[] = [];
+  currentStatus: string = "";
+  modifyID: number = -1;
+
+
   productList: any[] = [];
   loading = true;
 
@@ -25,7 +32,7 @@ export class ProductsListComponent implements OnInit {
 
   getProducts() {
     this.productService.getProducts().subscribe(products=>{
-      this.productList = products;
+      this.dataSource = products;
       this.loading = false;})
   }
 
