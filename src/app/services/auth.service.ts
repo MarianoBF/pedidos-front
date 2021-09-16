@@ -43,10 +43,11 @@ export class AuthService {
       .post<tokenResponse>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
         console.log('Login attemp for', values.userName)
-        localStorage.setItem('pedidos456', JSON.stringify({token:res.token, name:values.userName}));
-        let decoded: decodedToken = jwt_decode(this.userData.token)
+        let decoded: decodedToken = jwt_decode(res.token)
+        console.log("decoded", decoded)
         this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol};
-      }),map(_=>true),catchError(err=>of(false)));
+        localStorage.setItem('pedidos456', JSON.stringify(this._userData));
+      }),map(_=>true),catchError(err=>{console.log(err); return of(false)}));
   }
    
   logout() {

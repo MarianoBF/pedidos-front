@@ -26,8 +26,9 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
+    console.log("logging in")
     this.authService.login(this.loginForm.value).subscribe((res)=>
-    { console.log(res)
+    { console.log("res login", res)
       if(res) {
         this.authService.userData.role === 'administrador' ? this.router.navigate(['/admin/pedidos']) : this.router.navigate(['/cliente/pedir'])
       } else {
