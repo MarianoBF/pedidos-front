@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Sort } from '@angular/material/sort';
 import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { MaterialUIModule } from '../../../../material-ui.module';
@@ -11,7 +12,7 @@ import { MaterialUIModule } from '../../../../material-ui.module';
 export class ProductsListComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['id', 'name', 'description', 'price', 'delete', 'edit'];
+  displayedColumns: string[] = ['id_producto', 'nombre', 'descripcion', 'precio', 'delete', 'edit'];
   dataSource: Product[] = [];
   currentStatus: string = "";
   modifyID: number = -1;
@@ -27,8 +28,7 @@ export class ProductsListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    //TODO Remove timeout
-    setTimeout(()=>this.getProducts(),2000)
+    this.getProducts();
   }
 
   getProducts() {
@@ -42,10 +42,30 @@ export class ProductsListComponent implements OnInit {
       res => {console.log(res);
       this.getProducts();}
     );
-    // const toDelete = this.productList.findIndex(item=>item.id_producto === id);
-    // this.dataSource.splice(toDelete, 1);
   }
   updateProduct(product:Product) {
     this.evtUpdateProduct.emit(product);
+  }
+
+  sortData(sort: Sort) {
+    const data = this.dataSource.slice();
+    if (!sort.active || sort.direction === '') {
+      this.dataSource = data;
+      return;
+    }
+    this.dataSource = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'nombre': return this.compare(a.nombre, b.nombre, isAsc);
+        case 'precio': return this.compare(a.precio, b.precio, isAsc);
+        case 'descripcion': return this.compare(a.descripcion, b.descripcion, isAsc);
+        case 'id_producto': return this.compare(a.id_producto!, b.id_producto!, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 }

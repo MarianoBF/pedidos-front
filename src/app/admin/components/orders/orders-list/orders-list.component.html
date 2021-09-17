@@ -1,11 +1,11 @@
 <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="orderNumber">
-    <th mat-header-cell *matHeaderCellDef> #Pedido </th>
+  <ng-container matColumnDef="id_pedido">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> #Pedido </th>
     <td mat-cell *matCellDef="let element"> {{element.id_pedido}} </td>
   </ng-container>
 
-    <ng-container matColumnDef="status">
+    <ng-container matColumnDef="estado">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
       <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn" (click)="updatePedido(element.id_pedido, element.estado)">{{element.estado | titlecase}}</button> </td>
     </ng-container>
@@ -20,12 +20,12 @@
       <td mat-cell *matCellDef="let element"> {{element.pago_monto | currency}} </td>
     </ng-container>
    
-    <ng-container matColumnDef="type">
+    <ng-container matColumnDef="pago_via">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Vía de Pago </th>
         <td mat-cell *matCellDef="let element"> {{element.pago_via}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="user">
+      <ng-container matColumnDef="id_usuario">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID usuario </th>
         <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
       </ng-container>
