@@ -2,22 +2,6 @@
     margin: 0 auto; 
 }
 
-/* .product-image {
-    max-width: 300px;
-    max-height: 300px;
-}
-
-.mat-card {
-    margin: 20px auto;
-    width: fit-content;
-    text-align: center;
-}
-
-.mat-card-header {
-    justify-content: center;
-}
- */
-
  table {
     width: 90%;
     margin: 0 auto;
@@ -29,5 +13,5 @@ table th {
     font-weight: bolder;
     vertical-align: middle;
     text-align: center;
+    justify-content: center;
 }
-
