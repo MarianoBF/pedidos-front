@@ -17,14 +17,17 @@ export class AppComponent implements OnInit {
   constructor (private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.user = this.authService.userData;
-    this.logged = this.authService.logged;
-    this.role = this.user.role
+    // this.user = this.authService.userData;
+    this.authService.loggedStatus.subscribe(res=>this.logged = res);
+    this.authService.userInfo.subscribe(res=>{
+      this.user = res;
+      this.role = res.role});
+    
     console.log(this.role, this.user)
   }
 
   logout() {
-    console.log("logout", "logged", this.authService.logged);
+    console.log("logout", "logged");
     this.logged = false;
     this.authService.logout();
     this.router.navigate(['/login'])

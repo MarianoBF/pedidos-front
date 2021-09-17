@@ -6,11 +6,13 @@
 </div>
     <mat-toolbar>
         <!-- (click)="adm.toggle()" -->
-        <span (click)="openMenu=true">
+        <span *ngIf="logged" (click)="openMenu=true">
             <mat-icon class="menu">menu</mat-icon>
         </span>
+        {{role}} {{openMenu}}
+        <h1 *ngIf="!logged" class="brand">Bienvenido a Pedidos, ingrese su usuario</h1>
 
-        <h1 class="brand">Pedidos {{role}} {{openMenu}} -- <span class="greeting" *ngIf="user?.name">Hola {{user?.name}}</span>
+        <h1 *ngIf="logged" class="brand">Pedidos - Vista {{role | titlecase}} -- <span class="greeting" *ngIf="user?.name">Hola {{user?.name}}</span>
         </h1>
 
         <button *ngIf="logged" mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
