@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
+import { MaterialUIModule } from '../../../../material-ui.module';
 
 @Component({
   selector: 'app-products-list',
@@ -10,7 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductsListComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['id', 'name', 'description', 'price'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'price', 'delete', 'edit'];
   dataSource: Product[] = [];
   currentStatus: string = "";
   modifyID: number = -1;
@@ -37,9 +38,12 @@ export class ProductsListComponent implements OnInit {
   }
 
   deleteProduct(id:number) {
-    this.productService.deleteProduct(id).subscribe();
-    const toDelete = this.productList.findIndex(item=>item.id_producto === id);
-    this.productList.splice(toDelete, 1);
+    this.productService.deleteProduct(id).subscribe(
+      res => {console.log(res);
+      this.getProducts();}
+    );
+    // const toDelete = this.productList.findIndex(item=>item.id_producto === id);
+    // this.dataSource.splice(toDelete, 1);
   }
   updateProduct(product:Product) {
     this.evtUpdateProduct.emit(product);
