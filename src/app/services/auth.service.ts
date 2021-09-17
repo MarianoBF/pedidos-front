@@ -25,7 +25,7 @@ export class AuthService {
 
 
   constructor(private http: HttpClient) {
-    this.logged.subscribe(res=>{console.log(res)})
+    this.logged.subscribe(res=>{console.log("logged",res)})
     const storedUser = localStorage.getItem('pedidos456');
     if (storedUser) {this._userData = JSON.parse(storedUser||'[]')};
   }
@@ -69,6 +69,10 @@ export class AuthService {
       this.logged.next(this._userData.token !== '')
       this._userInfo.next(this._userData)
     }),map(_=>true),catchError(err=>of(false)));
-
   }
+
+  loggedRes() {
+    return this.loggedStatus.toPromise();
+  }
+
 }
