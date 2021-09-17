@@ -17,6 +17,7 @@ export class AddOrderComponent implements OnInit {
   orderNumber: number = 0;
   ordered = false;
   userID: number = 0;
+  orderNotes = "";
 
   constructor(private cartService: CartService, private ordersService: OrdersService, private authService: AuthService) { }
 
@@ -63,7 +64,7 @@ export class AddOrderComponent implements OnInit {
   confirm(): void {
     console.log("adding order")
     this.ordering = true;
-    this.ordersService.addOrder(this.paymentMethod, 3).subscribe(res=>{
+    this.ordersService.addOrder(this.paymentMethod, this.orderNotes, 3).subscribe(res=>{
       this.orderNumber = res.id_pedido || 0;
       console.log(res.id_pedido, this.userID,)
       this.cart.forEach(prod=>this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe(res=>{

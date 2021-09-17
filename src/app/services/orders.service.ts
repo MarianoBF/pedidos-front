@@ -18,10 +18,11 @@ export class OrdersService {
       .pipe(tap((orders) => console.log('retrieved order', orders)));
   }
 
-  addOrder(method: string, user: number) {
+  addOrder(method: string, notes:string, user: number) {
     const data = {
       pago_via: method,
-      id_usuario: user
+      id_usuario: user,
+      observaciones: notes,
     }
     return this.http
       .post<Order>(this.apiURL + 'pedido/', data)
