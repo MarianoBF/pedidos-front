@@ -7,7 +7,7 @@
 }
 
 .cart {
-    flex-basis: 15%;
+    flex-basis: 25%;
     padding: 15px;
     margin: 10px;
     border: 1px solid black;
@@ -18,6 +18,16 @@
     font-size: larger;
 }
 
+ul {
+    text-align: left;
+    font-size: large;
+}
+
 .products {
-    flex-basis: 85%;
+    flex-basis: 75%;
+}
+
+.selects .mat-form-field {
+    display: blocK;
+    margin: 0 auto;
 }

@@ -3,12 +3,12 @@
     <div class="cart">
         <h2>Carrito</h2>
         <div *ngIf="cart.length === 0">
-            <p>Tu carrito está vacío, agregá productos y los vas a ver en este espacio.</p>
+            <p class="total">Tu carrito está vacío, agregá productos y los vas a ver en este espacio.</p>
         </div>
         <ul *ngIf="cart.length > 0">
             <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} -- {{item.quantity * item.precio |
                 currency}}
-                <button mat-button-stroked (click)="delete(item)" [disabled]="ordering">Borrar</button>
+                <button mat-stroked-button (click)="delete(item)" [disabled]="ordering">Borrar</button>
             </li>
         </ul>
         <div class="total" *ngIf="cart.length > 0">
@@ -22,26 +22,30 @@
 
             <p>El monto total es de {{total() | currency}}</p>
 
-            <mat-form-field appearance="fill">
-                <mat-label>Medio de Pago:</mat-label>
-                <select matNativeControl [(ngModel)]="paymentMethod" [disabled]="ordering">
-                    <option value="efectivo">Efectivo</option>
-                    <option value="tarjeta">Tarjeta</option>
-                </select>
-            </mat-form-field>
+            <div class="selects">
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Medio de Pago:</mat-label>
+                    <select matNativeControl [(ngModel)]="paymentMethod" [disabled]="ordering">
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                    </select>
+                </mat-form-field>
 
 
-            <mat-form-field appearance="fill">
-                <mat-label>Observaciones / aclaraciones:</mat-label>
-                <textarea matNativeControl [(ngModel)]="orderNotes" [disabled]="ordering">
+                <mat-form-field appearance="fill">
+                    <mat-label>Observaciones / aclaraciones:</mat-label>
+                    <textarea matNativeControl [(ngModel)]="orderNotes" [disabled]="ordering">
                 </textarea>
-            </mat-form-field>
+                </mat-form-field>
+
+            </div>
 
 
             <button mat-stroked-button (click)="confirm()" [disabled]="ordering">Hacer el pedido</button>
             <p *ngIf="ordered">Tu pedido fue realizado con éxito, el número del pedido es: {{orderNumber}} </p>
             <button *ngIf="ordered" mat-stroked-button (click)="clear()">OK, cerrar pedido y volver al menú</button>
-        
+
         </div>
 
     </div>
