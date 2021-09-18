@@ -13,7 +13,7 @@ import { OrdersDialogueComponent } from '../orders-dialogue/orders-dialogue.comp
 })
 export class OrdersListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id_pedido', 'estado', 'hora', 'pago_monto', 'pago_via', 'id_usuario'];
+  displayedColumns: string[] = ['id_pedido', 'estado', 'hora', 'pago_monto', 'pago_via', 'id_usuario', 'details'];
   dataSource: Order[] = [];
   currentStatus: string = "";
   modifyID: number = -1;
@@ -49,13 +49,20 @@ export class OrdersListComponent implements OnInit {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
+  showDetails(id:number) {
+    const dialog = this.dialog.open(OrdersDialogueComponent, {
+      width: '300px',
+      data: { id , status: null, show: 'details' }
+    })
+  }
+
   updatePedido(id: number, status: string) {
     console.log("modificar pedido", id);
     this.modifyID = id;
     this.currentStatus = status;
     const dialog = this.dialog.open(OrdersDialogueComponent, {
       width: '300px',
-      data: { id: this.modifyID, status: this.currentStatus }
+      data: { id: this.modifyID, status: this.currentStatus, show: 'status' }
     })
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
       this.orderService.updateOrder(
