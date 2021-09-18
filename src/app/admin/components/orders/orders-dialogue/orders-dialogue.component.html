@@ -1,4 +1,21 @@
-<div>
+<div *ngIf="show==='status'">
+    <p>Estado actual del pedido <strong>{{data.id}}</strong> : {{data.status | titlecase}}</p>
+<mat-form-field appearance="fill">
+<mat-label>Nuevo estado:</mat-label>
+<select matNativeControl value="" (change)="handleSelect($event)">
+    <option value=""></option>
+    <option value="confirmado">Confirmado</option>
+    <option value="preparando">Preparado</option>
+    <option value="enviando">Enviado</option>
+    <option value="cancelado">Cancelado</option>
+    <option value="entregado">Entregado</option>
+</select>
+</mat-form-field>
+<button mat-stroked-button color="primary" (click)="save()">Actualizar</button>
+<button mat-stroked-button (click)="close()">Cerrar</button>
+</div>
+
+<div *ngIf="show==='details'">
     <p>Estado actual del pedido <strong>{{data.id}}</strong> : {{data.status | titlecase}}</p>
 <mat-form-field appearance="fill">
 <mat-label>Nuevo estado:</mat-label>
