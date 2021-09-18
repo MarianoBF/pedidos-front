@@ -59,4 +59,10 @@ export class OrdersService {
       .get<Order[]>(this.apiURL + 'pedidos')
       .pipe(tap((orders) => console.log('retrieved orders', orders)));
   }
+
+  getAllProductsForOrder(id:number) {
+    return this.http
+      .get<Order[]>(this.apiURL + 'detallePedido/' + id)
+      .pipe(tap((orders) => console.log('retrieved order details', orders)));
+  }
 }
