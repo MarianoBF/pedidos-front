@@ -17,7 +17,7 @@
   <ng-container matColumnDef="estado">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
     <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn"
-        (click)="updatePedido(element.id_pedido, element.estado)">{{element.estado | titlecase}}</button> </td>
+        (click)="updatePedido(element, element.estado)">{{element.estado | titlecase}}</button> </td>
   </ng-container>
 
   <ng-container matColumnDef="hora">
@@ -40,10 +40,16 @@
     <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="observaciones">
+    <th mat-header-cell *matHeaderCellDef> Observaciones </th>
+    <td mat-cell *matCellDef="let element"> {{element.observaciones | slice:0:20}} <button mat-stroked-button color="primary" class="statusBtn"
+      (click)="showObs(element)">Ver / Modificar</button>  </td>
+  </ng-container>
+
   <ng-container matColumnDef="details">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Ver Productos </th>
     <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn"
-        (click)="showDetails(element.id_pedido)">Ver Detalle</button> </td>
+        (click)="showDetails(element)">Ver Detalle</button> </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

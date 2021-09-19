@@ -15,7 +15,7 @@ import { OrdersDialogueComponent } from '../orders-dialogue/orders-dialogue.comp
 })
 export class OrdersListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id_pedido', 'estado', 'hora', 'pago_monto', 'pago_via', 'id_usuario', 'details'];
+  displayedColumns: string[] = ['id_pedido', 'estado', 'hora', 'pago_monto', 'pago_via', 'id_usuario', 'details', 'observaciones'];
   // dataSource: Order[] = [];
   currentStatus: string = "";
   modifyID: number = -1;
@@ -39,20 +39,35 @@ export class OrdersListComponent implements OnInit {
     this.dataSource.filter = $event.target.value.trim().toLocaleLowerCase();
   }
 
-  showDetails(id:number) {
+  showDetails(pedido: Order) {
     const dialog = this.dialog.open(OrdersDialogueComponent, {
       width: '300px',
-      data: { id , status: null, show: 'details' }
+      data: { pedido , status: null, show: 'details' }
     })
   }
 
-  updatePedido(id: number, status: string) {
-    console.log("modificar pedido", id);
-    this.modifyID = id;
+  showObs(pedido: Order) {
+    console.log("modificar pedido", pedido);
+    this.modifyID = pedido.id_pedido!;
+    const dialog = this.dialog.open(OrdersDialogueComponent, {
+      width: '300px',
+      data: { pedido , status: null, show: 'obs' }
+    })
+    dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
+      this.orderService.updateOrderObs(
+        this.modifyID, { observaciones: res }))).subscribe(
+          data => {console.log(data);
+            this.orderService.getOrders().subscribe(data => this.dataSource = [...data]);
+          })
+  }
+
+  updatePedido(pedido: Order, status: string) {
+    console.log("modificar pedido", pedido);
+    this.modifyID = pedido.id_pedido!;
     this.currentStatus = status;
     const dialog = this.dialog.open(OrdersDialogueComponent, {
       width: '300px',
-      data: { id: this.modifyID, status: this.currentStatus, show: 'status' }
+      data: { pedido: this.modifyID, status: this.currentStatus, show: 'status' }
     })
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
       this.orderService.updateOrder(
