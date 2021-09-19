@@ -41,9 +41,15 @@ export class OrdersService {
       .pipe(tap((prod) => console.log('added product', prod)));
   }
 
-  updateOrder(id: number, product: OrderToUpdate) {
+  updateOrder(id: number, status: OrderToUpdate) {
     return this.http
-      .patch<Order>(this.apiURL + 'pedido/' + id, product)
+      .patch<Order>(this.apiURL + 'pedido/' + id, status)
+      .pipe(tap((order) => console.log('updated order', order)));
+  }
+  
+  updateOrderObs(id: number, observaciones: any) {
+    return this.http
+      .patch<Order>(this.apiURL + 'pedidoObs/' + id, observaciones)
       .pipe(tap((order) => console.log('updated order', order)));
   }
 
