@@ -1,4 +1,4 @@
-<div *ngIf="show==='status'">
+<div *ngIf="data.show==='status'">
     <p>Estado actual del pedido <strong>{{data.id}}</strong> : {{data.status | titlecase}}</p>
 <mat-form-field appearance="fill">
 <mat-label>Nuevo estado:</mat-label>
@@ -15,19 +15,11 @@
 <button mat-stroked-button (click)="close()">Cerrar</button>
 </div>
 
-<div *ngIf="show==='details'">
-    <p>Estado actual del pedido <strong>{{data.id}}</strong> : {{data.status | titlecase}}</p>
-<mat-form-field appearance="fill">
-<mat-label>Nuevo estado:</mat-label>
-<select matNativeControl value="" (change)="handleSelect($event)">
-    <option value=""></option>
-    <option value="confirmado">Confirmado</option>
-    <option value="preparando">Preparado</option>
-    <option value="enviando">Enviado</option>
-    <option value="cancelado">Cancelado</option>
-    <option value="entregado">Entregado</option>
-</select>
-</mat-form-field>
-<button mat-stroked-button color="primary" (click)="save()">Actualizar</button>
+<div *ngIf="data.show==='details'">
+    <h2>Productos del pedido <strong>{{data.id}}</strong> : {{data.status | titlecase}}</h2>
+    <div *ngFor="let item of items">
+        <p>{{item.cantidad_producto}} -- {{item.nombre}} -- {{item.precio * item.cantidad_producto | currency}} ({{item.precio}} c/u)</p>
+    </div>
+    <div *ngIf="items?.length === 0 && loading === false">No hay productos en el pedido seleccionado</div>
 <button mat-stroked-button (click)="close()">Cerrar</button>
 </div>
