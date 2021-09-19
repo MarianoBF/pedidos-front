@@ -34,31 +34,10 @@ export class OrdersListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  // sortData(sort: Sort) {
-  //   console.log(this.dataSource)
-  //   const data = this.dataSource.slice();
-  //   if (!sort.active || sort.direction === '') {
-  //     this.dataSource = data;
-  //     return;
-  //   }
-  //   this.dataSource = data.sort((a:any, b:any) => {
-  //     const isAsc = sort.direction === 'asc';
-  //     switch (sort.active) {
-  //       case 'estado': return this.compare(a.estado, b.estado, isAsc);
-  //       case 'pago_via': return this.compare(a.pago_via, b.pago_via, isAsc);
-  //       case 'pago_monto': return this.compare(a.pago_monto, b.pago_monto, isAsc);
-  //       case 'hora': return this.compare(String(a.hora), String(b.hora), isAsc);
-  //       case 'id_usuario': return this.compare(a.id_usuario, b.id_usuario, isAsc);
-  //       case 'id_pedido': return this.compare(a.id_pedido!, b.id_pedido!, isAsc);
-  //       default: return 0;
-  //     }
-  //   });
-  // }
 
-  // compare(a: number | string, b: number | string, isAsc: boolean) {
-  //   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  // }
+  filter = ($event: any) => {
+    this.dataSource.filter = $event.target.value.trim().toLocaleLowerCase();
+  }
 
   showDetails(id:number) {
     const dialog = this.dialog.open(OrdersDialogueComponent, {

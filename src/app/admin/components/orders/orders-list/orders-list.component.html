@@ -1,3 +1,12 @@
+<div class="controls">
+  <mat-form-field>
+    <input matInput type="text" (keyup)="filter($event)" placeholder="Ingrese término para filtrar">
+  </mat-form-field>
+
+  <mat-paginator [pageSizeOptions]="[10, 30, 50, 100]" showFirstLastButtons>
+  </mat-paginator>
+</div>
+
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <ng-container matColumnDef="id_pedido">
@@ -5,41 +14,38 @@
     <td mat-cell *matCellDef="let element"> {{element.id_pedido}} </td>
   </ng-container>
 
-    <ng-container matColumnDef="estado">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
-      <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn" (click)="updatePedido(element.id_pedido, element.estado)">{{element.estado | titlecase}}</button> </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="hora">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha/Hora </th>
-      <td mat-cell *matCellDef="let element"> {{element.hora | date:'short'}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="pago_monto">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> $ Total </th>
-      <td mat-cell *matCellDef="let element"> {{element.pago_monto | currency}} </td>
-    </ng-container>
-   
-    <ng-container matColumnDef="pago_via">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vía de Pago </th>
-        <td mat-cell *matCellDef="let element"> {{element.pago_via}} </td>
-      </ng-container>
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+    <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn"
+        (click)="updatePedido(element.id_pedido, element.estado)">{{element.estado | titlecase}}</button> </td>
+  </ng-container>
 
-      <ng-container matColumnDef="id_usuario">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID usuario </th>
-        <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
-      </ng-container>
+  <ng-container matColumnDef="hora">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha/Hora </th>
+    <td mat-cell *matCellDef="let element"> {{element.hora | date:'short'}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="details">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ver Productos </th>
-        <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn" (click)="showDetails(element.id_pedido)">Ver Detalle</button> </td>
-      </ng-container>
+  <ng-container matColumnDef="pago_monto">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> $ Total </th>
+    <td mat-cell *matCellDef="let element"> {{element.pago_monto | currency}} </td>
+  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <ng-container matColumnDef="pago_via">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Vía de Pago </th>
+    <td mat-cell *matCellDef="let element"> {{element.pago_via}} </td>
+  </ng-container>
 
-  <mat-paginator [pageSizeOptions]="[10, 30, 50, 100]"
-    showFirstLastButtons 
-    aria-label="Page selector">
-  </mat-paginator>
+  <ng-container matColumnDef="id_usuario">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID usuario </th>
+    <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ver Productos </th>
+    <td mat-cell *matCellDef="let element"> <button mat-stroked-button color="primary" class="statusBtn"
+        (click)="showDetails(element.id_pedido)">Ver Detalle</button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
