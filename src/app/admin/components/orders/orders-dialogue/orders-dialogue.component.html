@@ -28,10 +28,14 @@
 
 <div *ngIf="data.show==='obs'">
     <p>Estado actual del pedido <strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</p>
-<mat-form-field appearance="fill">
+<div>    <mat-form-field appearance="fill">
 <mat-label>Observaciones:</mat-label>
-    <input matInput type="text" [(ngModel)]="observaciones">
+    <textarea matInput rows="5" [(ngModel)]="observaciones"></textarea>
 </mat-form-field>
+</div>
+
+<div class="obsFooter">
 <button mat-stroked-button color="primary" (click)="saveObs()">Actualizar</button>
 <button mat-stroked-button (click)="close()">Cerrar</button>
+</div>
 </div>

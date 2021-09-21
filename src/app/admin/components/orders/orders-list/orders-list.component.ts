@@ -50,7 +50,7 @@ export class OrdersListComponent implements OnInit {
     console.log("modificar pedido", pedido);
     this.modifyID = pedido.id_pedido!;
     const dialog = this.dialog.open(OrdersDialogueComponent, {
-      width: '300px',
+      width: '800px',
       data: { pedido , status: null, show: 'obs' }
     })
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
