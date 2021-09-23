@@ -4,7 +4,16 @@
 
 <ng-template #divResults>
 
-  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+  <div class="controls">
+    <mat-form-field>
+      <input matInput type="text" (keyup)="filter($event)" placeholder="Ingrese término para filtrar">
+    </mat-form-field>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="id_producto">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> #Producto </th>
