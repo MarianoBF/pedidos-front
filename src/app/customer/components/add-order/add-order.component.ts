@@ -63,13 +63,18 @@ export class AddOrderComponent implements OnInit {
 
   confirm(): void {
     console.log("adding order")
+    let total = 0;
     this.ordering = true;
     this.ordersService.addOrder(this.paymentMethod, this.orderNotes, 3).subscribe(res=>{
       this.orderNumber = res.id_pedido || 0;
       console.log(res.id_pedido, this.userID,)
+      console.log("cart", this.cart)
+      this.cart.forEach(prod=>total += prod.precio * prod.quantity)
+      this.ordersService.updateOrderAmount(this.orderNumber, total).subscribe(res=>console.log(res))
       this.cart.forEach(prod=>this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe(res=>{
-        console.log("added", prod.id_producto, prod.quantity, res)
+        console.log("added", prod.id_producto, prod.quantity, res);
       }))
+      console.log("total", total)
       this.ordered = true;
       ;
     })

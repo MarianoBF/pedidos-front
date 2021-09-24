@@ -53,6 +53,12 @@ export class OrdersService {
       .pipe(tap((order) => console.log('updated order', order)));
   }
 
+  updateOrderAmount(id: number, pago_monto: number) {
+    return this.http
+      .patch<Order>(this.apiURL + 'pedidoAmo/' + id, {pago_monto})
+      .pipe(tap((order) => console.log('updated order amount for', order)));
+  }
+
   deleteOrder(id: number) {
     return this.http
       .delete<any>(this.apiURL + 'pedido/' + id)
