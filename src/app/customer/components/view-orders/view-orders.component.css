@@ -14,3 +14,10 @@ table th {
 .statusBtn {
     width: 10em;
 }
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+    align-items: center;
+}

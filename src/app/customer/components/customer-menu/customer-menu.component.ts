@@ -16,7 +16,7 @@ export class CustomerMenuComponent implements OnInit, OnChanges {
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
-    this.sidenav.toggle();
+    this.sidenav?.toggle();
   }
 
   ngOnInit(): void {
