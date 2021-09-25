@@ -14,7 +14,7 @@
   </mat-paginator>
 </div>
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" [trackBy]="trackById" matSort class="mat-elevation-z8">
 
   <ng-container matColumnDef="id_pedido">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> #Pedido </th>

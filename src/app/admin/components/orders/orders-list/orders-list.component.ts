@@ -63,8 +63,14 @@ export class OrdersListComponent implements OnInit {
       this.orderService.updateOrderObs(
         this.modifyID, { observaciones: res }))).subscribe(
           data => {console.log(data);
-            this.orderService.getOrders().subscribe(data => this.dataSource = [...data]);
+            this.loading = true;
+            this.getOrders();
+            this.getOrders();
           })
+  }
+
+  trackById(index:any,item:any) {
+    return item.id_pedido;
   }
 
   updatePedido(pedido: Order, status: string) {

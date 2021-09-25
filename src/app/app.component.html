@@ -11,7 +11,7 @@
         </span>
         <h1 *ngIf="!logged" class="brand">Bienvenido a Pedidos, ingrese su usuario</h1>
 
-        <h1 *ngIf="logged" class="brand">Pedidos - Vista {{role | titlecase}} -- <span class="greeting" *ngIf="user?.name">Hola {{user?.name}}</span>
+        <h1 *ngIf="logged" class="brand">Pedidos -- Vista {{role | titlecase}} -- <span class="greeting" *ngIf="user?.name">Hola {{user?.name}}</span>
         </h1>
 
         <button *ngIf="logged" mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
