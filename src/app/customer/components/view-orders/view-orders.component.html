@@ -1,5 +1,12 @@
 <h1>Mis pedidos</h1>
 
+<div *ngIf="dataSource?.length === 0 && !loading">No hay productos para mostrar</div>
+
+<mat-spinner *ngIf="loading; else divResults" class="loader"></mat-spinner>
+
+<ng-template #divResults>
+
+
 <div class="controls">
   <mat-form-field>
     <input matInput type="text" (keyup)="filter($event)" placeholder="Ingrese término para filtrar">
@@ -39,3 +46,5 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    </ng-template>
