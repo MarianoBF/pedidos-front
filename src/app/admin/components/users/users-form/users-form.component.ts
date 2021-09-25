@@ -9,7 +9,6 @@ import { EmailValidatorService } from '../../../../services/email-validator.serv
 @Component({
   selector: 'app-users-form',
   templateUrl: './users-form.component.html',
-  styleUrls: ['./users-form.component.css'],
 })
 export class UsersFormComponent implements OnInit {
   @Input() editing = false;

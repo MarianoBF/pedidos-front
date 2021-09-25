@@ -4,7 +4,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 @Component({
   selector: 'app-customer-menu',
   templateUrl: './customer-menu.component.html',
-  styleUrls: ['./customer-menu.component.css']
 })
 export class CustomerMenuComponent implements OnInit, OnChanges {
 

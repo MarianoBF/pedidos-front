@@ -28,3 +28,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-sort-header-container {
     justify-content: center;
 }
+
+table {
+    width: 90%;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+}
+
+table th {
+    font-weight: bolder;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.statusBtn {
+    width: 10em;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+    align-items: center;
+}
+
+.loader {
+    margin: 0 auto; 
+}
+
+.error {
+    color:tomato
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
