@@ -3,17 +3,30 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private _snackBar: MatSnackBar) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            if (err) {console.log("error!!!", err)}
+            if (err) {
+                console.log("error!!!", err);
+            this._snackBar.open(err.error, "Cerrar", {
+                duration: 8000,
+                verticalPosition: 'top',
+                horizontalPosition: 'end'
+              })
+            }
             if (err.status === 401) {
                 console.log("auth error")
+                this._snackBar.open("Problema de autenticación, reingrese datos de login", "Cerrar", {
+                    duration: 5000,
+                    verticalPosition: 'top',
+                    horizontalPosition: 'end'
+                  })
                 this.authService.logout();
             }           
             const error = err.error.message || err.statusText;
