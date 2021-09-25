@@ -26,28 +26,31 @@ export class ProductsListComponent implements OnInit {
   @Output() evtUpdateProduct: EventEmitter<Product>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
+
   constructor(private productService: ProductsService) {
     this.evtUpdateProduct = new EventEmitter();
     this.getProducts();
-   }
+  }
 
   ngOnInit(): void {
     this.getProducts();
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe(products=>{
-      this.dataSource =  new MatTableDataSource<Product>(products);
+    this.productService.getProducts().subscribe(products => {
+      this.dataSource = new MatTableDataSource<Product>(products);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
-      this.loading = false;})
+      this.dataSource.sort = this.sort;
+      this.loading = false;
+    })
   }
 
-  deleteProduct(id:number) {
+  deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe(
-      res => {console.log(res);
-      this.getProducts();}
+      res => {
+        console.log(res);
+        this.getProducts();
+      }
     );
   }
 
@@ -55,7 +58,7 @@ export class ProductsListComponent implements OnInit {
     this.dataSource.filter = $event.target.value.trim().toLocaleLowerCase();
   }
 
-  updateProduct(product:Product) {
+  updateProduct(product: Product) {
     this.evtUpdateProduct.emit(product);
   }
 

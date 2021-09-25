@@ -20,19 +20,26 @@ export class OrdersListComponent implements OnInit {
   currentStatus: string = "";
   modifyID: number = -1;
   dataSource: any;
+  loading = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private orderService: OrdersService, public dialog: MatDialog) {
-    this.orderService.getOrders().subscribe(data => {
-      this.dataSource =  new MatTableDataSource<Order>(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
-    })
+    this.getOrders();
   }
 
   ngOnInit(): void {
+    this.getOrders();
+  }
+
+  getOrders() {
+    this.orderService.getOrders().subscribe(data => {
+      this.dataSource =  new MatTableDataSource<Order>(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.loading = false;
+    })
   }
 
   filter = ($event: any) => {

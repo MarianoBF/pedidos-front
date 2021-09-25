@@ -3,7 +3,7 @@
     <button mat-raised-button *ngIf="!add && !editing" (click)="addProduct()">
         Agregar Producto
     </button>
-    <p>Editar por ID: /productos/ID</p>
+    <!-- <p>Editar por ID: /productos/ID</p> -->
 </div>
 <app-products-form *ngIf="add || editing" [editing]="editing" [product]="product" (done)="handleFinish()"></app-products-form>
 <app-products-list *ngIf="!add && !editing" product="aa" (evtUpdateProduct)="updateProduct($event)"></app-products-list>

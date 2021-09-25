@@ -1,4 +1,4 @@
-<div *ngIf="dataSource.length === 0 && !loading">No hay productos para mostrar</div>
+<div *ngIf="dataSource?.length === 0 && !loading">No hay productos para mostrar</div>
 
 <mat-spinner *ngIf="loading; else divResults" class="loader"></mat-spinner>
 

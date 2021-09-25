@@ -1,9 +1,16 @@
+<div *ngIf="dataSource?.length === 0 && !loading">No hay pedidos para mostrar</div>
+
+<mat-spinner *ngIf="loading; else divResults" class="loader"></mat-spinner>
+
+<ng-template #divResults>
+
+
 <div class="controls">
   <mat-form-field>
     <input matInput type="text" (keyup)="filter($event)" placeholder="Ingrese término para filtrar">
   </mat-form-field>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 30]" showFirstLastButtons>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons>
   </mat-paginator>
 </div>
 
@@ -55,3 +62,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+</ng-template>
