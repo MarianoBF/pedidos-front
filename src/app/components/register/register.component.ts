@@ -93,18 +93,18 @@ export class RegisterComponent implements OnInit {
     };
     try {
       this.usersService.registerUser(user).subscribe((data) => {
-        this._snackBar.open('Registro exitoso!', 'Cerrar', {
+        this._snackBar.open('Registro exitoso! Redirigiendo a login', 'Cerrar', {
           duration: 4000,
         });
-        const login = {
-          userName: this.userForm.value.userName,
-          password: this.userForm.value.password,
-        };
-        this.authService.login(login).subscribe((res) => {
-          if (res) {
-            this.router.navigate(['/admin/pedidos']);
-          }
-        });
+        this.router.navigate(['/login']);
+        // const login = {
+        //   userName: this.userForm.value.userName,
+        //   password: this.userForm.value.password,
+        // };
+        // this.authService.login(login).subscribe((res) => {
+        //   if (res) {
+        //   }
+        // });
       });
     } catch (error) {
     
