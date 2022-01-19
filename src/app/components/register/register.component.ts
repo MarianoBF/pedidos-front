@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
   userNameValidator(control: FormControl) {
     const name: string = control.value?.toLowerCase();
-    
+
     if (name?.includes('admin')) {
       return {
         nameNotValid: true,
@@ -96,7 +96,9 @@ export class RegisterComponent implements OnInit {
         this._snackBar.open('Registro exitoso! Redirigiendo a login', 'Cerrar', {
           duration: 4000,
         });
-        this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2500)
         // const login = {
         //   userName: this.userForm.value.userName,
         //   password: this.userForm.value.password,
@@ -107,7 +109,7 @@ export class RegisterComponent implements OnInit {
         // });
       });
     } catch (error) {
-    
+
       console.log(error);
       this._snackBar.open(
         'Hubo un problema al agregar el usuario, reintente en unos minutos',
