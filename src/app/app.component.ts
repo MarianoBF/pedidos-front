@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
 
   registerVisitor() {
     this.authService.setVisitor(false);
-    this.router.navigate(['/cliente/registro'])
+    this.router.navigate(['/registro'])
   }
 
 }

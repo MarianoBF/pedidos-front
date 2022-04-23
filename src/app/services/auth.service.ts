@@ -31,7 +31,7 @@ export class AuthService {
     const storedUser = localStorage.getItem('pedidos456');
     if (storedUser) { this._userData = JSON.parse(storedUser || '[]') };
     const storedVisitor = sessionStorage.getItem('pedidos456Visitor');
-    if (storedVisitor) { this._visitor = JSON.parse(storedVisitor) };
+    if (storedVisitor) { this._visitor.next(JSON.parse(storedVisitor)) };
   }
 
   get userData() {
@@ -90,7 +90,7 @@ export class AuthService {
     if (status) {
       sessionStorage.removeItem('pedidos456Visitor');
     } else {
-      sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this._visitor));
+      sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this._visitor.value));
 
     }
   }
