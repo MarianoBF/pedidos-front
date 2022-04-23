@@ -16,6 +16,10 @@ export class AuthGuard implements CanActivate {
   canActivate(route:any): any {
     const role = this.authService.userData.role
     const userData = this.authService.userData
+    const visitor = this.authService.isVisitor();
+
+    if (visitor) {return true}
+
     if (userData.token) {
       const result = this.authService.refreshToken().toPromise().then(
         res => {
@@ -35,6 +39,10 @@ export class AuthGuard implements CanActivate {
 
   canLoad(): any {
     const userData = this.authService.userData
+    const visitor = this.authService.isVisitor();
+
+    if (visitor) {return true}
+
     if (userData.token) {
       const result = this.authService.refreshToken().toPromise().then(
         res => {

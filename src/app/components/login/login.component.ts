@@ -45,4 +45,8 @@ export class LoginComponent implements OnInit {
     })
       ;
   }
+
+  setVisitor() {
+    this.authService.setVisitor()
+  }
 }

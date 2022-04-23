@@ -12,7 +12,8 @@ import jwt_decode from "jwt-decode";
 export class AuthService {
   private apiUrl = environment.apiURL;
   private _userData: loggedInUser = {name: "", token: "", role: "", id: 0};
-  
+  private visitor = false;
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -73,6 +74,14 @@ export class AuthService {
 
   loggedRes() {
     return this.loggedStatus.toPromise();
+  }
+
+  setVisitor(): void {
+    this.visitor = true;
+  }
+
+  isVisitor(): boolean {
+    return this.visitor;
   }
 
 }
