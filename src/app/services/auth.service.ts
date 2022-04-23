@@ -88,10 +88,9 @@ export class AuthService {
     // this.logged.next(false)
     this._visitor.next(status);
     if (status) {
-      sessionStorage.removeItem('pedidos456Visitor');
+      sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this.isVisitor));
     } else {
-      sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this._visitor.value));
-
+      sessionStorage.removeItem('pedidos456Visitor');
     }
   }
 
