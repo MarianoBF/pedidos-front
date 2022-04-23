@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   logged = false;
   role = "";
   openMenu = false;
+  visitor = false;
 
   constructor (private authService: AuthService, private router: Router) {}
 
@@ -22,12 +23,11 @@ export class AppComponent implements OnInit {
     this.authService.userInfo.subscribe(res=>{
       this.user = res;
       this.role = res.role});
-    
-    console.log(this.role, this.user)
+    this.authService.visitor.subscribe(
+      res=>this.visitor = res)
   }
 
   logout() {
-    console.log("logout", "logged");
     this.logged = false;
     this.authService.logout();
     this.router.navigate(['/login'])
@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
 
   close() {
     this.openMenu = false;
+  }
+
+  registerVisitor() {
+    this.authService.setVisitor(false);
+    this.router.navigate(['/cliente/registro'])
   }
 
 }

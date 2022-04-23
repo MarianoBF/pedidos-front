@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+
+    // this.authService.setVisitor(false)
+
     this.authService.loggedRes().then(res => {
       this.logged = res
 
@@ -46,7 +49,7 @@ export class LoginComponent implements OnInit {
       ;
   }
 
-  setVisitor() {
-    this.authService.setVisitor()
+  isVisitor() {
+    this.authService.setVisitor(true)
   }
 }

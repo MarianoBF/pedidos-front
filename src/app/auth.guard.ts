@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route:any): any {
     const role = this.authService.userData.role
     const userData = this.authService.userData
-    const visitor = this.authService.isVisitor();
+    const visitor = this.authService.isVisitor;
 
     if (visitor) {return true}
 
@@ -39,7 +39,8 @@ export class AuthGuard implements CanActivate {
 
   canLoad(): any {
     const userData = this.authService.userData
-    const visitor = this.authService.isVisitor();
+    const visitor = this.authService.isVisitor;
+    console.log("loadVisitor?", visitor)
 
     if (visitor) {return true}
 

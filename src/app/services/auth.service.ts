@@ -1,5 +1,5 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
@@ -11,8 +11,7 @@ import jwt_decode from "jwt-decode";
 })
 export class AuthService {
   private apiUrl = environment.apiURL;
-  private _userData: loggedInUser = {name: "", token: "", role: "", id: 0};
-  private visitor = false;
+  private _userData: loggedInUser = { name: "", token: "", role: "", id: 0 };
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -21,21 +20,29 @@ export class AuthService {
   private logged = new BehaviorSubject<boolean>(this._userData.token !== '')
   public loggedStatus = this.logged.asObservable();
 
-  private _userInfo = new BehaviorSubject<loggedInUser>({name: "", token: "", role: "", id: 0})
+  private _userInfo = new BehaviorSubject<loggedInUser>({ name: "", token: "", role: "", id: 0 })
   public userInfo = this._userInfo.asObservable();
 
+  private _visitor = new BehaviorSubject<boolean>(false)
+  public visitor = this._visitor.asObservable();
 
   constructor(private http: HttpClient) {
-    this.logged.subscribe(res=>{console.log("logged",res)})
+    // this.logged.subscribe(res => { console.log("logged", res) })
     const storedUser = localStorage.getItem('pedidos456');
-    if (storedUser) {this._userData = JSON.parse(storedUser||'[]')};
+    if (storedUser) { this._userData = JSON.parse(storedUser || '[]') };
+    const storedVisitor = sessionStorage.getItem('pedidos456Visitor');
+    if (storedVisitor) { this._visitor = JSON.parse(storedVisitor) };
   }
 
   get userData() {
     if (this._userData.name) {
-    return this._userData;
+      return this._userData;
     }
-    return {name: "", token: "", role: "", id: 0};
+    return { name: "", token: "", role: "", id: 0 };
+  }
+
+  get isVisitor() {
+    return this._visitor.value
   }
 
   login(values: loginCredentialsForm) {
@@ -44,44 +51,49 @@ export class AuthService {
       password: values.password,
     }
     return this.http
-      .post<tokenResponse>(this.apiUrl+"usuario/login", credentials, this.httpOptions)
+      .post<tokenResponse>(this.apiUrl + "usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
         console.log('Login attemp for', values.userName)
         let decoded: decodedToken = jwt_decode(res.token)
         console.log("decoded", decoded)
-        this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol};
+        this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
         this.logged.next(this._userData.token !== '')
         this._userInfo.next(this._userData)
         localStorage.setItem('pedidos456', JSON.stringify(this._userData));
-      }),map(_=>true),catchError(err=>{console.log(err); return of(false)}));
+      }), map(_ => true), catchError(err => { console.log(err); return of(false) }));
   }
-   
+
   logout() {
     localStorage.removeItem('pedidos456')
-    this._userData = {name: "", token: "", role: "", id: 0};
+    this._userData = { name: "", token: "", role: "", id: 0 };
   }
 
   refreshToken() {
-    return this.http.get<tokenResponse>(this.apiUrl+"usuarios/refreshToken")
-    .pipe(tap(res => {
-      localStorage.setItem('pedidos456', JSON.stringify(this.userData));
-      let decoded: decodedToken = jwt_decode(this.userData.token)
-      this._userData = {name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol};
-      this.logged.next(this._userData.token !== '')
-      this._userInfo.next(this._userData)
-    }),map(_=>true),catchError(err=>of(false)));
+    return this.http.get<tokenResponse>(this.apiUrl + "usuarios/refreshToken")
+      .pipe(tap(res => {
+        localStorage.setItem('pedidos456', JSON.stringify(this.userData));
+        let decoded: decodedToken = jwt_decode(this.userData.token)
+        this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
+        this.logged.next(this._userData.token !== '')
+        this._userInfo.next(this._userData)
+      }), map(_ => true), catchError(err => of(false)));
   }
 
   loggedRes() {
     return this.loggedStatus.toPromise();
   }
 
-  setVisitor(): void {
-    this.visitor = true;
+  setVisitor(status: boolean = false): void {
+    console.log("status", status)
+    // this.logged.next(false)
+    this._visitor.next(status);
+    if (status) {
+      sessionStorage.removeItem('pedidos456Visitor');
+    } else {
+      sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this._visitor));
+
+    }
   }
 
-  isVisitor(): boolean {
-    return this.visitor;
-  }
 
 }
