@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../cart.service';
 import { ProductInCart, Product } from '../../../common/interfaces';
 import { OrdersService } from '../../../services/orders.service';
 import { AuthService } from '../../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-order',
@@ -19,21 +20,21 @@ export class AddOrderComponent implements OnInit {
   userID: number = 0;
   orderNotes = "";
 
-  constructor(private cartService: CartService, private ordersService: OrdersService, private authService: AuthService) { }
+  constructor(private cartService: CartService, private ordersService: OrdersService, private authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
     this.userID = this.authService.userData.id;
   }
 
-  handleProductUpdate($event:any){
-    if ($event[1]==="add") {
+  handleProductUpdate($event: any) {
+    if ($event[1] === "add") {
       this.cartService.addToCart($event[0])
     }
-    if ($event[1]==="increase") {
+    if ($event[1] === "increase") {
       this.cartService.updateCart($event[0], "add")
     }
-    if ($event[1]==="decrease") {
+    if ($event[1] === "decrease") {
       this.cartService.updateCart($event[0], "dec")
     }
   }
@@ -62,22 +63,30 @@ export class AddOrderComponent implements OnInit {
   }
 
   confirm(): void {
-    console.log("adding order")
-    let total = 0;
-    this.ordering = true;
-    this.ordersService.addOrder(this.paymentMethod, this.orderNotes, 3).subscribe(res=>{
-      this.orderNumber = res.id_pedido || 0;
-      console.log(res.id_pedido, this.userID,)
-      console.log("cart", this.cart)
-      this.cart.forEach(prod=>total += prod.precio * prod.quantity)
-      this.ordersService.updateOrderAmount(this.orderNumber, total).subscribe(res=>console.log(res))
-      this.cart.forEach(prod=>this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe(res=>{
-        console.log("added", prod.id_producto, prod.quantity, res);
-      }))
-      console.log("total", total)
-      this.ordered = true;
-      ;
-    })
+    if (this.authService.isVisitor) {
+      this._snackBar.open("Modo visitante, para completar un pedido debe registrarse", "Cerrar", {
+        duration: 8000,
+        verticalPosition: 'top',
+        horizontalPosition: 'end'
+      })
+    } else {
+      // console.log("adding order")
+      let total = 0;
+      this.ordering = true;
+      this.ordersService.addOrder(this.paymentMethod, this.orderNotes, 3).subscribe(res => {
+        this.orderNumber = res.id_pedido || 0;
+        // console.log(res.id_pedido, this.userID,)
+        // console.log("cart", this.cart)
+        this.cart.forEach(prod => total += prod.precio * prod.quantity)
+        this.ordersService.updateOrderAmount(this.orderNumber, total).subscribe(res => console.log(res))
+        this.cart.forEach(prod => this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe(res => {
+          // console.log("added", prod.id_producto, prod.quantity, res);
+        }))
+        // console.log("total", total)
+        this.ordered = true;
+        ;
+      })
+    }
   }
 
 }

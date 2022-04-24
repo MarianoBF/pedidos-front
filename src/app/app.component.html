@@ -1,20 +1,24 @@
 <mat-sidenav-container fullscreen>
 
     <div>
-    <app-admin-menu [openMenu]="openMenu" (click)="openMenu = !openMenu" *ngIf="role==='administrador'"></app-admin-menu>
-    <app-customer-menu [openMenu]="openMenu" (click)="openMenu = !openMenu" *ngIf="role==='usuario'"></app-customer-menu>
-</div>
+        <app-admin-menu [openMenu]="openMenu" (click)="openMenu = !openMenu" *ngIf="role==='administrador'">
+        </app-admin-menu>
+        <app-customer-menu [openMenu]="openMenu" (click)="openMenu = !openMenu" *ngIf="role==='usuario'">
+        </app-customer-menu>
+    </div>
     <mat-toolbar>
         <span *ngIf="logged" (click)="openMenu=true">
             <mat-icon class="menu">menu</mat-icon>
         </span>
         <h1 *ngIf="!logged && !visitor" class="brand">Bienvenido a Pedidos, ingrese su usuario</h1>
 
-        <h1 *ngIf="logged && !visitor" class="brand">Pedidos -- Vista {{role | titlecase}} -- <span class="greeting" *ngIf="user?.name">Hola {{user?.name}}</span> 
+        <h1 *ngIf="logged && !visitor" class="brand">Pedidos -- Vista {{role | titlecase}} -- <span class="greeting"
+                *ngIf="user?.name">Hola {{user?.name}}</span>
         </h1>
 
         <h1 *ngIf="visitor" class="brand">
-            <span class="greeting">Bienvenido a Pedidos visitante, recordá que podés <span class="register" (click)="registerVisitor()">registrarte</span></span>
+            <span class="greeting">Bienvenido a Pedidos en modo visitante. Sólo para ver, si querés realizar pedidos
+                deberás <span class="register" (click)="registerVisitor()">registrarte</span></span>
         </h1>
 
         <button *ngIf="logged" mat-stroked-button color="warn" (click)="logout()" class="logout">Logout</button>
