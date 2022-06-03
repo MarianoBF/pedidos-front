@@ -8,37 +8,38 @@ import { Product } from '../common/interfaces';
   providedIn: 'root',
 })
 export class ProductsService {
-  apiURL = environment.apiURL;
+  private apiURL = environment.apiURL;
+  private debug = environment.debug;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProducts() {
     return this.http
       .get<Product[]>(this.apiURL + 'productos')
-      .pipe(tap((prods) => console.log('retrieved products', prods)));
+      .pipe(tap((prods) => { if (this.debug) console.log('retrieved products', prods) }));
   }
 
   getProductById(id: number) {
     return this.http
       .get<Product[]>(this.apiURL + 'producto/' + id)
-      .pipe(tap((prod) => console.log('retrieved single product', prod)));
+      .pipe(tap((prod) => { if (this.debug) console.log('retrieved single product', prod) }));
   }
 
   addProduct(product: Product) {
     return this.http
       .post<Product>(this.apiURL + 'producto/', product)
-      .pipe(tap((prods) => console.log('added product', prods)));
+      .pipe(tap((prods) => { if (this.debug) console.log('added product', prods) }));
   }
 
   updateProduct(id: number, product: Product) {
     return this.http
       .put<Product>(this.apiURL + 'producto/' + id, product)
-      .pipe(tap((prods) => console.log('updated product', prods)));
+      .pipe(tap((prods) => { if (this.debug) console.log('updated product', prods) }));
   }
 
   deleteProduct(id: number) {
     return this.http
       .delete<any>(this.apiURL + 'producto/' + id)
-      .pipe(tap((prods) => console.log('deleted product', prods, "with id", id)));
+      .pipe(tap((prods) => { if (this.debug) console.log('deleted product', prods, "with id", id) }));
   }
 }

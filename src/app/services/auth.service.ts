@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 })
 export class AuthService {
   private apiUrl = environment.apiURL;
+  private debug = environment.debug;
   private _userData: loggedInUser = { name: "", token: "", role: "", id: 0 };
 
   httpOptions = {
@@ -53,9 +54,9 @@ export class AuthService {
     return this.http
       .post<tokenResponse>(this.apiUrl + "usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
-        console.log('Login attemp for', values.userName)
+        if (this.debug) console.log('Login attemp for', values.userName)
         let decoded: decodedToken = jwt_decode(res.token)
-        console.log("decoded", decoded)
+        if (this.debug) console.log("decoded", decoded)
         this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
         this.logged.next(this._userData.token !== '')
         this._userInfo.next(this._userData)
@@ -84,8 +85,7 @@ export class AuthService {
   }
 
   setVisitor(status: boolean = false): void {
-    console.log("status", status)
-    // this.logged.next(false)
+    if (this.debug) console.log("status", status)
     this._visitor.next(status);
     if (status) {
       sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this.isVisitor));

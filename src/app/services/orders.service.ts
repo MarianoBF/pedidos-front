@@ -8,8 +8,8 @@ import { Order, OrderToUpdate } from '../common/interfaces';
   providedIn: 'root',
 })
 export class OrdersService {
-  apiURL = environment.apiURL;
-  debug = environment.debug;
+  private apiURL = environment.apiURL;
+  private debug = environment.debug;
 
   constructor(private http: HttpClient) { }
 

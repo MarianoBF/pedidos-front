@@ -9,33 +9,7 @@ import { UsersService } from './users.service';
 @Injectable({
   providedIn: 'root'
 })
-// export class EmailValidatorService implements AsyncValidator {
-  
-//   constructor(private http: HttpClient) { }
 
-//   validate(control: AbstractControl): Observable<ValidationErrors | null> {
-
-//     const email = control.value;
-
-//     console.log("email valid", email, environment.apiURL);
-//     if (email === '' || !email || email.length < 5) {
-//     return of(null)
-//     }
-
-//      return of(email).pipe(debounceTime(10),delay(1000),switchMap(email =>
-//       this.http.get<any>(environment.apiURL + 'usuarios/checkMail/' + email)),map(
-//       res => {
-//       console.log(res)
-//       if (res.available === "no") {
-//         return of({invalidAsync: true});
-//       } else if (res.available === "yes") {
-//         return of(null)
-//       } else {
-//         return of(null)
-//       }
-//     }),first())
-//   }
-// }
 export class EmailValidatorService{
 
   static validate(usersSrv: UsersService) {
