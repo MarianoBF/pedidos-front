@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Product } from 'src/app/common/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products-form',
@@ -17,9 +16,7 @@ export class ProductsFormComponent implements OnInit {
 
   productForm: FormGroup;
 
-
-
-  constructor(private productService: ProductsService, private router: Router, private _snackBar: MatSnackBar) {
+  constructor(private productService: ProductsService, private _snackBar: MatSnackBar) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
       description: new FormControl(),
@@ -34,7 +31,6 @@ export class ProductsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("product", this.product)
     if (this.product) {
       this.productForm.patchValue({
         name: this.product.nombre,
@@ -47,7 +43,7 @@ export class ProductsFormComponent implements OnInit {
 
   onCancel(): void {
     this.productForm.reset();
-    setTimeout(()=>this.done.emit(false),500);
+    setTimeout(() => this.done.emit(false), 500);
   }
 
   onSubmit(): void {
@@ -62,26 +58,32 @@ export class ProductsFormComponent implements OnInit {
         const id = this.product?.id_producto || 0; // TODO : Chequear
         this.productService
           .updateProduct(id, product)
-          .subscribe((data) => console.log(data));
-          this._snackBar.open("Producto actualizado con éxito", "Cerrar", {
-            duration: 4000
+          .subscribe(_ => {
+            this._snackBar.open("Producto actualizado con éxito", "Cerrar", {
+              duration: 4000
+            }
+            );
+
           })
-          setTimeout(()=>{
-            this.productForm.reset();
-            this.done.emit(true),3000});
+        setTimeout(() => {
+          this.productForm.reset();
+          this.done.emit(true), 3000
+        });
       } else {
         this.productService
           .addProduct(product)
-          .subscribe((data) => console.log(data));
-          this._snackBar.open("Producto agregado con éxito", "Cerrar", {
-            duration: 4000
-          })
-          setTimeout(()=>{
-            this.productForm.reset();
-            this.done.emit(true),3000});
+          .subscribe(_ => {
+            this._snackBar.open("Producto agregado con éxito", "Cerrar", {
+              duration: 4000
+            })
+
+          });
+        setTimeout(() => {
+          this.productForm.reset();
+          this.done.emit(true), 3000
+        });
       }
     } catch (error) {
-      console.log(error);
       this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos", "Cerrar", {
         duration: 4000
       })

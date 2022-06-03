@@ -29,17 +29,17 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
     this.activatedRoute.params.
-    pipe(switchMap(({id_producto})=>this.productService.getProductById(id_producto))).subscribe((product) => {
-      this.product = product[0];
-      this.productIDForm.patchValue({
-        name: this.product.nombre,
-        description: this.product.descripcion,
-        price: this.product.precio,
-        image: this.product.imagen,
-      })
-    });
+      pipe(switchMap(({ id_producto }) => this.productService.getProductById(id_producto))).subscribe((product) => {
+        this.product = product[0];
+        this.productIDForm.patchValue({
+          name: this.product.nombre,
+          description: this.product.descripcion,
+          price: this.product.precio,
+          image: this.product.imagen,
+        })
+      });
   }
 
   onCancel(): void {
@@ -47,7 +47,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.productIDForm.value);
     const product: Product = {
       nombre: this.productIDForm.value.name,
       descripcion: this.productIDForm.value.description,
@@ -57,12 +56,13 @@ export class ProductDetailComponent implements OnInit {
     try {
       this.productService
         .addProduct(product)
-        .subscribe((data) => console.log(data));
-      this._snackBar.open("Producto agregado con éxito", "Cerrar", {
-        duration: 4000
-      })
+        .subscribe(_ => {
+          this._snackBar.open("Producto agregado con éxito", "Cerrar", {
+            duration: 4000
+          }
+          );
+        })
     } catch (error) {
-      console.log(error);
       this._snackBar.open("Hubo un problema al agregar el producto, reintente en unos minutos", "Cerrar", {
         duration: 4000
       })

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/common/interfaces';
@@ -26,7 +27,7 @@ export class ProductsListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, private _snackBar: MatSnackBar) {
     this.evtUpdateProduct = new EventEmitter();
     this.getProducts();
   }
@@ -46,8 +47,11 @@ export class ProductsListComponent implements OnInit {
 
   deleteProduct(id: number) {
     this.productService.deleteProduct(id).subscribe(
-      res => {
-        console.log(res);
+      _ => {
+        this._snackBar.open("Producto borrado con éxito", "Cerrar", {
+          duration: 4000
+        }
+        );
         this.getProducts();
       }
     );
@@ -60,26 +64,4 @@ export class ProductsListComponent implements OnInit {
   updateProduct(product: Product) {
     this.evtUpdateProduct.emit(product);
   }
-
-  // sortData(sort: Sort) {
-  //   const data = this.dataSource.slice();
-  //   if (!sort.active || sort.direction === '') {
-  //     this.dataSource = data;
-  //     return;
-  //   }
-  //   this.dataSource = data.sort((a, b) => {
-  //     const isAsc = sort.direction === 'asc';
-  //     switch (sort.active) {
-  //       case 'nombre': return this.compare(a.nombre, b.nombre, isAsc);
-  //       case 'precio': return this.compare(a.precio, b.precio, isAsc);
-  //       case 'descripcion': return this.compare(a.descripcion, b.descripcion, isAsc);
-  //       case 'id_producto': return this.compare(a.id_producto!, b.id_producto!, isAsc);
-  //       default: return 0;
-  //     }
-  //   });
-  // }
-
-  // compare(a: number | string, b: number | string, isAsc: boolean) {
-  //   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  // }
 }
