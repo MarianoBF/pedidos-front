@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrdersService } from '../../../../services/orders.service';
 import { ProductsService } from '../../../../services/products.service';
@@ -21,7 +21,6 @@ export class OrdersDialogueComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    console.log(this.data)
     if (this.data.show === 'details') {
       this.ordersService.getAllProductsForOrder(this.data.pedido.id_pedido!).toPromise().then(res=>{
         this.items = res;

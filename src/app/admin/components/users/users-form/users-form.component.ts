@@ -120,21 +120,19 @@ export class UsersFormComponent implements OnInit {
     try {
       if (this.editing) {
         const id = this.user?.id_usuario || 0; // TODO chequear;
-        this.usersService.updateUser(id, user).subscribe((data) => {
-          console.log(data);
+        this.usersService.updateUser(id, user).subscribe(_ => {
           this._snackBar.open('Usuario actualizado con éxito', 'Cerrar', {
             duration: 4000,
           });
         });
       } else {
-        this.usersService.addUser(user).subscribe((data) => {
+        this.usersService.addUser(user).subscribe(_ => {
           this._snackBar.open('Usuario agregado con éxito', 'Cerrar', {
             duration: 4000,
           });
         });
       }
     } catch (error) {
-      console.log(error);
       this._snackBar.open(
         'Hubo un problema al agregar el usuario, reintente en unos minutos',
         'Cerrar',

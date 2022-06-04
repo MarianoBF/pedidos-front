@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   editing: boolean = false;
   add: boolean = false;
   product?: Product;
 
   constructor() {}
 
-  ngOnInit(): void {}
 
   addProduct() {
     this.add = true;
@@ -20,7 +19,6 @@ export class ProductsComponent implements OnInit {
 
   updateProduct(product: Product) {
     this.editing = true;
-    console.log('editando', product);
     this.product = product;
   }
 

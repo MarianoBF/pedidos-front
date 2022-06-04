@@ -21,7 +21,6 @@ export class UsersComponent implements OnInit {
 
   updateUser(user: User) {
     this.editing = true;
-    console.log('editando', user);
     this.user = user;
   }
 

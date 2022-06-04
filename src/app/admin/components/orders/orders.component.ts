@@ -1,19 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Order } from '../../../common/interfaces';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent {
   editing: boolean = false;
   add: boolean = false;
   order?: Order;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   addOrder(): void {
     this.add = true;
@@ -21,7 +18,6 @@ export class OrdersComponent implements OnInit {
 
   updateOrder(order: Order): void {
     this.editing = true;
-    console.log('editando', order);
     this.order = order;
   }
 

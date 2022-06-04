@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import jwt_decode from "jwt-decode";
-import { decodedToken } from './common/interfaces';
+import { CanActivate} from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 
 @Injectable({
@@ -10,6 +8,8 @@ import { AuthService } from './services/auth.service';
 })
 
 export class AuthGuard implements CanActivate {
+
+  debug = environment.debug
 
   constructor(private authService: AuthService) { }
 
@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate {
   canLoad(): any {
     const userData = this.authService.userData
     const visitor = this.authService.isVisitor;
-    console.log("loadVisitor?", visitor)
+    if (this.debug) console.log("loadVisitor?", visitor)
 
     if (visitor) {return true}
 

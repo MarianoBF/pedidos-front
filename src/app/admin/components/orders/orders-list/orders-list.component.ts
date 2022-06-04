@@ -53,7 +53,6 @@ export class OrdersListComponent implements OnInit {
   }
 
   showObs(pedido: Order) {
-    console.log("modificar pedido", pedido);
     this.modifyID = pedido.id_pedido!;
     const dialog = this.dialog.open(OrdersDialogueComponent, {
       width: '800px',
@@ -62,7 +61,7 @@ export class OrdersListComponent implements OnInit {
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
       this.orderService.updateOrderObs(
         this.modifyID, { observaciones: res }))).subscribe(
-          data => {console.log(data);
+          _ => {;
             this.loading = true;
             this.getOrders();
             this.getOrders();
@@ -74,7 +73,6 @@ export class OrdersListComponent implements OnInit {
   }
 
   updatePedido(pedido: Order, status: string) {
-    console.log("modificar pedido", pedido);
     this.modifyID = pedido.id_pedido!;
     this.currentStatus = status;
     const dialog = this.dialog.open(OrdersDialogueComponent, {
@@ -84,7 +82,7 @@ export class OrdersListComponent implements OnInit {
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
       this.orderService.updateOrder(
         this.modifyID, { estado: res }))).subscribe(
-          data => {console.log(data);
+          _ => {;
             this.orderService.getOrders().subscribe(data => this.dataSource = [...data]);
           })
 
