@@ -24,11 +24,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private authService: AuthService,
     private router: Router,
     private _snackBar: MatSnackBar,
   ) {
-    console.log('registrando usuario!');
     this.userForm = new FormGroup(
       {
         userName: new FormControl('', [
@@ -92,25 +90,17 @@ export class RegisterComponent implements OnInit {
       password: this.userForm.value.password,
     };
     try {
-      this.usersService.registerUser(user).subscribe((data) => {
+      this.usersService.registerUser(user).subscribe(_ => {
         this._snackBar.open('Registro exitoso! Redirigiendo a login', 'Cerrar', {
           duration: 4000,
         });
         setTimeout(() => {
           this.router.navigate(['/login']);
         }, 2500)
-        // const login = {
-        //   userName: this.userForm.value.userName,
-        //   password: this.userForm.value.password,
-        // };
-        // this.authService.login(login).subscribe((res) => {
-        //   if (res) {
-        //   }
-        // });
+
       });
     } catch (error) {
 
-      console.log(error);
       this._snackBar.open(
         'Hubo un problema al agregar el usuario, reintente en unos minutos',
         'Cerrar',

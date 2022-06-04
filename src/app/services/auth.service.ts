@@ -28,7 +28,6 @@ export class AuthService {
   public visitor = this._visitor.asObservable();
 
   constructor(private http: HttpClient) {
-    // this.logged.subscribe(res => { console.log("logged", res) })
     const storedUser = localStorage.getItem('pedidos456');
     if (storedUser) { this._userData = JSON.parse(storedUser || '[]') };
     const storedVisitor = sessionStorage.getItem('pedidos456Visitor');
@@ -61,7 +60,7 @@ export class AuthService {
         this.logged.next(this._userData.token !== '')
         this._userInfo.next(this._userData)
         localStorage.setItem('pedidos456', JSON.stringify(this._userData));
-      }), map(_ => true), catchError(err => { console.log(err); return of(false) }));
+      }), map(_ => true), catchError(err => { if (this.debug) console.log(err); return of(false) }));
   }
 
   logout() {

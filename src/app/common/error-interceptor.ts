@@ -13,7 +13,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if (err) {
-                console.log("error!!!", err);
                 if (err.error) {
                     this._snackBar.open(err.error, "Cerrar", {
                         duration: 8000,
@@ -30,7 +29,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
             }
             if (err.status === 401) {
-                console.log("auth error")
                 this._snackBar.open("Problema de autenticación, reingrese datos de login", "Cerrar", {
                     duration: 5000,
                     verticalPosition: 'top',

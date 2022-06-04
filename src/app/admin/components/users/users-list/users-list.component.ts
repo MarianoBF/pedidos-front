@@ -26,7 +26,7 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe(data => console.log(data))
+    this.userService.deleteUser(id).subscribe()
     const toDelete = this.userList.findIndex(item => item.id_usuario === id);
     this.userList.splice(toDelete, 1);
 
