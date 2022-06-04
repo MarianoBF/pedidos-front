@@ -19,13 +19,13 @@ export class ProductsFormComponent implements OnInit {
   constructor(private productService: ProductsService, private _snackBar: MatSnackBar) {
     this.productForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      description: new FormControl(),
+      description: new FormControl(''),
       price: new FormControl('', [
         Validators.required,
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
-      image: new FormControl(),
+      image: new FormControl(''),
     });
     this.done = new EventEmitter();
   }

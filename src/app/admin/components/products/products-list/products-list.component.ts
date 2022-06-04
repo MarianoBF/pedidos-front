@@ -14,7 +14,6 @@ export class ProductsListComponent implements OnInit {
 
 
   displayedColumns: string[] = ['id_producto', 'nombre', 'descripcion', 'precio', 'delete', 'edit'];
-  // dataSource: Product[] = [];
   currentStatus: string = "";
   modifyID: number = -1;
   dataSource: any;
