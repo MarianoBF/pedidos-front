@@ -44,7 +44,7 @@ export class UsersFormComponent implements OnInit {
     if (this.editing && (control.value === 'administrador' || control.value === 'usuario')) {
       return null
     } else if (this.editing && control.value?.length > 1) {
-      return {'invalidRole': true}
+      return { 'invalidRole': true }
     }
     else if (!this.editing) {
       return null;
@@ -124,12 +124,14 @@ export class UsersFormComponent implements OnInit {
           this._snackBar.open('Usuario actualizado con éxito', 'Cerrar', {
             duration: 4000,
           });
+          this.reset();
         });
       } else {
         this.usersService.addUser(user).subscribe(_ => {
           this._snackBar.open('Usuario agregado con éxito', 'Cerrar', {
             duration: 4000,
           });
+          this.reset();
         });
       }
     } catch (error) {
@@ -140,11 +142,14 @@ export class UsersFormComponent implements OnInit {
           duration: 4000,
         }
       );
-    } finally {
-      setTimeout(() => {
-        this.done.emit(true);
-        this.userForm.reset();
-      }, 4000);
     }
   }
+
+  reset() {
+    setTimeout(() => {
+      this.done.emit(true);
+      this.userForm.reset();
+    }, 4000);
+  }
+
 }

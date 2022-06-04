@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/common/interfaces';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -13,7 +14,9 @@ export class UsersListComponent implements OnInit {
 
   @Output() evtUpdateUser: EventEmitter<User>;
 
-  constructor(private userService: UsersService) {
+  constructor(private userService: UsersService,
+              private _snackBar: MatSnackBar
+  ) {
     this.evtUpdateUser = new EventEmitter();
   }
 
@@ -26,7 +29,14 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe()
+    this.userService.deleteUser(id).subscribe(
+      _ => {
+        this._snackBar.open("Usuario borrado con éxito", "Cerrar", {
+          duration: 4000
+        })
+
+      }
+    )
     const toDelete = this.userList.findIndex(item => item.id_usuario === id);
     this.userList.splice(toDelete, 1);
 
