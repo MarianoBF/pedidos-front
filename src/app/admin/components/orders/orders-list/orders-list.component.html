@@ -34,7 +34,7 @@
 
   <ng-container matColumnDef="pago_monto">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> $ Total </th>
-    <td mat-cell *matCellDef="let element"> {{element.pago_monto | currency}} </td>
+    <td mat-cell *matCellDef="let element" appPricelens> {{element.pago_monto | currency}} </td>
   </ng-container>
 
   <ng-container matColumnDef="pago_via">
