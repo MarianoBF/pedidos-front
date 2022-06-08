@@ -14,7 +14,7 @@
         <img mat-card-image *ngIf="product.imagen" [src]="product.imagen" alt="producto" class="product-image">
         <mat-card-content>
           <p>Descripción: {{ product.descripcion }}</p>
-          <p>Precio: {{ product.precio | currency }}</p>
+          <p >Precio: <span appPricelens>{{ product.precio | currency }}</span></p>
         </mat-card-content>
         <mat-divider></mat-divider>
         <mat-card-actions>

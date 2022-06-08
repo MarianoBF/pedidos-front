@@ -6,8 +6,8 @@
             <p class="total">Tu carrito está vacío, agregá productos y los vas a ver en este espacio.</p>
         </div>
         <ul *ngIf="cart.length > 0">
-            <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} -- {{item.quantity * item.precio |
-                currency}}
+            <li *ngFor="let item of cart">{{item.nombre}} -- {{item.quantity}} -- <span appPricelens>{{item.quantity * item.precio |
+                currency}}</span>
                 <button mat-stroked-button (click)="delete(item)" [disabled]="ordering">Borrar</button>
             </li>
         </ul>
@@ -20,7 +20,7 @@
                     <ng-template ngPluralCase="other">productos</ng-template>
                 </span> en el carrito</p>
 
-            <p>El monto total es de {{total() | currency}}</p>
+            <p>El monto total es de <span appPricelens>{{total() | currency}}</span></p>
 
             <div class="selects">
 

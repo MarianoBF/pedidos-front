@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { ProductsListComponent } from './components/add-order/products-list/products-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DirectivesModule } from '../directives/directives.module';
 
 
 
@@ -23,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     CustomerRoutingModule,
     FlexLayoutModule,
+    DirectivesModule,
   ]
 })
 export class CustomerModule { }
