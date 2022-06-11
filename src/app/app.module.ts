@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './common/auth-interceptor';
+import { AuthInterceptor } from './common/interceptors/auth-interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,7 @@ import { AdminModule } from './admin/admin.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { MaterialUIModule } from './material-ui.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ErrorInterceptor } from './common/error-interceptor';
+import { ErrorInterceptor } from './common/interceptors/error-interceptor';
 import { RegisterComponent } from './pages-auth/register/register.component';
 import { AdminMenuComponent } from './admin/components/admin-menu/admin-menu.component';
 import { CustomerMenuComponent } from './customer/components/customer-menu/customer-menu.component';

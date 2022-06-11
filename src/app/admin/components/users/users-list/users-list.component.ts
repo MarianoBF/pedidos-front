@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { User } from 'src/app/common/interfaces';
+import { User } from '../../../../common/models/interfaces';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({

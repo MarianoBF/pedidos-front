@@ -7,12 +7,11 @@ import {
   ValidationErrors,
   AbstractControl,
 } from '@angular/forms';
-import { NewUser } from 'src/app/common/interfaces';
+import { NewUser } from '../../common/models/interfaces';
 import { UsersService } from '../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidatorService } from '../../services/email-validator.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',

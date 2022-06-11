@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
-import { loggedInUser, loginCredentialsForm, tokenResponse, decodedToken } from '../common/interfaces';
+import { loggedInUser, loginCredentialsForm, tokenResponse, decodedToken } from '../common/models/interfaces';
 import jwt_decode from "jwt-decode";
 
 @Injectable({

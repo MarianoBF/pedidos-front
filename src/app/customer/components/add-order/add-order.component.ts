@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../cart.service';
-import { ProductInCart, Product } from '../../../common/interfaces';
+import { ProductInCart, Product } from '../../../common/models/interfaces';
 import { OrdersService } from '../../../services/orders.service';
 import { AuthService } from '../../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

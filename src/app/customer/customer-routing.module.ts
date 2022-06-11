@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth.guard';
+import { AuthGuard } from '../common/guards/auth.guard';
 import { AddOrderComponent } from './components/add-order/add-order.component';
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
 

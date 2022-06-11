@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Product } from 'src/app/common/interfaces';
+import { Product } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
