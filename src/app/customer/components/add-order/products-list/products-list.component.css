@@ -16,3 +16,21 @@
 .mat-card-header {
     justify-content: center;
 }
+
+.cardDeck {
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}    
+
+@media screen and (max-width: 1400px) {
+    .cardDeck {
+        grid-template-columns: 1fr 1fr;
+    }    
+}
+
+@media screen and (max-width: 768px) {
+    .cardDeck {
+        grid-template-columns: 1fr;
+    }    
+}

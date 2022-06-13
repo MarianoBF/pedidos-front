@@ -3,8 +3,8 @@
 <mat-spinner *ngIf="loading; else divResults" class="loader"></mat-spinner>
 
 <ng-template #divResults>
-  <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="15px">
-    <div fxFlex.lg="25" fxFlex.md="45" fxFlex.sm="100" *ngFor="let product of productList">
+  <div class="cardDeck">
+    <div *ngFor="let product of productList">
       <mat-card class="flexCard">
         <mat-card-header>
           <mat-card-title>{{ product.nombre }}</mat-card-title>
