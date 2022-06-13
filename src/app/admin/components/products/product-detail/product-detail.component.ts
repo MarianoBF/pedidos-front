@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
@@ -12,20 +12,20 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ProductDetailComponent implements OnInit {
   product?: Product;
-  productIDForm: FormGroup;
+  productIDForm: UntypedFormGroup;
 
 
 
   constructor(private productService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {
-    this.productIDForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      description: new FormControl(),
-      price: new FormControl('', [
+    this.productIDForm = new UntypedFormGroup({
+      name: new UntypedFormControl('', [Validators.required, Validators.minLength(5)]),
+      description: new UntypedFormControl(),
+      price: new UntypedFormControl('', [
         Validators.required,
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
-      image: new FormControl(),
+      image: new UntypedFormControl(),
     });
   }
 

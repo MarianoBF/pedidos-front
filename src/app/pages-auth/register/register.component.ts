@@ -1,8 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   Validators,
   ValidationErrors,
   AbstractControl,
@@ -19,36 +19,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
 
   constructor(
     private usersService: UsersService,
     private router: Router,
     private _snackBar: MatSnackBar,
   ) {
-    this.userForm = new FormGroup(
+    this.userForm = new UntypedFormGroup(
       {
-        userName: new FormControl('', [
+        userName: new UntypedFormControl('', [
           Validators.required,
           Validators.minLength(5),
           this.userNameValidator,
         ]),
-        password: new FormControl('', [Validators.required]),
-        confirmPassword: new FormControl('', [Validators.required]),
-        fullName: new FormControl('', [Validators.required]),
-        email: new FormControl(
+        password: new UntypedFormControl('', [Validators.required]),
+        confirmPassword: new UntypedFormControl('', [Validators.required]),
+        fullName: new UntypedFormControl('', [Validators.required]),
+        email: new UntypedFormControl(
           '',
           [Validators.required],
           [EmailValidatorService.validate(this.usersService)]
         ),
-        address: new FormControl('', [Validators.required]),
-        phone: new FormControl('', [Validators.required]),
+        address: new UntypedFormControl('', [Validators.required]),
+        phone: new UntypedFormControl('', [Validators.required]),
       },
       { validators: this.checkEqualValidator('password', 'confirmPassword') }
     );
   }
 
-  userNameValidator(control: FormControl) {
+  userNameValidator(control: UntypedFormControl) {
     const name: string = control.value?.toLowerCase();
 
     if (name?.includes('admin')) {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Product } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,18 +14,18 @@ export class ProductsFormComponent implements OnInit {
 
   @Output() done: EventEmitter<boolean>;
 
-  productForm: FormGroup;
+  productForm: UntypedFormGroup;
 
   constructor(private productService: ProductsService, private _snackBar: MatSnackBar) {
-    this.productForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      description: new FormControl(''),
-      price: new FormControl('', [
+    this.productForm = new UntypedFormGroup({
+      name: new UntypedFormControl('', [Validators.required, Validators.minLength(5)]),
+      description: new UntypedFormControl(''),
+      price: new UntypedFormControl('', [
         Validators.required,
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
-      image: new FormControl(''),
+      image: new UntypedFormControl(''),
     });
     this.done = new EventEmitter();
   }

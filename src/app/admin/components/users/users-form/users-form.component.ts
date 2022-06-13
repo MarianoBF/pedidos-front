@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { User } from '../../../../common/models/interfaces';
 import { UsersService } from '../../../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,26 +16,26 @@ export class UsersFormComponent implements OnInit {
 
   @Output() done: EventEmitter<boolean>;
 
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
 
   constructor(
     private usersService: UsersService,
     private _snackBar: MatSnackBar,
     private emailValidSvc: EmailValidatorService,
   ) {
-    this.userForm = new FormGroup({
-      userName: new FormControl('', [
+    this.userForm = new UntypedFormGroup({
+      userName: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(5),
         this.userNameValidator
       ]),
-      password: new FormControl('', this.requiredForCreating.bind(this)),
-      confirmPassword: new FormControl('', this.requiredForCreating.bind(this)),
-      fullName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required], [EmailValidatorService.validate(this.usersService)]),
-      role: new FormControl('', [this.requiredForEditing.bind(this)]),
-      address: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
+      password: new UntypedFormControl('', this.requiredForCreating.bind(this)),
+      confirmPassword: new UntypedFormControl('', this.requiredForCreating.bind(this)),
+      fullName: new UntypedFormControl('', [Validators.required]),
+      email: new UntypedFormControl('', [Validators.required], [EmailValidatorService.validate(this.usersService)]),
+      role: new UntypedFormControl('', [this.requiredForEditing.bind(this)]),
+      address: new UntypedFormControl('', [Validators.required]),
+      phone: new UntypedFormControl('', [Validators.required]),
     }, { validators: this.checkEqualValidator('password', 'confirmPassword') });
     this.done = new EventEmitter();
   }
@@ -66,7 +66,7 @@ export class UsersFormComponent implements OnInit {
   }
 
 
-  userNameValidator(control: FormControl) {
+  userNameValidator(control: UntypedFormControl) {
     const name: string = control.value?.toLowerCase()
     if (name?.includes('admin')) {
       return {
