@@ -14,7 +14,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialUIModule } from '../material-ui.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { OrdersDialogueComponent } from './components/orders/orders-dialogue/orders-dialogue.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { DirectivesModule } from '../directives/directives.module';
 
@@ -39,7 +38,6 @@ import { DirectivesModule } from '../directives/directives.module';
     ReactiveFormsModule,
     MaterialUIModule,
     AdminRoutingModule,
-    FlexLayoutModule,
     DirectivesModule,
   ],
 })
