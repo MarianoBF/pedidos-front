@@ -38,7 +38,7 @@ export class AuthService {
       if (environment.debug) console.log("error", error)
     }
     if (storedUser) { this._userData = JSON.parse(storedUser || '[]') };
-    const storedVisitor = sessionStorage.getItem('pedidos456Visitor');
+    const storedVisitor = localStorage.getItem('pedidos456Visitor');
     if (storedVisitor) { this._visitor.next(JSON.parse(storedVisitor)) };
   }
 
@@ -97,9 +97,9 @@ export class AuthService {
     if (this.debug) console.log("status", status)
     this._visitor.next(status);
     if (status) {
-      sessionStorage.setItem('pedidos456Visitor', JSON.stringify(this.isVisitor));
+      localStorage.setItem('pedidos456Visitor', JSON.stringify(this.isVisitor));
     } else {
-      sessionStorage.removeItem('pedidos456Visitor');
+      localStorage.removeItem('pedidos456Visitor');
     }
   }
 
