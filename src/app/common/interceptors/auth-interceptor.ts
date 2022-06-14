@@ -19,7 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const storedToken = this.authService.userData;
     const visitor = this.authService.isVisitor;
-    // const storedToken = (JSON.parse(localStorage.getItem('pedidos456') || '[]') || "")
     if (!storedToken && !visitor) {
       return next.handle(req);
     }

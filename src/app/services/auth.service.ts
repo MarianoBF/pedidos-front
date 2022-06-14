@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { loggedInUser, loginCredentialsForm, tokenResponse, decodedToken } from '../common/models/interfaces';
 import jwt_decode from "jwt-decode";
+import cryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,14 @@ export class AuthService {
   public visitor = this._visitor.asObservable();
 
   constructor(private http: HttpClient) {
-    const storedUser = localStorage.getItem('pedidos456');
+    let storedUser = [];
+    try {
+      storedUser = cryptoJS.AES.decrypt(
+        localStorage.getItem('pedidos456'), environment.seed).
+        toString(cryptoJS.enc.Utf8);
+    } catch (error) {
+      if (environment.debug) console.log("error", error)
+    }
     if (storedUser) { this._userData = JSON.parse(storedUser || '[]') };
     const storedVisitor = sessionStorage.getItem('pedidos456Visitor');
     if (storedVisitor) { this._visitor.next(JSON.parse(storedVisitor)) };
@@ -59,7 +67,8 @@ export class AuthService {
         this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
         this.logged.next(this._userData.token !== '')
         this._userInfo.next(this._userData)
-        localStorage.setItem('pedidos456', JSON.stringify(this._userData));
+        const encUserData = cryptoJS.AES.encrypt(JSON.stringify(this._userData), environment.seed).toString();
+        localStorage.setItem('pedidos456', encUserData);
       }), map(_ => true), catchError(err => { if (this.debug) console.log(err); return of(false) }));
   }
 
@@ -71,7 +80,8 @@ export class AuthService {
   refreshToken() {
     return this.http.get<tokenResponse>(this.apiUrl + "usuarios/refreshToken")
       .pipe(tap(res => {
-        localStorage.setItem('pedidos456', JSON.stringify(this.userData));
+        const encUserData = cryptoJS.AES.encrypt(JSON.stringify(this._userData), environment.seed).toString();
+        localStorage.setItem('pedidos456', JSON.stringify(encUserData));
         let decoded: decodedToken = jwt_decode(this.userData.token)
         this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
         this.logged.next(this._userData.token !== '')

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiURL: 'https://pedidos456.herokuapp.com/api/v1/',
-  debug: true
+  debug: true,
+  seed: 'pedidos456',
 };
 
 /*
