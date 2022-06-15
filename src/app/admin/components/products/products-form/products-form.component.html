@@ -1,8 +1,8 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <div
     *ngIf="
-      productForm.controls.name.errors?.required &&
-      productForm.controls.name.touched
+      productForm.controls.name?.errors?.required &&
+      productForm.controls.name?.touched
     "
     class="error"
   >
@@ -10,8 +10,8 @@
   </div>
   <div
     *ngIf="
-      productForm.controls.name.errors?.minlength &&
-      productForm.controls.name.touched
+      productForm.controls.name?.errors?.minlength &&
+      productForm.controls.name?.touched
     "
     class="error"
   >
@@ -33,8 +33,8 @@
   </mat-form-field>
   <div
     *ngIf="
-      productForm.controls.price.errors?.required &&
-      productForm.controls.price.touched
+      productForm.controls.price?.errors?.required &&
+      productForm.controls.price?.touched
     "
     class="error"
   >
@@ -42,8 +42,8 @@
   </div>
   <div
     *ngIf="
-      productForm.controls.price.errors?.min &&
-      productForm.controls.price.touched
+      productForm.controls.price?.errors?.min &&
+      productForm.controls.price?.touched
     "
     class="error"
   >
@@ -51,8 +51,8 @@
   </div>
   <div
     *ngIf="
-      productForm.controls.price.errors?.max &&
-      productForm.controls.price.touched
+      productForm.controls.price?.errors?.max &&
+      productForm.controls.price?.touched
     "
     class="error"
   >

@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(this.loginForm.value).subscribe((res) => {
       if (res) {
-        this.loading = false;
         this.authService.userData.role === 'administrador' ? this.router.navigate(['/admin/pedidos']) : this.router.navigate(['/cliente/pedir'])
       } else {
         this.loading = false;

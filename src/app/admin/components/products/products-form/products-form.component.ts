@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { Product } from '../../../../common/models/interfaces';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Product, ProductForm } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -14,18 +14,18 @@ export class ProductsFormComponent implements OnInit {
 
   @Output() done: EventEmitter<boolean>;
 
-  productForm: UntypedFormGroup;
+  productForm: FormGroup<ProductForm>;
 
   constructor(private productService: ProductsService, private _snackBar: MatSnackBar) {
-    this.productForm = new UntypedFormGroup({
-      name: new UntypedFormControl('', [Validators.required, Validators.minLength(5)]),
-      description: new UntypedFormControl(''),
-      price: new UntypedFormControl('', [
+    this.productForm = new FormGroup<ProductForm>({
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      description: new FormControl(''),
+      price: new FormControl(null, [
         Validators.required,
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
-      image: new UntypedFormControl(''),
+      image: new FormControl(''),
     });
     this.done = new EventEmitter();
   }
@@ -48,10 +48,10 @@ export class ProductsFormComponent implements OnInit {
 
   onSubmit(): void {
     const product: Product = {
-      nombre: this.productForm.value.name,
-      descripcion: this.productForm.value.description,
-      precio: this.productForm.value.price,
-      imagen: this.productForm.value.image
+      nombre: this.productForm.value.name || '',
+      descripcion: this.productForm.value.description || '',
+      precio: this.productForm.value.price || 0,
+      imagen: this.productForm.value.image || ''
     };
     try {
       if (this.editing) {
