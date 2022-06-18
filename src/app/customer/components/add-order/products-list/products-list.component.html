@@ -10,8 +10,8 @@
           <mat-card-title>{{ product.nombre }}</mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <p *ngIf="!product.imagen">Imagen no disponible para este producto</p>
-        <img mat-card-image *ngIf="product.imagen" [src]="product.imagen" alt="producto" class="product-image">
+        <p *appImageAlt="!product.imagen">Imagen no disponible para este producto</p>
+        <img mat-card-image *appImageAlt="product.imagen" [src]="product.imagen" alt="producto" class="product-image">
         <mat-card-content>
           <p>Descripción: {{ product.descripcion }}</p>
           <p >Precio: <span appPricelens>{{ product.precio | currency }}</span></p>
