@@ -11,7 +11,7 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <p *appImageAlt="!product.imagen">Imagen no disponible para este producto</p>
-        <img mat-card-image *appImageAlt="product.imagen" [src]="product.imagen" alt="producto" class="product-image">
+        <img mat-card-image *appImageAlt="!!product.imagen" [src]="product.imagen" alt="producto" class="product-image">
         <mat-card-content>
           <p>Descripción: {{ product.descripcion }}</p>
           <p >Precio: <span appPricelens>{{ product.precio | currency }}</span></p>
