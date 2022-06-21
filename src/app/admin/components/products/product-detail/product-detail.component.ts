@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../../../common/models/interfaces';
+import { Product, ProductForm } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { switchMap } from 'rxjs/operators';
@@ -12,20 +12,20 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ProductDetailComponent implements OnInit {
   product?: Product;
-  productIDForm: UntypedFormGroup;
+  productIDForm: FormGroup<ProductForm>;
 
 
 
   constructor(private productService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar) {
-    this.productIDForm = new UntypedFormGroup({
-      name: new UntypedFormControl('', [Validators.required, Validators.minLength(5)]),
-      description: new UntypedFormControl(),
-      price: new UntypedFormControl('', [
+    this.productIDForm = new FormGroup<ProductForm>({
+      name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      description: new FormControl(),
+      price: new FormControl(0, [
         Validators.required,
         Validators.min(0.01),
         Validators.max(300000.0),
       ]),
-      image: new UntypedFormControl(),
+      image: new FormControl(),
     });
   }
 
@@ -48,10 +48,10 @@ export class ProductDetailComponent implements OnInit {
 
   onSubmit(): void {
     const product: Product = {
-      nombre: this.productIDForm.value.name,
-      descripcion: this.productIDForm.value.description,
-      precio: this.productIDForm.value.price,
-      imagen: this.productIDForm.value.image,
+      nombre: this.productIDForm.value.name || '',
+      descripcion: this.productIDForm.value.description || '',
+      precio: this.productIDForm.value.price || 0,
+      imagen: this.productIDForm.value.image || '',
     };
     try {
       this.productService
