@@ -1,13 +1,13 @@
 <form [formGroup]="productIDForm" (ngSubmit)="onSubmit()">
   <div *ngIf="
-  productIDForm.controls.name.errors?.required &&
-  productIDForm.controls.name.touched
+  productIDForm.controls.name?.errors?.required &&
+  productIDForm.controls.name?.touched
 " class="error">
     <p>El nombre del producto es requerido</p>
   </div>
   <div *ngIf="
-  productIDForm.controls.name.errors?.minlength &&
-  productIDForm.controls.name.touched
+  productIDForm.controls.name?.errors?.minlength &&
+  productIDForm.controls.name?.touched
 " class="error">
     <p>El nombre del producto ingresado es demasiado corto</p>
   </div>
@@ -20,20 +20,20 @@
     <input formControlName="description" type="text" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-    productIDForm.controls.price.errors?.required &&
-    productIDForm.controls.price.touched
+    productIDForm.controls.price?.errors?.required &&
+    productIDForm.controls.price?.touched
   " class="error">
     <p>El precio del producto es requerido</p>
   </div>
   <div *ngIf="
-    productIDForm.controls.price.errors?.min &&
-    productIDForm.controls.price.touched
+    productIDForm.controls.price?.errors?.min &&
+    productIDForm.controls.price?.touched
   " class="error">
     <p>El precio mínimo es $0,01</p>
   </div>
   <div *ngIf="
-    productIDForm.controls.price.errors?.max &&
-    productIDForm.controls.price.touched
+    productIDForm.controls.price?.errors?.max &&
+    productIDForm.controls.price?.touched
   " class="error">
     <p>El precio máximo es $300.000</p>
   </div>
