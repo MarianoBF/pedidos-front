@@ -1,18 +1,29 @@
 import { FormControl } from "@angular/forms";
 
+export interface ProductForm {
+    name?: FormControl<string|null>,
+    description?: FormControl<string|null>,
+    price?: FormControl<number|null>,
+    image?: FormControl<string|null>,
+}
+
+export interface UserForm {
+    userName?: FormControl<string|null>,
+    password?: FormControl<string|null>,
+    confirmPassword?: FormControl<string|null>,
+    fullName?: FormControl<string|null>,
+    email?: FormControl<string|null>,
+    address?: FormControl<string|null>,
+    phone?: FormControl<string|null>,
+
+}
+
 export interface Product {
     id_producto?: number,
     nombre: string,
     descripcion: string,
     precio: number,
     imagen: string,
-}
-
-export interface ProductForm {
-    name?: FormControl<string|null>,
-    description?: FormControl<string|null>,
-    price?: FormControl<number|null>,
-    image?: FormControl<string|null>,
 }
 
 export interface ProductInCart {

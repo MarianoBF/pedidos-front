@@ -1,13 +1,12 @@
-import { Input } from '@angular/core';
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-  UntypedFormGroup,
-  UntypedFormControl,
   Validators,
   ValidationErrors,
   AbstractControl,
+  FormControl,
+  FormGroup,
 } from '@angular/forms';
-import { NewUser } from '../../common/models/interfaces';
+import { NewUser, UserForm } from '../../common/models/interfaces';
 import { UsersService } from '../../services/users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidatorService } from '../../services/email-validator.service';
@@ -19,36 +18,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  userForm: UntypedFormGroup;
+  userForm: FormGroup<UserForm>;
 
   constructor(
     private usersService: UsersService,
     private router: Router,
     private _snackBar: MatSnackBar,
   ) {
-    this.userForm = new UntypedFormGroup(
+    this.userForm = new FormGroup<UserForm>(
       {
-        userName: new UntypedFormControl('', [
+        userName: new FormControl('', [
           Validators.required,
           Validators.minLength(5),
           this.userNameValidator,
         ]),
-        password: new UntypedFormControl('', [Validators.required]),
-        confirmPassword: new UntypedFormControl('', [Validators.required]),
-        fullName: new UntypedFormControl('', [Validators.required]),
-        email: new UntypedFormControl(
+        password: new FormControl('', [Validators.required]),
+        confirmPassword: new FormControl('', [Validators.required]),
+        fullName: new FormControl('', [Validators.required]),
+        email: new FormControl(
           '',
           [Validators.required],
           [EmailValidatorService.validate(this.usersService)]
         ),
-        address: new UntypedFormControl('', [Validators.required]),
-        phone: new UntypedFormControl('', [Validators.required]),
+        address: new FormControl('', [Validators.required]),
+        phone: new FormControl('', [Validators.required]),
       },
       { validators: this.checkEqualValidator('password', 'confirmPassword') }
     );
   }
 
-  userNameValidator(control: UntypedFormControl) {
+  userNameValidator(control: FormControl) {
     const name: string = control.value?.toLowerCase();
 
     if (name?.includes('admin')) {
@@ -81,12 +80,12 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     const user: NewUser = {
-      nombre_usuario: this.userForm.value.userName,
-      nombre_completo: this.userForm.value.fullName,
-      email: this.userForm.value.email,
-      direccion: this.userForm.value.address,
-      telefono: this.userForm.value.phone,
-      password: this.userForm.value.password,
+      nombre_usuario: this.userForm.value.userName || '',
+      nombre_completo: this.userForm.value.fullName || '',
+      email: this.userForm.value.email || '',
+      direccion: this.userForm.value.address || '',
+      telefono: this.userForm.value.phone || '',
+      password: this.userForm.value.password || '',
     };
     try {
       this.usersService.registerUser(user).subscribe(_ => {
