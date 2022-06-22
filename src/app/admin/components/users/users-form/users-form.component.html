@@ -1,19 +1,19 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div *ngIf="
-      userForm.controls.userName.errors?.required &&
-      userForm.controls.userName.touched
+      userForm.controls.userName?.errors?.required &&
+      userForm.controls.userName?.touched
     " class="error">
     <p>El nombre de usuario es requerido</p>
   </div>
   <div *ngIf="
-      userForm.controls.userName.errors?.minlength &&
-      userForm.controls.userName.touched
+      userForm.controls.userName?.errors?.minlength &&
+      userForm.controls.userName?.touched
     " class="error">
     <p>El nombre de usuario es demasiado corto</p>
   </div>
   <div *ngIf="
-    userForm.controls.userName.errors?.nameNotValid &&
-    userForm.controls.userName.touched
+    userForm.controls.userName?.errors?.nameNotValid &&
+    userForm.controls.userName?.touched
   " class="error">
     <p>El nombre de usuario no puede incluir la palabra admin</p>
   </div>
@@ -26,8 +26,8 @@
     <input formControlName="fullName" type="text" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-  userForm.controls.password.errors?.required &&
-  userForm.controls.password.touched
+  userForm.controls.password?.errors?.required &&
+  userForm.controls.password?.touched
 " class="error">
     <p>Password es requerido</p>
   </div>
@@ -36,14 +36,14 @@
     <input formControlName="password" type="password" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-  userForm.controls.confirmPassword.errors?.notEqual &&
-  userForm.controls.confirmPassword.touched
+  userForm.controls.confirmPassword?.errors?.notEqual &&
+  userForm.controls.confirmPassword?.touched
 " class="error">
     <p>las contraseñas no coinciden!</p>
   </div>
   <div *ngIf="
-userForm.controls.password.errors?.required &&
-userForm.controls.password.touched
+userForm.controls.confirmPassword?.errors?.required &&
+userForm.controls.confirmPassword?.touched
 " class="error">
     <p>Confirmar password es requerido</p>
   </div>
@@ -52,14 +52,14 @@ userForm.controls.password.touched
     <input formControlName="confirmPassword" type="password" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-      userForm.controls.email.errors?.required &&
-      userForm.controls.email.touched
+      userForm.controls.email?.errors?.required &&
+      userForm.controls.email?.touched
     " class="error">
     <p>El email es requerido</p>
   </div>
   <div *ngIf="
-  userForm.controls.email.errors?.emailTaken &&
-  userForm.controls.email.touched
+  userForm.controls.email?.errors?.emailTaken &&
+  userForm.controls.email?.touched
 " class="error">
     <p>Este email no está disponible para utilizar, use otro</p>
   </div>
@@ -68,8 +68,8 @@ userForm.controls.password.touched
     <input formControlName="email" type="email" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-      userForm.controls.address.errors?.required &&
-      userForm.controls.address.touched
+      userForm.controls.address?.errors?.required &&
+      userForm.controls.address?.touched
     " class="error">
     <p>La dirección es requerida</p>
   </div>
@@ -78,8 +78,8 @@ userForm.controls.password.touched
     <input formControlName="address" type="text" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-      userForm.controls.phone.errors?.required &&
-      userForm.controls.phone.touched
+      userForm.controls.phone?.errors?.required &&
+      userForm.controls.phone?.touched
     " class="error">
     <p>El teléfono es requerido</p>
   </div>
@@ -88,8 +88,8 @@ userForm.controls.password.touched
     <input formControlName="phone" type="text" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-      userForm.controls.role.errors?.checkRole &&
-      userForm.controls.role.touched
+      userForm.controls.role?.errors?.checkRole &&
+      userForm.controls.role?.touched
     " class="error">
     <p>El rol no es válido</p>
   </div>

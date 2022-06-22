@@ -15,7 +15,7 @@ export interface UserForm {
     email?: FormControl<string|null>,
     address?: FormControl<string|null>,
     phone?: FormControl<string|null>,
-
+    role?: FormControl<'usuario'|'administrador'|null>,
 }
 
 export interface Product {
