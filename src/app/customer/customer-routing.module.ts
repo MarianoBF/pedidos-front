@@ -6,8 +6,8 @@ import { ViewOrdersComponent } from './components/view-orders/view-orders.compon
 
 const routes: Routes = [
   {path: '', children: [
-  { path: 'pedir', component: AddOrderComponent, canActivate: [AuthGuard] },
-  { path: 'misPedidos', component: ViewOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'pedir', component: AddOrderComponent, canActivate: [AuthGuard], title:'Realizar un pedido' },
+  { path: 'misPedidos', component: ViewOrdersComponent, canActivate: [AuthGuard], title: 'Ver los pedidos que realicé' },
   { path: '**', redirectTo: 'misPedidos' }
   ]}
 ];

@@ -23,8 +23,8 @@ const routes: Routes = [
       role: ['usuario', 'administrador']
     }
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegisterComponent},
+  { path: 'login', component: LoginComponent, title: 'Login' },
+  { path: 'registro', component: RegisterComponent, title: 'Registrar un Usuario'},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' },
 ];

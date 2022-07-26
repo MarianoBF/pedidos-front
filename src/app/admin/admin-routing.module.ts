@@ -7,9 +7,9 @@ import { AuthGuard } from '../common/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', children: [
-  { path: 'pedidos', component: OrdersComponent, canActivate: [AuthGuard] },
-  { path: 'productos', component: ProductsComponent, canActivate: [AuthGuard] },
-  { path: 'usuarios', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'pedidos', component: OrdersComponent, canActivate: [AuthGuard], title: 'ABM Pedidos' },
+  { path: 'productos', component: ProductsComponent, canActivate: [AuthGuard], title: 'ABM Productos' },
+  { path: 'usuarios', component: UsersComponent, canActivate: [AuthGuard], title: 'ABM Usuarios' },
   ]}
 ];
 
