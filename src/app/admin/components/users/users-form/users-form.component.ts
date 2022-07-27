@@ -32,7 +32,7 @@ export class UsersFormComponent implements OnInit {
       password: new FormControl('', this.requiredForCreating.bind(this)),
       confirmPassword: new FormControl('', this.requiredForCreating.bind(this)),
       fullName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required], [EmailValidatorService.validate(this.usersService)]),
+      email: new FormControl('', [Validators.required, Validators.email], [EmailValidatorService.validate(this.usersService)]),
       role: new FormControl(null, [this.requiredForEditing.bind(this)]),
       address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),

@@ -52,10 +52,10 @@ userForm.controls.confirmPassword?.touched
     <input formControlName="confirmPassword" type="password" matInput class="form-control" />
   </mat-form-field>
   <div *ngIf="
-      userForm.controls.email?.errors?.required &&
+      (userForm.controls.email?.errors?.required || userForm.controls.email?.errors?.email) &&
       userForm.controls.email?.touched
     " class="error">
-    <p>El email es requerido</p>
+    <p>El email es requerido y debe tener formato de email</p>
   </div>
   <div *ngIf="
   userForm.controls.email?.errors?.emailTaken &&
