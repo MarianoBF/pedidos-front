@@ -20,8 +20,14 @@ export class ErrorInterceptor implements HttpInterceptor {
                         horizontalPosition: 'end'
                     })
                 }
-                else {
+                else if (err.statusText) {
                     this._snackBar.open(err.statusText, "Cerrar", {
+                        duration: 8000,
+                        verticalPosition: 'top',
+                        horizontalPosition: 'end'
+                    })
+                } else {
+                    this._snackBar.open('Error general', "Cerrar", {
                         duration: 8000,
                         verticalPosition: 'top',
                         horizontalPosition: 'end'

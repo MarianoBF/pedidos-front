@@ -21,7 +21,7 @@ export class EmailValidatorService{
         return of(null); 
       } 
 
-      return timer(500).pipe(
+      return timer(1500).pipe(
           switchMap(()=>{
             return usersSrv.checkMail(control.value)
           }), map (res=> res?.available==="yes" ? null : {emailTaken: true})
