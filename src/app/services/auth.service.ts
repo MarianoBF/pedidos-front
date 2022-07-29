@@ -90,10 +90,6 @@ export class AuthService {
       }), map(_ => true), catchError(err => of(false)));
   }
 
-  loggedRes() {
-    return this.loggedStatus.toPromise();
-  }
-
   setVisitor(status: boolean = false): void {
     if (this.debug) console.log("status", status)
     this._visitor.next(status);

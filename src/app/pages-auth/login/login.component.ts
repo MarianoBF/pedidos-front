@@ -15,18 +15,22 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm!: NgForm
   logged = false;
   loading = false;
+  role = '';
 
   constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
-    this.authService.loggedRes().then(res => {
-      this.logged = res
-
-      if (this.logged) {
+    this.logged = !!this.authService.userData.token
+    this.role = this.authService.userData.role
+    console.log("logged", this.logged, this.role)
+    if (this.logged) {
+      if (this.role === 'administrador') {
         this.router.navigate(['/admin/pedidos']);
+      } else {
+        this.router.navigate(['/cliente/pedir']);
       }
-    })
+    }
   }
 
   handleLogin() {

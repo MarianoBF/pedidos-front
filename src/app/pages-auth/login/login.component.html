@@ -20,7 +20,7 @@
         <input matInput type="password" name="password" ngModel required minlength="6" />
       </mat-form-field>
 
-      <button mat-flat-button type="submit" color="primary" [disabled]="loading">Enviar</button>
+      <button mat-flat-button type="submit" color="primary" [disabled]="loading || !loginForm.valid">Enviar</button>
 
     </form>
     <div class="register">
