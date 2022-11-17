@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Validators, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { User, UserForm } from '../../../../common/models/interfaces';
 import { UsersService } from '../../../../services/users.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { EmailValidatorService } from '../../../../services/email-validator.service';
 
 @Component({
