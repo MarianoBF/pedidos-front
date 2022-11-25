@@ -71,3 +71,15 @@ form {
 .d-none {
     display: none !important
 }
+
+.w-100 {
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}

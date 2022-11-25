@@ -4,19 +4,21 @@
 
 <ng-template #divResults>
 
-<div class="cardContainer">
+  <div class="cardContainer">
     <mat-card appearance="outlined" *ngFor="let user of userList" class="card">
-      <mat-card-title>{{ user.nombre_usuario }}</mat-card-title>
+      <mat-card-header>
+        <mat-card-title>{{ user.nombre_usuario }}</mat-card-title>
+      </mat-card-header>
       <mat-card-content>
         <p>Usuario: {{ user.nombre_usuario }} - Rol: {{ user.rol }}</p>
         <p>Teléfono: {{ user.telefono }}</p>
         <p>Dirección: {{ user.direccion }}</p>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions class="w-100 d-flex justify-space-between">
         <button mat-stroked-button color="warn" (click)="deleteUser(user.id_usuario||0)">Borrar</button>
         <button mat-stroked-button (click)="updateUser(user)">Editar</button>
       </mat-card-actions>
     </mat-card>
-    </div>
+  </div>
 
 </ng-template>
