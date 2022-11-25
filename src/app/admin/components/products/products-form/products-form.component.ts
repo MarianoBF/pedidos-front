@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Product, ProductForm } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products-form',
@@ -55,7 +55,7 @@ export class ProductsFormComponent implements OnInit {
     };
     try {
       if (this.editing) {
-        const id = this.product?.id_producto || 0; // TODO : Chequear
+        const id = this.product?.id_producto || 0;
         this.productService
           .updateProduct(id, product)
           .subscribe(_ => {

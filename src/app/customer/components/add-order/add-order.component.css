@@ -27,7 +27,7 @@ ul {
     flex-basis: 75%;
 }
 
-.selects .mat-form-field {
+.selects .mat-mdc-form-field {
     display: blocK;
     margin: 0 auto;
 }

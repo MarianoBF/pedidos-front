@@ -7,13 +7,13 @@
     max-height: 300px;
 }
 
-.mat-card {
+.mat-mdc-card {
     margin: 20px auto;
     width: fit-content;
     text-align: center;
 }
 
-.mat-card-header {
+.mat-mdc-card-header {
     justify-content: center;
 }
 

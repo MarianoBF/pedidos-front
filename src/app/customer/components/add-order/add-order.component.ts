@@ -3,7 +3,7 @@ import { CartService } from '../../cart.service';
 import { ProductInCart, Product } from '../../../common/models/interfaces';
 import { OrdersService } from '../../../services/orders.service';
 import { AuthService } from '../../../services/auth.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-order',

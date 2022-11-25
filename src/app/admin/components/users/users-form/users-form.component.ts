@@ -3,7 +3,7 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Validators, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { User, UserForm } from '../../../../common/models/interfaces';
 import { UsersService } from '../../../../services/users.service';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailValidatorService } from '../../../../services/email-validator.service';
 
 @Component({
@@ -119,7 +119,7 @@ export class UsersFormComponent implements OnInit {
     };
     try {
       if (this.editing) {
-        const id = this.user?.id_usuario || 0; // TODO chequear;
+        const id = this.user?.id_usuario || 0;
         this.usersService.updateUser(id, user).subscribe(_ => {
           this._snackBar.open('Usuario actualizado con éxito', 'Cerrar', {
             duration: 4000,
