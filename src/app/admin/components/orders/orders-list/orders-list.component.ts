@@ -47,7 +47,7 @@ export class OrdersListComponent implements OnInit {
 
   showDetails(pedido: Order) {
     const dialog = this.dialog.open(OrdersDialogueComponent, {
-      width: '300px',
+      width: '500px',
       data: { pedido , status: null, show: 'details' }
     })
   }

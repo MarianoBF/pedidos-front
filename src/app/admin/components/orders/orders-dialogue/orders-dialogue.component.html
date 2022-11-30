@@ -1,41 +1,59 @@
 <div *ngIf="data.show==='status'">
-    <p>Estado actual del pedido <strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</p>
-<mat-form-field appearance="fill">
-<mat-label>Nuevo estado:</mat-label>
-<select matNativeControl value="" (change)="handleSelect($event)">
-    <option value=""></option>
-    <option value="confirmado">Confirmado</option>
-    <option value="preparando">Preparado</option>
-    <option value="enviando">Enviado</option>
-    <option value="cancelado">Cancelado</option>
-    <option value="entregado">Entregado</option>
-</select>
-</mat-form-field>
-<button mat-stroked-button color="primary" (click)="save()">Actualizar</button>
-<button mat-stroked-button (click)="close()">Cerrar</button>
+    <h2 mat-dialog-title>Estado:</h2>
+    <mat-dialog-content>
+        <p>Estado actual del pedido <strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Nuevo estado:</mat-label>
+            <select matNativeControl value="" (change)="handleSelect($event)">
+                <option value=""></option>
+                <option value="confirmado">Confirmado</option>
+                <option value="preparando">Preparado</option>
+                <option value="enviando">Enviado</option>
+                <option value="cancelado">Cancelado</option>
+                <option value="entregado">Entregado</option>
+            </select>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button color="primary" (click)="save()">Actualizar</button>
+        <button mat-stroked-button mat-dialog-close (click)="close()">Cerrar</button>
+    </mat-dialog-actions>
 </div>
 
 <div *ngIf="data.show==='details'">
-    <h2>Observaciones:</h2>
-    {{data.pedido.observaciones}}
-    <h2>Productos del pedido <strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</h2>
-    <div *ngFor="let item of items">
-        <p>{{item.cantidad_producto}} -- {{item.nombre}} -- {{item.precio * item.cantidad_producto | currency}} ({{item.precio}} c/u)</p>
-    </div>
-    <div *ngIf="items?.length === 0 && loading === false">No hay productos en el pedido seleccionado</div>
-<button mat-stroked-button (click)="close()">Cerrar</button>
+    <h2 mat-dialog-title>Detalle del pedido:</h2>
+    <mat-dialog-content>
+        {{data.pedido.observaciones}}
+        <h2>Productos del pedido <strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</h2>
+        <div *ngFor="let item of items">
+            <p>{{item.cantidad_producto}} -- {{item.nombre}} -- {{item.precio * item.cantidad_producto | currency}}
+                ({{item.precio}} c/u)</p>
+        </div>
+        <div *ngIf="items?.length === 0 && loading === false">No hay productos en el pedido seleccionado</div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button mat-dialog-close (click)="close()">Cerrar</button>
+    </mat-dialog-actions>
 </div>
 
 <div *ngIf="data.show==='obs'">
-    <p>Estado actual del pedido <strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</p>
-<div>    <mat-form-field appearance="fill">
-<mat-label>Observaciones:</mat-label>
-    <textarea matInput rows="5" [(ngModel)]="observaciones"></textarea>
-</mat-form-field>
-</div>
+    <h2 mat-dialog-title>Observaciones</h2>
+    <mat-dialog-content>
+        <p>Estado actual<strong>{{data.pedido.id_pedido}}</strong> : {{data.status | titlecase}}</p>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Observaciones:</mat-label>
+                <textarea matInput rows="5" [(ngModel)]="observaciones"></textarea>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
 
-<div class="obsFooter">
-<button mat-stroked-button color="primary" (click)="saveObs()">Actualizar</button>
-<button mat-stroked-button (click)="close()">Cerrar</button>
-</div>
+    <mat-dialog-actions>
+
+        <div class="obsFooter">
+            <button mat-stroked-button color="primary" (click)="saveObs()">Actualizar</button>
+            <button mat-stroked-button (click)="close()">Cerrar</button>
+        </div>
+    </mat-dialog-actions>
+
 </div>
