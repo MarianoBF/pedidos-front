@@ -9,7 +9,7 @@ export class PricelensDirective {
   }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.zoom('2');
+    this.zoom('1.3');
     this.weight = 'bold'
   }
 
