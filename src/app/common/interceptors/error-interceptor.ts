@@ -13,15 +13,14 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if (err) {
-                if (err.error) {
-                    this._snackBar.open(err.error, "Cerrar", {
+                if (err.statusText) {
+                    this._snackBar.open(err.statusText, "Cerrar", {
                         duration: 8000,
                         verticalPosition: 'top',
                         horizontalPosition: 'end'
                     })
-                }
-                else if (err.statusText) {
-                    this._snackBar.open(err.statusText, "Cerrar", {
+                } else if (err.error) {
+                    this._snackBar.open(err.error, "Cerrar", {
                         duration: 8000,
                         verticalPosition: 'top',
                         horizontalPosition: 'end'
