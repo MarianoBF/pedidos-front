@@ -16,6 +16,7 @@ import { ErrorInterceptor } from './common/interceptors/error-interceptor';
 import { RegisterComponent } from './pages-auth/register/register.component';
 import { AdminMenuComponent } from './admin/components/admin-menu/admin-menu.component';
 import { CustomerMenuComponent } from './customer/components/customer-menu/customer-menu.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CustomerMenuComponent } from './customer/components/customer-menu/custo
     BrowserAnimationsModule,
     AdminModule,
     MaterialUIModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
