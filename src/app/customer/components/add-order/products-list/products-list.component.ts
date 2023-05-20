@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from '../../../../common/models/interfaces';
-import { ProductsService } from '../../../../services/products.service';
+import { Store } from '@ngrx/store';
+import { loadProducts } from 'src/app/actions/products.actions';
+import { Product } from 'src/app/common/models/product.model';
+import { selectLoading, selectProducts } from 'src/app/selectors/products.selector';
 import { CartService } from '../../../cart.service';
 
 @Component({
@@ -11,27 +13,29 @@ import { CartService } from '../../../cart.service';
 export class ProductsListComponent implements OnInit {
 
   productList: any[] = [];
-  loading = true;
 
   @Input() ordering: boolean = false;
 
   @Output() evtUpdateProduct: EventEmitter<[Product, string]>;
+  loading$: any;
 
-  constructor(private productService: ProductsService, private cartService: CartService) {
+  constructor(private cartService: CartService, private store: Store<any>) {
     this.evtUpdateProduct = new EventEmitter();
    }
 
   ngOnInit(): void {
     this.getProducts();
+    this.loading$ = this.store.select(selectLoading);
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe(products=>{
-      this.productList = products;
+    this.store.dispatch(loadProducts());
+    this.store.select(selectProducts).subscribe( products => {
+      this.productList = products
       for (let product of this.productList) {
         product.quantity = 1;
       }
-      this.loading = false;})
+  });
   }
 
   addProduct(product:Product) {

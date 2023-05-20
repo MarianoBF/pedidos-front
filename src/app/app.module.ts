@@ -18,6 +18,10 @@ import { AdminMenuComponent } from './admin/components/admin-menu/admin-menu.com
 import { CustomerMenuComponent } from './customer/components/customer-menu/customer-menu.component';
 import { StoreModule } from '@ngrx/store';
 
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './effects/products.effects';
+import { productReducer } from './reducers/products.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +40,9 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     AdminModule,
     MaterialUIModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ products: productReducer }),
+    EffectsModule.forRoot([ProductEffects])
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
