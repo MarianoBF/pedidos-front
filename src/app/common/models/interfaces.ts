@@ -18,14 +18,6 @@ export interface UserForm {
     role?: FormControl<'usuario'|'administrador'|null>,
 }
 
-export interface Product {
-    id_producto?: number,
-    nombre: string,
-    descripcion: string,
-    precio: number,
-    imagen: string,
-}
-
 export interface ProductInCart {
     id_producto?: number,
     nombre: string,

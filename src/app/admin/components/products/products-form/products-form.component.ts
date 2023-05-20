@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Product, ProductForm } from '../../../../common/models/interfaces';
+import { ProductForm } from '../../../../common/models/interfaces';
 import { ProductsService } from 'src/app/services/products.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Product } from 'src/app/common/models/product.model';
 
 @Component({
   selector: 'app-products-form',

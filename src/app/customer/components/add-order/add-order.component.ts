@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../cart.service';
-import { ProductInCart, Product } from '../../../common/models/interfaces';
+import { ProductInCart } from '../../../common/models/interfaces';
 import { OrdersService } from '../../../services/orders.service';
 import { AuthService } from '../../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Product } from 'src/app/common/models/product.model';
 
 @Component({
   selector: 'app-add-order',
