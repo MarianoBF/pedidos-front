@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Order } from '../../../common/models/interfaces';
-import { OrdersService } from 'src/app/services/orders.service';
+import { OrdersService } from '../../../services/orders.service';
 
 @Component({
   selector: 'app-view-orders',

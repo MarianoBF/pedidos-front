@@ -2,7 +2,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { loggedInUser, loginCredentialsForm, tokenResponse, decodedToken } from '../common/models/interfaces';
 import jwt_decode from "jwt-decode";
 import { AES, enc } from 'crypto-js';
