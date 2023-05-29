@@ -4,9 +4,6 @@ export interface Product {
     descripcion: string,
     precio: number,
     imagen: string,
-<<<<<<< Updated upstream
-=======
     quantity?: number,
     borrado?: number,
->>>>>>> Stashed changes
 }
