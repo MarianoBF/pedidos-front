@@ -62,7 +62,6 @@ describe('ViewOrdersComponent', () => {
     expect(component.dataSource).toBeInstanceOf(MatTableDataSource);
     expect(component.currentStatus).toBe('');
     expect(component.modifyID).toBe(-1);
-    // expect(component.loading).toBe(true);
   });
 
   it('should get orders on initialization', () => {
@@ -76,9 +75,7 @@ describe('ViewOrdersComponent', () => {
 
     expect(ordersServiceMock.getOrdersForUser).toHaveBeenCalled();
     expect(component.dataSource.data).toEqual(orders);
-    // expect(component.dataSource.paginator).toBe(matPaginatorMock);
-    // expect(component.dataSource.sort).toBe(matSortMock);
-    // expect(component.loading).toBe(false);
+    expect(component.loading).toBe(false);
   });
 
   it('should filter the data source', () => {
