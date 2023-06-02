@@ -5,19 +5,13 @@ import { MatSidenav } from '@angular/material/sidenav';
   selector: 'app-customer-menu',
   templateUrl: './customer-menu.component.html',
 })
-export class CustomerMenuComponent implements OnInit, OnChanges {
-
+export class CustomerMenuComponent implements OnChanges {
 
   @Input() openMenu = false;
   @ViewChild('sidenav') public sidenav!: MatSidenav;
-
 
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
     this.sidenav?.toggle();
   }
-
-  ngOnInit(): void {
-  }
-
 }
