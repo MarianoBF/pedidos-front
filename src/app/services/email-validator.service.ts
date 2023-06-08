@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-import { Observable, of, timer } from 'rxjs';
-import { debounceTime, delay, first, map, switchMap } from 'rxjs/operators';
+import { AbstractControl } from '@angular/forms';
+import { of, timer } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { UsersService } from './users.service';
 
 @Injectable({
