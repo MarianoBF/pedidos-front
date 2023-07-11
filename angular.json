@@ -86,11 +86,23 @@
           "options": {
             "browserTarget": "pedidos:build"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "950c1d8e-b0d2-44be-83ff-a35a80712b38"
+    "analytics": "950c1d8e-b0d2-44be-83ff-a35a80712b38",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
