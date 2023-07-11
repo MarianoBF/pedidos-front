@@ -38,9 +38,9 @@ export class AuthService {
         localStorage.removeItem('pedidos456');
         if (environment.debug) console.log("error", error)
     }
-    if (storedUser) { this._userData = JSON.parse(storedUser || '[]') };
+    if (storedUser) { this._userData = JSON.parse(storedUser || '[]') }
     const storedVisitor = localStorage.getItem('pedidos456Visitor');
-    if (storedVisitor) { this._visitor.next(JSON.parse(storedVisitor)) };
+    if (storedVisitor) { this._visitor.next(JSON.parse(storedVisitor)) }
   }
 
   get userData() {
@@ -63,7 +63,7 @@ export class AuthService {
       .post<tokenResponse>(this.apiUrl + "usuario/login", credentials, this.httpOptions)
       .pipe(tap(res => {
         if (this.debug) console.log('Login attemp for', values.userName)
-        let decoded: decodedToken = jwt_decode(res.token)
+        const decoded: decodedToken = jwt_decode(res.token)
         if (this.debug) console.log("decoded", decoded)
         this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
         this.logged.next(this._userData.token !== '')
@@ -83,14 +83,14 @@ export class AuthService {
       .pipe(tap(res => {
         const encUserData = AES.encrypt(JSON.stringify(this._userData), environment.seed).toString();
         localStorage.setItem('pedidos456', encUserData);
-        let decoded: decodedToken = jwt_decode(this.userData.token)
+        const decoded: decodedToken = jwt_decode(this.userData.token)
         this._userData = { name: decoded.nombre_usuario, token: String(res.token), id: Number(decoded.id_usuario), role: decoded.rol };
         this.logged.next(this._userData.token !== '')
         this._userInfo.next(this._userData)
       }), map(_ => true), catchError(err => of(false)));
   }
 
-  setVisitor(status: boolean = false): void {
+  setVisitor(status = false): void {
     if (this.debug) console.log("status", status)
     this._visitor.next(status);
     if (status) {

@@ -16,9 +16,9 @@ export class AddOrderComponent implements OnInit {
   cart: ProductInCart[] = [];
   paymentMethod: "efectivo" | "tarjeta" = "efectivo";
   ordering = false;
-  orderNumber: number = 0;
+  orderNumber = 0;
   ordered = false;
-  userID: number = 0;
+  userID = 0;
   orderNotes = "";
 
   constructor(private cartService: CartService, private ordersService: OrdersService, private authService: AuthService, private _snackBar: MatSnackBar) { }
@@ -77,10 +77,8 @@ export class AddOrderComponent implements OnInit {
       this.orderNumber = res.id_pedido || 0;
       this.cart.forEach(prod => total += prod.precio * prod.quantity)
       this.ordersService.updateOrderAmount(this.orderNumber, total).subscribe()
-      this.cart.forEach(prod => this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe(_ => {
-        }))
+      this.cart.forEach(prod => this.ordersService.addProductToOrder(this.orderNumber, this.userID, prod.id_producto!, prod.quantity).subscribe())
         this.ordered = true;
-        ;
       })
     }
   }

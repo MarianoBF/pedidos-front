@@ -10,7 +10,6 @@ export class CustomerMenuComponent implements OnChanges {
   @Input() openMenu = false;
   @ViewChild('sidenav') public sidenav!: MatSidenav;
 
-  constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
     this.sidenav?.toggle();
   }

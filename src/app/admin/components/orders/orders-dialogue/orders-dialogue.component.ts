@@ -10,7 +10,7 @@ import { Order } from '../../../../common/models/interfaces';
   styleUrls: ['./orders-dialogue.component.css']
 })
 export class OrdersDialogueComponent implements OnInit {
-  status: string = "";
+  status = "";
   items: any;
   loading = true;
   observaciones = "";
@@ -26,7 +26,7 @@ export class OrdersDialogueComponent implements OnInit {
         this.items = res;
         this.loading = false;
         this.ProductsService.getProducts().toPromise().then(res=> {
-          for (let item of this.items) {
+          for (const item of this.items) {
             const prodData = res.find(elem => elem.id_producto === item.id_producto)
             item.precio = prodData?.precio;
             item.nombre = prodData?.nombre;

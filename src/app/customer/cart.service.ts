@@ -8,14 +8,11 @@ import { Product } from '../common/models/product.model';
 export class CartService {
   cart: ProductInCart[] = [];
 
-  constructor() {
-  }
-
   getCart(): ProductInCart[] {
     return this.cart
   }
 
-  addToCart(product: Product, quantity: number = 1): void {
+  addToCart(product: Product, quantity = 1): void {
     if (this.cart.findIndex(item => item.id_producto === product.id_producto) === -1) {
       const ProdToAdd = { ...product, quantity }
       this.cart.push(ProdToAdd)

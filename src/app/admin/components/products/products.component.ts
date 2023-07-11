@@ -6,12 +6,9 @@ import { Product } from 'src/app/common/models/product.model';
   templateUrl: './products.component.html',
 })
 export class ProductsComponent {
-  editing: boolean = false;
-  add: boolean = false;
+  editing = false;
+  add = false;
   product?: Product;
-
-  constructor() {}
-
 
   addProduct() {
     this.add = true;

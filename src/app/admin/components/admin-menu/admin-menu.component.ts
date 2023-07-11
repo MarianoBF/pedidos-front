@@ -5,20 +5,16 @@ import { MatSidenav } from '@angular/material/sidenav';
   selector: 'app-admin-menu',
   templateUrl: './admin-menu.component.html',
 })
-export class AdminMenuComponent implements OnInit, OnChanges {
+export class AdminMenuComponent implements OnChanges {
 
   @Input() openMenu = false;
   @ViewChild('sidenav') public sidenav!: MatSidenav;
 
 
-  constructor() { }
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.sidenav) {
       this.sidenav?.toggle();
     }
-  }
-
-  ngOnInit(): void {
   }
 
 }

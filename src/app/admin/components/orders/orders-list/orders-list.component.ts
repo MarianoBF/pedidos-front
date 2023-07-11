@@ -16,8 +16,8 @@ export class OrdersListComponent implements OnInit {
 
   displayedColumns: string[] = ['id_pedido', 'estado', 'hora', 'pago_monto', 'pago_via', 'id_usuario', 'details', 'observaciones'];
   // dataSource: Order[] = [];
-  currentStatus: string = "";
-  modifyID: number = -1;
+  currentStatus = "";
+  modifyID = -1;
   dataSource: any;
   loading = true;
 
@@ -61,7 +61,7 @@ export class OrdersListComponent implements OnInit {
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
       this.orderService.updateOrderObs(
         this.modifyID, { observaciones: res }))).subscribe(
-          _ => {;
+          _ => {
             this.loading = true;
             this.getOrders();
             this.getOrders();
@@ -82,7 +82,7 @@ export class OrdersListComponent implements OnInit {
     dialog.afterClosed().pipe(filter(res => res && res.length > 1), switchMap(res =>
       this.orderService.updateOrder(
         this.modifyID, { estado: res }))).subscribe(
-          _ => {;
+          _ => {
             this.orderService.getOrders().subscribe(data => this.dataSource = [...data]);
           })
 

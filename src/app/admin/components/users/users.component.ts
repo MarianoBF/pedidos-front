@@ -5,14 +5,10 @@ import { User } from '../../../common/models/interfaces';
   selector: 'app-users',
   templateUrl: './users.component.html',
 })
-export class UsersComponent implements OnInit {
-  editing: boolean = false;
-  add: boolean = false;
+export class UsersComponent {
+  editing = false;
+  add = false;
   user?: User;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   addUser() {
     this.add = true;

@@ -6,11 +6,9 @@ import { Order } from '../../../common/models/interfaces';
   templateUrl: './orders.component.html',
 })
 export class OrdersComponent {
-  editing: boolean = false;
-  add: boolean = false;
+  editing = false;
+  add = false;
   order?: Order;
-
-  constructor() { }
 
   addOrder(): void {
     this.add = true;

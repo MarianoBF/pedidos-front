@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   userForm: FormGroup<UserForm>;
 
   constructor(
@@ -69,9 +69,6 @@ export class RegisterComponent implements OnInit {
       this.userForm?.get(field2)?.setErrors({ notEqual: true });
       return { notEqual: true };
     };
-  }
-
-  ngOnInit(): void {
   }
 
   onCancel(): void {

@@ -1,4 +1,4 @@
-<div *ngIf="productList.length === 0 && !(loading$ | async)">No hay productos para mostrar</div>
+<div *ngIf="productList.length === 0 && (loading$ | async) === false">No hay productos para mostrar</div>
 
 <mat-spinner *ngIf="loading$ | async; else divResults" class="loader"></mat-spinner>
 

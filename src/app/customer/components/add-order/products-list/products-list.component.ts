@@ -14,7 +14,7 @@ export class ProductsListComponent implements OnInit {
 
   productList: any[] = [];
 
-  @Input() ordering: boolean = false;
+  @Input() ordering = false;
 
   @Output() evtUpdateProduct: EventEmitter<[Product, string]>;
   loading$: any;
@@ -32,7 +32,7 @@ export class ProductsListComponent implements OnInit {
     this.store.dispatch(loadProducts());
     this.store.select(selectProducts).subscribe( products => {
       this.productList = products
-      for (let product of this.productList) {
+      for (const product of this.productList) {
         product.quantity = 1;
       }
   });

@@ -13,8 +13,8 @@ export class ViewOrdersComponent implements OnInit {
 
   displayedColumns: string[] = ['id_pedido', 'estado', 'hora', 'pago_monto', 'pago_via'];
   dataSource: any;
-  currentStatus: string = "";
-  modifyID: number = -1;
+  currentStatus = "";
+  modifyID = -1;
   loading = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
