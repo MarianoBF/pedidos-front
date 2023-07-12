@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   Validators,
   ValidationErrors,
@@ -27,11 +27,7 @@ export class RegisterComponent {
   ) {
     this.userForm = new FormGroup<UserForm>(
       {
-        userName: new FormControl('', [
-          Validators.required,
-          Validators.minLength(5),
-          this.userNameValidator,
-        ]),
+        userName: new FormControl('', [Validators.required, Validators.minLength(5), this.userNameValidator]),
         password: new FormControl('', [Validators.required]),
         confirmPassword: new FormControl('', [Validators.required]),
         fullName: new FormControl('', [Validators.required]),
@@ -47,7 +43,7 @@ export class RegisterComponent {
     );
   }
 
-  userNameValidator(control: FormControl) {
+  userNameValidator(control: FormControl): ValidationErrors | null {
     const name: string = control.value?.toLowerCase();
 
     if (name?.includes('admin')) {

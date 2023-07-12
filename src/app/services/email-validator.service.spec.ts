@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { AbstractControl } from '@angular/forms';
-import { of, timer } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { EmailValidatorService } from './email-validator.service';
 import { UsersService } from './users.service';
 
@@ -13,7 +12,6 @@ describe('EmailValidatorService', () => {
 
   beforeEach(async() => {
     usersService = new UsersService(httpClient); // Create a mock instance of UsersService if needed
-    emailValidatorService = new EmailValidatorService();
 
     await TestBed.configureTestingModule({
         declarations: [],
